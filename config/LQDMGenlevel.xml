@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration PUBLIC "" "Configuration.dtd"[
+
+
+<!ENTITY TargetLumi  "1" >
+<!ENTITY outfilepath "/work/areimers/LQDM/UL17/Genlevel" >
+
+<!ENTITY LQLQToBTau_MLQ1000_MPS567_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS567_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS1051_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS1051_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS567_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS567_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS1051_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS1051_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS2221_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS2221_MC12089_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS2221_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS2221_MC12089_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS4827_MC14467_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS4827_MC14467_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS4827_MC14467_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS4827_MC14467_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS11493_MC110233_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS11493_MC110233_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS11493_MC110233_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS11493_MC110233_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS22642_MC119055_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS22642_MC119055_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1000_MPS22642_MC119055_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1000_MPS22642_MC119055_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS513_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS513_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS1071_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS1071_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS513_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS513_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS1071_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS1071_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS2279_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS2279_MC12089_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS4843_MC14467_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS4843_MC14467_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS2279_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS2279_MC12089_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS11488_MC110233_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS11488_MC110233_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS4843_MC14467_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS4843_MC14467_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS22673_MC119055_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS22673_MC119055_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS11488_MC110233_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS11488_MC110233_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1360_MPS22673_MC119055_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1360_MPS22673_MC119055_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS508_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS508_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS1145_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS1145_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS508_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS508_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS1145_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS1145_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS2470_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS2470_MC12089_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS2470_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS2470_MC12089_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS4964_MC14467_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS4964_MC14467_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS4964_MC14467_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS4964_MC14467_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS11554_MC110233_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS11554_MC110233_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS20880_MC117783_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS20880_MC117783_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS11554_MC110233_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS11554_MC110233_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ1810_MPS20880_MC117783_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ1810_MPS20880_MC117783_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS507_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS507_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS1251_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS1251_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS1251_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS1251_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS507_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS507_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS2272_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS2272_MC12089_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS5428_MC14467_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS5428_MC14467_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS2272_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS2272_MC12089_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS5428_MC14467_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS5428_MC14467_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS11635_MC110233_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS11635_MC110233_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS11635_MC110233_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS11635_MC110233_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS20990_MC117783_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS20990_MC117783_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2170_MPS20990_MC117783_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2170_MPS20990_MC117783_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS1171_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS1171_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS506_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS506_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS506_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS506_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS1171_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS1171_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS2320_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS2320_MC12089_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS2320_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS2320_MC12089_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS2849_MC12570_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS2849_MC12570_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS2849_MC12570_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS2849_MC12570_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS11813_MC110233_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS11813_MC110233_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS19600_MC116596_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS19600_MC116596_L1p0.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS19600_MC116596_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS19600_MC116596_Lbest.xml"  >
+<!ENTITY LQLQToBTau_MLQ2620_MPS11813_MC110233_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTau/LQLQToBTau_MLQ2620_MPS11813_MC110233_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToBTauPsiChi/LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1000_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1000_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1000_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1000_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1000_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1000_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1000_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1000_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS513_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS513_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1360_MPS513_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1360_MPS513_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS508_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS508_MC1457_Lbest.xml"  >
+<!-- <!ENTITY LQLQToPsiChi_MLQ2170_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS117_MC1100_Lbest.xml"  > -->
+<!ENTITY LQLQToPsiChi_MLQ2170_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ1810_MPS508_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ1810_MPS508_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2170_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2170_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2170_MPS507_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS507_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2170_MPS507_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2170_MPS507_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS506_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS506_MC1457_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS1171_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS1171_MC1977_L1p0.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS506_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS506_MC1457_Lbest.xml"  >
+<!ENTITY LQLQToPsiChi_MLQ2620_MPS1171_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/LQLQToPsiChi/LQLQToPsiChi_MLQ2620_MPS1171_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS567_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS567_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS506_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS506_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS506_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS506_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS505_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS505_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS505_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS505_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS505_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS505_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS505_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS505_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS504_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS504_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS504_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS504_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS504_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS504_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS504_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS504_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS117_MC1100_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS117_MC1100_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS117_MC1100_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS117_MC1100_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS244_MC1214_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS244_MC1214_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS244_MC1214_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS244_MC1214_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS504_MC1457_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS504_MC1457_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS504_MC1457_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS504_MC1457_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_Lbest.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_L1p0   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_L1p0.xml"  >
+<!ENTITY PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_Lbest   SYSTEM "/work/areimers/LQDM/macros/datasets/UL17/Genlevel/ChiPsi/PsiPsiToLQChi/PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_Lbest.xml"  >
+
+
+
+
+
+
+]>
+
+
+<Configuration OutputDirectory="&outfilepath;" PostFix="" TargetLumi="&TargetLumi;" AnalysisTool="LQDMGenlevelTool">
+    <InputDatasets>
+
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS567_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS567_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS1051_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS1051_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS567_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS567_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS1051_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS1051_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS2221_MC12089_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS2221_MC12089_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS2221_MC12089_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS2221_MC12089_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS4827_MC14467_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS4827_MC14467_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS4827_MC14467_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS4827_MC14467_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS11493_MC110233_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS11493_MC110233_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS11493_MC110233_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS11493_MC110233_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS22642_MC119055_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS22642_MC119055_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1000_MPS22642_MC119055_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1000_MPS22642_MC119055_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS513_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS513_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS1071_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS1071_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS513_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS513_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS1071_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS1071_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS2279_MC12089_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS2279_MC12089_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS4843_MC14467_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS4843_MC14467_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS2279_MC12089_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS2279_MC12089_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS11488_MC110233_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS11488_MC110233_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS4843_MC14467_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS4843_MC14467_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS22673_MC119055_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS22673_MC119055_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS11488_MC110233_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS11488_MC110233_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1360_MPS22673_MC119055_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1360_MPS22673_MC119055_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS508_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS508_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS1145_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS1145_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS508_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS508_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS1145_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS1145_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS2470_MC12089_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS2470_MC12089_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS2470_MC12089_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS2470_MC12089_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS4964_MC14467_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS4964_MC14467_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS4964_MC14467_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS4964_MC14467_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS11554_MC110233_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS11554_MC110233_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS20880_MC117783_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS20880_MC117783_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS11554_MC110233_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS11554_MC110233_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ1810_MPS20880_MC117783_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ1810_MPS20880_MC117783_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS507_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS507_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS1251_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS1251_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS1251_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS1251_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS507_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS507_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS2272_MC12089_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS2272_MC12089_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS5428_MC14467_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS5428_MC14467_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS2272_MC12089_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS2272_MC12089_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS5428_MC14467_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS5428_MC14467_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS11635_MC110233_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS11635_MC110233_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS11635_MC110233_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS11635_MC110233_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS20990_MC117783_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS20990_MC117783_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2170_MPS20990_MC117783_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2170_MPS20990_MC117783_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS1171_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS1171_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS506_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS506_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS506_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS506_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS1171_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS1171_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS2320_MC12089_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS2320_MC12089_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS2320_MC12089_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS2320_MC12089_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS2849_MC12570_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS2849_MC12570_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS2849_MC12570_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS2849_MC12570_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS11813_MC110233_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS11813_MC110233_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS19600_MC116596_L1p0" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS19600_MC116596_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS19600_MC116596_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS19600_MC116596_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTau_MLQ2620_MPS11813_MC110233_Lbest" Lumi="100000" Type="MC" > &LQLQToBTau_MLQ2620_MPS11813_MC110233_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1000_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1360_MPS513_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS508_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ1810_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS507_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2170_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS506_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToBTauPsiChi_MLQ2620_MPS1171_MC1977_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1000_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1000_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1000_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1000_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1000_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1000_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1000_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1000_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS513_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS513_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1360_MPS513_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1360_MPS513_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS508_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS508_MC1457_Lbest; </Dataset>
+        <!-- <Dataset Name="LQLQToPsiChi_MLQ2170_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS117_MC1100_Lbest; </Dataset> -->
+        <Dataset Name="LQLQToPsiChi_MLQ2170_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ1810_MPS508_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ1810_MPS508_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2170_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2170_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2170_MPS507_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS507_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2170_MPS507_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2170_MPS507_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS506_MC1457_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS506_MC1457_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS1171_MC1977_L1p0" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS1171_MC1977_L1p0; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS506_MC1457_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS506_MC1457_Lbest; </Dataset>
+        <Dataset Name="LQLQToPsiChi_MLQ2620_MPS1171_MC1977_Lbest" Lumi="100000" Type="MC" > &LQLQToPsiChi_MLQ2620_MPS1171_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS567_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS567_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS506_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS506_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS506_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS506_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS1189_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ2530_MPS2306_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS505_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS505_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS505_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS505_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS1106_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ3970_MPS2551_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS505_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS505_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS505_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS505_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS1084_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ5500_MPS2568_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS504_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS504_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS504_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS504_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS1071_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ7030_MPS2445_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS504_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS504_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS504_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS504_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS1061_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ8470_MPS2391_MC12089_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS117_MC1100_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS117_MC1100_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS117_MC1100_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS117_MC1100_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS244_MC1214_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS244_MC1214_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS244_MC1214_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS244_MC1214_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS504_MC1457_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS504_MC1457_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS504_MC1457_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS504_MC1457_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS1052_MC1977_Lbest; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_L1p0" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_L1p0; </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_Lbest" Lumi="100000" Type="MC" > &PsiPsiToLQChi_MLQ10000_MPS2342_MC12089_Lbest; </Dataset>
+
+
+
+    </InputDatasets>
+
+    <AdditionalVariables>
+        <Variable Name="test" Value="testvalue"/>
+    </AdditionalVariables>
+</Configuration>

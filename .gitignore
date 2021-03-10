@@ -1,0 +1,4 @@
+config/workdir_*
+obj/*
+lib/*
+*~

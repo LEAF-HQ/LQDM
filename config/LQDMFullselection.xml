@@ -252,6 +252,5 @@
         <Variable Name="JECDirection" Value="nominal"/>
         <Variable Name="JERDirection" Value="nominal"/>
 
-        <Variable Name="LumiblockFile" Value="data/2017/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.root"/>
     </AdditionalVariables>
 </Configuration>

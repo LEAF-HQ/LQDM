@@ -26,6 +26,10 @@
 #include "include/FlagSelection.h"
 
 
+#include "include/ElectronScaleFactorApplicator.h"
+#include "include/MuonScaleFactorApplicator.h"
+
+
 #include "LQDM/include/LQDMEvent.h"
 #include "LQDM/include/LQDMPreselectionHists.h"
 
@@ -48,6 +52,12 @@ private:
 
   // Modules used in the analysis
 
+  unique_ptr<ElectronScaleFactorApplicator> ele_reco_sf_applicator;
+  unique_ptr<ElectronScaleFactorApplicator> ele_id_sf_applicator;
+  unique_ptr<ElectronScaleFactorApplicator> ele_trigger_sf_applicator;
+  unique_ptr<MuonScaleFactorApplicator> muon_id_sf_applicator;
+  unique_ptr<MuonScaleFactorApplicator> muon_iso_sf_applicator;
+  unique_ptr<MuonScaleFactorApplicator> muon_trigger_sf_applicator;
 
   // selections
   unique_ptr<NElectronSelection> nelectron_selection;
@@ -82,6 +92,13 @@ LQDMFullselectionTool::LQDMFullselectionTool(const Config & cfg) : BaseTool(cfg)
   event->reset();
 
   year = cfg.dataset_year();
+
+  ele_reco_sf_applicator.reset(new ElectronScaleFactorApplicator(cfg, year, "ElectronRECO.root", "EGamma_SF2D"));
+  ele_id_sf_applicator.reset(new ElectronScaleFactorApplicator(cfg, year, "ElectronID_MVA90iso.root", "EGamma_SF2D"));
+  ele_trigger_sf_applicator.reset(new ElectronScaleFactorApplicator(cfg, year, "ElectronTRIGGER.root", "ScaleFactors"));
+  muon_id_sf_applicator.reset(new MuonScaleFactorApplicator(cfg, year, "MuonID.root", "NUM_TightID_DEN_TrackerMuons_abseta_pt"));
+  muon_iso_sf_applicator.reset(new MuonScaleFactorApplicator(cfg, year, "MuonISO.root", "NUM_TightRelIso_DEN_TightIDandIPCut_abseta_pt"));
+  muon_trigger_sf_applicator.reset(new MuonScaleFactorApplicator(cfg, year, "MuonTRIGGER.root", "ScaleFactors"));
 
 
   // histfolders
@@ -127,6 +144,15 @@ bool LQDMFullselectionTool::Process(){
   sort_by_pt<Tau>(*event->taus);
   fill_histograms("input");
 
+
+  // cout << "weight before: " << event->weight << endl;
+  ele_reco_sf_applicator->process(*event);
+  ele_id_sf_applicator->process(*event);
+  // cout << "weight between: " << event->weight << endl;
+  muon_id_sf_applicator->process(*event);
+  muon_iso_sf_applicator->process(*event);
+  // cout << "weight after: " << event->weight << endl;
+
   if(!btag_selection->passes(*event)) return false;
   fill_histograms("btag");
 
@@ -136,6 +162,7 @@ bool LQDMFullselectionTool::Process(){
     fill_histograms("much");
 
     if(!trigger_mu_selection->passes(*event)) return false;
+    muon_trigger_sf_applicator->process_trigger(*event);
     fill_histograms("much_trigger");
 
     if(!ptmuon_selection->passes(*event)) return false;
@@ -155,6 +182,7 @@ bool LQDMFullselectionTool::Process(){
     fill_histograms("elch");
 
     if(!(trigger_ele_selection1->passes(*event) || trigger_ele_selection2->passes(*event))) return false;
+    ele_trigger_sf_applicator->process_trigger(*event);
     fill_histograms("elch_trigger");
 
     if(!ptelectron_selection->passes(*event)) return false;
@@ -174,6 +202,7 @@ bool LQDMFullselectionTool::Process(){
     fill_histograms("elmuch");
 
     if(!trigger_mu_selection->passes(*event)) return false;
+    muon_trigger_sf_applicator->process_trigger(*event);
     fill_histograms("elmuch_trigger");
 
     if(!(ptmuon_selection->passes(*event) && ptelectron_selection->passes(*event))) return false;

@@ -25,6 +25,6 @@ public:
 
 protected:
 
-  shared_ptr<TH1D> hmetpt, hmetphi, hstmet, hmemu, hmetau, hmmutau, hsumweights;
+  shared_ptr<TH1D> hmetpt, hmetphi, hstmet, hstmet_rebin, hnpv, hnpvgood, hmemu, hmetau, hmmutau, hmtautau, hsumweights;
 
 };

@@ -63,8 +63,9 @@ private:
 
   // selections
   unique_ptr<LumiblockSelection> lumiblock_selection;
-  unique_ptr<NElectronSelection> nelectron_selection;
-  unique_ptr<NMuonSelection>     nmuon_selection;
+  unique_ptr<NElectronSelection> nelectron_selection, nelectron_veto_selection;
+  unique_ptr<NMuonSelection>     nmuon_selection, nmuon_veto_selection;
+  unique_ptr<NTauSelection>      ntau_selection;
   unique_ptr<NJetSelection>      njet_selection;
 
   // constants
@@ -82,7 +83,7 @@ LQDMPreselectionTool::LQDMPreselectionTool(const Config & cfg) : BaseTool(cfg){
 
   MultiID<Muon> muon_id = {PtEtaId(30, 2.4), MuonID(Muon::IDCutBasedTight), MuonID(Muon::IsoPFTight)};
   MultiID<Electron> electron_id = {PtEtaId(30, 2.4), ElectronID(Electron::IDMVAIsoEff90)};
-  MultiID<Tau> tau_id = {PtEtaId(20, 2.3), TauID(Tau::DeepTauVsJetMedium), TauID(Tau::DeepTauVsEleVVLoose), TauID(Tau::DeepTauVsMuLoose)};
+  MultiID<Tau> tau_id = {PtEtaId(20, 2.1), TauID(Tau::DeepTauVsJetMedium), TauID(Tau::DeepTauVsEleVVLoose), TauID(Tau::DeepTauVsMuLoose)};
   MultiID<Jet> jet_id = {PtEtaId(30, 2.5), JetID(JetID::WP_TIGHT), JetPUID(JetPUID::WP_TIGHT)};
   MultiID<Jet> jet_overlapid = {JetTauOverlapID(0.5)};
 
@@ -109,6 +110,9 @@ LQDMPreselectionTool::LQDMPreselectionTool(const Config & cfg) : BaseTool(cfg){
   lumiblock_selection.reset(new LumiblockSelection(cfg));
   nmuon_selection.reset(new NMuonSelection(cfg, 1, 1));
   nelectron_selection.reset(new NElectronSelection(cfg, 1, 1));
+  nmuon_veto_selection.reset(new NMuonSelection(cfg, 0, 0));
+  nelectron_veto_selection.reset(new NElectronSelection(cfg, 0, 0));
+  ntau_selection.reset(new NTauSelection(cfg, 2, -1));
   njet_selection.reset(new NJetSelection(cfg, 1, -1));
 }
 
@@ -150,7 +154,8 @@ bool LQDMPreselectionTool::Process(){
   cleaner_jettauoverlap->process(*event);
   fill_histograms("jettaucleaner");
 
-  if(!(nmuon_selection->passes(*event) || nelectron_selection->passes(*event))) return false;
+  // ==1 ele || ==1 muon || (0e & 0mu & ==2tau)
+  if(!nmuon_selection->passes(*event) && !nelectron_selection->passes(*event) && !(nmuon_veto_selection->passes(*event) && nelectron_veto_selection->passes(*event) && ntau_selection->passes(*event))) return false;
   fill_histograms("nleptons");
 
   if(!njet_selection->passes(*event)) return false;

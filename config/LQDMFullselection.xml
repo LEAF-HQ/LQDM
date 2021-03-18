@@ -4,7 +4,7 @@
 
 <!ENTITY TargetLumi  "41480" >
 <!ENTITY PreselPath  "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/DitauEleMuJet">
-<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/TauTau_ElTau_MuTau_ElMu" >
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/TauTau_ElTau_MuTau_ElMu_2Jets_12LooseBTag_met50" >
 
 
 <!ENTITY DATA_Tau_B "&PreselPath;/DATA__DATA_Tau_B.root" >
@@ -127,7 +127,7 @@
 
 <Configuration AnalysisTool="LQDMFullselectionTool" SEDirector="root://t3dcachedb03.psi.ch/" OutputDirectory="&outfilepath;" TargetLumi="&TargetLumi;" >
 
-    <SubmissionSettings EventsPerJob="200000" FilesPerJob="-1" />
+    <SubmissionSettings EventsPerJob="300000" FilesPerJob="-1" />
 
 
     <InputDatasets>
@@ -252,8 +252,8 @@
         <Variable Name="JECDirection" Value="nominal"/>
         <Variable Name="JERDirection" Value="nominal"/>
 
-        <Variable Name="BTaggingScaleFactors" Value="data/2017/DeepCSV_106XUL17SF_WPonly_V2.csv"/>
-        <Variable Name="BTaggingMCEfficiencies" Value="LQDM/data/2017/BTaggingMCEfficiencies.root"/>
+        <Variable Name="BTaggingScaleFactors"   Value="data/2017/DeepCSV_106XUL17SF_WPonly_V2.csv"/>
+        <Variable Name="BTaggingMCEfficiencies" Value="LQDM/data/2017/BTaggingMCEfficiencies_Loose.root"/>
 
     </AdditionalVariables>
 </Configuration>

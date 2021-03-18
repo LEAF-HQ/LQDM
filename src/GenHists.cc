@@ -1,6 +1,6 @@
-#include "LQDM/include/GenHists.h"
-#include "include/constants.h"
-#include "include/useful_functions.h"
+#include "Analyzer/LQDM/include/GenHists.h"
+#include "Analyzer/include/constants.h"
+#include "Analyzer/include/useful_functions.h"
 #include <TH1F.h>
 #include <TFile.h>
 #include <TGraphAsymmErrors.h>

@@ -3,31 +3,31 @@
 #include <TChain.h>
 #include <iostream>
 
-#include "include/BaseTool.h"
-#include "include/useful_functions.h"
-#include "include/constants.h"
+#include "Analyzer/include/BaseTool.h"
+#include "Analyzer/include/useful_functions.h"
+#include "Analyzer/include/constants.h"
 #include <sys/stat.h>
-#include "include/Registry.h"
-#include "include/JetHists.h"
-#include "include/MuonHists.h"
-#include "include/ElectronHists.h"
-#include "include/TauHists.h"
-#include "include/JetIds.h"
-#include "include/MuonIds.h"
-#include "include/ElectronIds.h"
-#include "include/TauIds.h"
-#include "include/JetCorrections.h"
-#include "include/LumiblockSelection.h"
-#include "include/NMuonSelection.h"
-#include "include/NElectronSelection.h"
-#include "include/NTauSelection.h"
-#include "include/NJetSelection.h"
+#include "Analyzer/include/Registry.h"
+#include "Analyzer/include/JetHists.h"
+#include "Analyzer/include/MuonHists.h"
+#include "Analyzer/include/ElectronHists.h"
+#include "Analyzer/include/TauHists.h"
+#include "Analyzer/include/JetIds.h"
+#include "Analyzer/include/MuonIds.h"
+#include "Analyzer/include/ElectronIds.h"
+#include "Analyzer/include/TauIds.h"
+#include "Analyzer/include/JetCorrections.h"
+#include "Analyzer/include/LumiblockSelection.h"
+#include "Analyzer/include/NMuonSelection.h"
+#include "Analyzer/include/NElectronSelection.h"
+#include "Analyzer/include/NTauSelection.h"
+#include "Analyzer/include/NJetSelection.h"
 
-#include "include/LumiWeightApplicator.h"
+#include "Analyzer/include/LumiWeightApplicator.h"
 
 
-#include "LQDM/include/LQDMEvent.h"
-#include "LQDM/include/LQDMPreselectionHists.h"
+#include "Analyzer/LQDM/include/LQDMEvent.h"
+#include "Analyzer/LQDM/include/LQDMPreselectionHists.h"
 
 using namespace std;
 

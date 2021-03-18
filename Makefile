@@ -20,7 +20,7 @@ libLQDMClassDictionaries.so: $(LIBDIR)/ClassDictionaries.cxx
 
 $(LIBDIR)/ClassDictionaries.cxx: $(INCLUDES) include/Linkdef.hpp
 	@echo "--> Creating custom class dictionaries."
-	@rootcling -f $@ -c -p -I${MACROPATH} $^
+	@rootcling -f $@ -c -p -I${LEAFPATH} $^
 
 clean:
 	@echo "--> cleaning folders $(OBJDIR)/, $(LIBDIR)/"

@@ -3,37 +3,39 @@
 #include <TChain.h>
 #include <iostream>
 
-#include "include/BaseTool.h"
-#include "include/useful_functions.h"
-#include "include/constants.h"
+#include "Analyzer/include/BaseTool.h"
+#include "Analyzer/include/useful_functions.h"
+#include "Analyzer/include/constants.h"
 #include <sys/stat.h>
-#include "include/Registry.h"
-#include "include/JetHists.h"
-#include "include/MuonHists.h"
-#include "include/ElectronHists.h"
-#include "include/TauHists.h"
-#include "include/JetIds.h"
-#include "include/MuonIds.h"
-#include "include/ElectronIds.h"
-#include "include/TauIds.h"
-#include "include/JetCorrections.h"
-#include "include/LumiblockSelection.h"
-#include "include/NMuonSelection.h"
-#include "include/NElectronSelection.h"
-#include "include/NTauSelection.h"
-#include "include/NJetSelection.h"
-#include "include/MinvSelections.h"
-#include "include/FlagSelection.h"
+#include "Analyzer/include/Registry.h"
+#include "Analyzer/include/JetHists.h"
+#include "Analyzer/include/MuonHists.h"
+#include "Analyzer/include/ElectronHists.h"
+#include "Analyzer/include/TauHists.h"
+#include "Analyzer/include/JetIds.h"
+#include "Analyzer/include/MuonIds.h"
+#include "Analyzer/include/ElectronIds.h"
+#include "Analyzer/include/TauIds.h"
+#include "Analyzer/include/JetCorrections.h"
+#include "Analyzer/include/LumiblockSelection.h"
+#include "Analyzer/include/NMuonSelection.h"
+#include "Analyzer/include/NElectronSelection.h"
+#include "Analyzer/include/NTauSelection.h"
+#include "Analyzer/include/NJetSelection.h"
+#include "Analyzer/include/MinvSelections.h"
+#include "Analyzer/include/FlagSelection.h"
+#include "Analyzer/include/STMETSelection.h"
+#include "Analyzer/include/METSelection.h"
 
 
-#include "include/ElectronScaleFactorApplicator.h"
-#include "include/MuonScaleFactorApplicator.h"
-#include "include/BTaggingScaleFactorApplicator.h"
-#include "include/BTaggingMCEfficiencyHists.h"
+#include "Analyzer/include/ElectronScaleFactorApplicator.h"
+#include "Analyzer/include/MuonScaleFactorApplicator.h"
+#include "Analyzer/include/BTaggingScaleFactorApplicator.h"
+#include "Analyzer/include/BTaggingMCEfficiencyHists.h"
 
 
-#include "LQDM/include/LQDMEvent.h"
-#include "LQDM/include/LQDMPreselectionHists.h"
+#include "Analyzer/LQDM/include/LQDMEvent.h"
+#include "Analyzer/LQDM/include/LQDMPreselectionHists.h"
 
 using namespace std;
 
@@ -73,12 +75,15 @@ private:
   unique_ptr<NTauSelection>      ntau_selection, nditau_selection;
   unique_ptr<NTauSelection>      pttau_selection, ptditau_selection;
 
-  unique_ptr<NJetSelection>      btag_selection, njet_selection;
+  unique_ptr<NJetSelection>      nbtag_selection, nbtag2_selection, ptbtag_selection, njet_selection, ptjet_selection;
 
   unique_ptr<MemuSelection>      memu_selection;
   unique_ptr<MetauSelection>     metau_selection;
   unique_ptr<MmutauSelection>    mmutau_selection;
   unique_ptr<MtautauSelection>   mtautau_selection;
+
+  unique_ptr<STMETSelection>     stmet_selection;
+  unique_ptr<METSelection>       met_selection;
 
   unique_ptr<FlagSelection>      trigger_mu_selection;
   unique_ptr<FlagSelection>      trigger_ele_selection1;
@@ -108,15 +113,17 @@ LQDMFullselectionTool::LQDMFullselectionTool(const Config & cfg) : BaseTool(cfg)
   muon_trigger_sf_applicator.reset(new MuonScaleFactorApplicator(cfg, year, "MuonTRIGGER.root", "ScaleFactors"));
 
 
-  JetBTag::wp btag_wp = JetBTag::DeepCSV_Medium;
+  // JetBTag::wp btag_wp = JetBTag::DeepCSV_Medium;
+  JetBTag::wp btag_wp = JetBTag::DeepCSV_Loose;
   btag_sf_applicator.reset(new BTaggingScaleFactorApplicator(cfg, btag_wp));
 
   // histfolders
-  vector<TString> histtags = {"input", "ptjet", "much", "much_trigger", "much_ptlep", "much_ntau", "much_pttau", "much_mvis", "much_1btag", "much_0btag", "elch", "elch_trigger", "elch_ptlep", "elch_ntau", "elch_pttau", "elch_mvis", "elch_1btag", "elch_0btag", "elmuch", "elmuch_trigger", "elmuch_ptlep", "elmuch_mvis", "elmuch_1btag", "elmuch_0btag", "tach", "tach_trigger", "tach_pttau", "tach_mvis", "tach_1btag", "tach_0btag"};
+  vector<TString> histtags = {"input", "njet", "ptjet", "met", "much", "much_trigger", "much_ptlep", "much_ntau", "much_pttau", "much_mvis", "much_btag", "much_btag_cat2", "much_btag_cat1", "elch", "elch_trigger", "elch_ptlep", "elch_ntau", "elch_pttau", "elch_mvis", "elch_btag", "elch_btag_cat2", "elch_btag_cat1", "elmuch", "elmuch_trigger", "elmuch_ptlep", "elmuch_mvis", "elmuch_btag", "elmuch_btag_cat2", "elmuch_btag_cat1", "tach", "tach_trigger", "tach_pttau", "tach_mvis", "tach_btag", "tach_btag_cat2", "tach_btag_cat1"};
   book_histograms(histtags);
   book_HistFolder("BTaggingMCEfficiencies", new BTaggingMCEfficiencyHists("BTaggingMCEfficiencies", btag_wp));
 
 
+  MultiID<Jet> btag_id = {JetBTag(btag_wp)};
   MultiID<Jet> pt_btag_id = {PtEtaId(50, -1.), JetBTag(btag_wp)};
   MultiID<Jet> pt_jet_id  = {PtEtaId(50, -1.)};
 
@@ -130,14 +137,21 @@ LQDMFullselectionTool::LQDMFullselectionTool(const Config & cfg) : BaseTool(cfg)
   nditau_selection.reset(new NTauSelection(cfg, 2, 2));
   pttau_selection.reset(new NTauSelection(cfg, 1, -1, PtEtaId(50, -1.)));
   ptditau_selection.reset(new NTauSelection(cfg, 2, 2, PtEtaId(50, -1.)));
-  btag_selection.reset(new NJetSelection(cfg, 1, -1, pt_btag_id));
-  njet_selection.reset(new NJetSelection(cfg, 1, -1, pt_jet_id));
-  // btag2_selection.reset(new NJetSelection(cfg, 2, -1, pt_btag_id));
+
+  nbtag_selection.reset(new NJetSelection(cfg, 1, -1, btag_id));
+  ptbtag_selection.reset(new NJetSelection(cfg, 1, -1, pt_btag_id));
+  nbtag2_selection.reset(new NJetSelection(cfg, 2, -1, btag_id));
+
+  njet_selection.reset(new NJetSelection(cfg, 2, -1));
+  ptjet_selection.reset(new NJetSelection(cfg, 1, -1, pt_jet_id));
 
   memu_selection.reset(new MemuSelection(cfg, 100, -1));
   metau_selection.reset(new MetauSelection(cfg, 100, -1));
   mmutau_selection.reset(new MmutauSelection(cfg, 100, -1));
   mtautau_selection.reset(new MtautauSelection(cfg, 100, -1));
+
+  stmet_selection.reset(new STMETSelection(cfg, 600., -1));
+  met_selection.reset(new METSelection(cfg, 50., -1));
 
   trigger_mu_selection.reset(new FlagSelection(cfg, (TString)"HLT_IsoMu27"));
   trigger_ele_selection1.reset(new FlagSelection(cfg, (TString)"HLT_Ele35_WPTight_Gsf"));
@@ -179,7 +193,14 @@ bool LQDMFullselectionTool::Process(){
   muon_iso_sf_applicator->process(*event);
 
   if(!njet_selection->passes(*event)) return false;
+  fill_histograms("njet");
+
+  if(!ptjet_selection->passes(*event)) return false;
   fill_histograms("ptjet");
+
+  if(!met_selection->passes(*event)) return false;
+  fill_histograms("met");
+
 
 
   if(nmuon_selection->passes(*event) && electronveto_selection->passes(*event)){
@@ -201,10 +222,13 @@ bool LQDMFullselectionTool::Process(){
     if(!mmutau_selection->passes(*event)) return false;
     fill_histograms("much_mvis");
     HistFolder<BTaggingMCEfficiencyHists>("BTaggingMCEfficiencies")->fill(*event);
-    // btag_sf_applicator->process(*event);
+    btag_sf_applicator->process(*event);
 
-    if(btag_selection->passes(*event)) fill_histograms("much_1btag");
-    else                               fill_histograms("much_0btag");
+    if(!(nbtag_selection->passes(*event) && ptbtag_selection->passes(*event))) return false;
+    fill_histograms("much_btag");
+
+    if(nbtag2_selection->passes(*event)) fill_histograms("much_btag_cat2");
+    else fill_histograms("much_btag_cat1");
 
   }
 
@@ -227,10 +251,13 @@ bool LQDMFullselectionTool::Process(){
     if(!metau_selection->passes(*event)) return false;
     fill_histograms("elch_mvis");
     HistFolder<BTaggingMCEfficiencyHists>("BTaggingMCEfficiencies")->fill(*event);
-    // btag_sf_applicator->process(*event);
+    btag_sf_applicator->process(*event);
 
-    if(btag_selection->passes(*event)) fill_histograms("elch_1btag");
-    else                               fill_histograms("elch_0btag");
+    if(!(nbtag_selection->passes(*event) && ptbtag_selection->passes(*event))) return false;
+    fill_histograms("elch_btag");
+
+    if(nbtag2_selection->passes(*event)) fill_histograms("elch_btag_cat2");
+    else fill_histograms("elch_btag_cat1");
   }
 
   else if(nelectron_selection->passes(*event) && nmuon_selection->passes(*event)){
@@ -246,12 +273,13 @@ bool LQDMFullselectionTool::Process(){
     if(!memu_selection->passes(*event)) return false;
     fill_histograms("elmuch_mvis");
     HistFolder<BTaggingMCEfficiencyHists>("BTaggingMCEfficiencies")->fill(*event);
-    // cout << "weight before: " << event->weight << endl;
-    // btag_sf_applicator->process(*event);
-    // cout << "weight after: " << event->weight << endl;
+    btag_sf_applicator->process(*event);
 
-    if(btag_selection->passes(*event)) fill_histograms("elmuch_1btag");
-    else                               fill_histograms("elmuch_0btag");
+    if(!(nbtag_selection->passes(*event) && ptbtag_selection->passes(*event))) return false;
+    fill_histograms("elmuch_btag");
+
+    if(nbtag2_selection->passes(*event)) fill_histograms("elmuch_btag_cat2");
+    else fill_histograms("elmuch_btag_cat1");
 
   }
 
@@ -267,10 +295,13 @@ bool LQDMFullselectionTool::Process(){
     if(!mtautau_selection->passes(*event)) return false;
     fill_histograms("tach_mvis");
     HistFolder<BTaggingMCEfficiencyHists>("BTaggingMCEfficiencies")->fill(*event);
-    // btag_sf_applicator->process(*event);
+    btag_sf_applicator->process(*event);
 
-    if(btag_selection->passes(*event)) fill_histograms("tach_1btag");
-    else                               fill_histograms("tach_0btag");
+    if(!(nbtag_selection->passes(*event) && ptbtag_selection->passes(*event))) return false;
+    fill_histograms("tach_btag");
+
+    if(nbtag2_selection->passes(*event)) fill_histograms("tach_btag_cat2");
+    else fill_histograms("tach_btag_cat1");
 
 
 

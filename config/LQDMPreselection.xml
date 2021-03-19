@@ -4,7 +4,7 @@
 
 <!ENTITY TargetLumi  "41480" >
 <!-- <!ENTITY outfilepath "/work/areimers/LQDM/UL17/Preselection/Initial" > -->
-<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/DitauEleMuJet" >
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Preselection/DitauEleMuJet" >
 
 
 <!ENTITY DATA_Tau_B SYSTEM "/work/areimers/LEAF/macros/datasets/UL17/Recolevel/DATA_Tau_B.xml" >

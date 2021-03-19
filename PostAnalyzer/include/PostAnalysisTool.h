@@ -32,6 +32,7 @@ private:
 
   TString m_datacard_path;
   TString m_fullselection_path;
+  TString m_finalselection_path;
   TString m_output_path;
 
 

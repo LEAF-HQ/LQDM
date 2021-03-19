@@ -2,3 +2,7 @@ config/workdir_*
 obj/*
 lib/*
 *~
+*.o
+PostAnalyzer/bin/*
+PostAnalyzer/obj/*
+PostAnalyzer/lib/*

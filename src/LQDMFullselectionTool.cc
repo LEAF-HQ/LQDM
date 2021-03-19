@@ -302,15 +302,13 @@ bool LQDMFullselectionTool::Process(){
 
     if(nbtag2_selection->passes(*event)) fill_histograms("tach_btag_cat2");
     else fill_histograms("tach_btag_cat1");
-
-
-
   }
+  else return false;
 
 
 
 
-  return false;
+  return true;
 }
 
 

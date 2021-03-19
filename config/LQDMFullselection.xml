@@ -127,7 +127,7 @@
 
 <Configuration AnalysisTool="LQDMFullselectionTool" SEDirector="root://t3dcachedb03.psi.ch/" OutputDirectory="&outfilepath;" TargetLumi="&TargetLumi;" >
 
-    <SubmissionSettings EventsPerJob="-1" FilesPerJob="1" />
+    <SubmissionSettings EventsPerJob="300000" FilesPerJob="-1" />
 
 
     <InputDatasets>

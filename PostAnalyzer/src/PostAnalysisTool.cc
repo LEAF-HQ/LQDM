@@ -17,14 +17,15 @@ PostAnalysisTool::PostAnalysisTool(int year_, TString foldername_) {
 
     TString user = (TString)getenv("USER");
     m_fullselection_path = "/pnfs/psi.ch/cms/trivcat/store/user/" + user + "/LQDM/" + m_year + "/Fullselection/" + foldername_ + "/";
-    m_finalselection_path = m_fullselection_path.ReplaceAll("Fullselection", "Finalselection");
+    m_finalselection_path = TString(m_fullselection_path).ReplaceAll("Fullselection", "Finalselection");
+    m_finalselection_path.ReplaceAll("Fullselection", "Finalselection");
     m_output_path = "/work/" + user + "/LQDM/" + m_year + "/Finalselection/" + foldername_ + "/";
 
-    m_datacard_path = m_output_path + "data/";
+    m_datacard_path = m_output_path + "data/combineinput/";
 
 
-    cout << green << "--> Fullselection path: " << m_fullselection_path << reset << endl;
+    cout << green << "--> Fullselection path:  " << m_fullselection_path << reset << endl;
     cout << green << "--> Finalselection path: " << m_fullselection_path << reset << endl;
-    cout << green << "--> Output path:        " << m_output_path << reset << endl;
+    cout << green << "--> Output path:         " << m_output_path << reset << endl;
 
 }

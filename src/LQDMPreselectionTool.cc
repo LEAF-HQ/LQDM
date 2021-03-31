@@ -12,6 +12,7 @@
 #include "Analyzer/include/MuonHists.h"
 #include "Analyzer/include/ElectronHists.h"
 #include "Analyzer/include/TauHists.h"
+#include "Analyzer/include/GenParticleHists.h"
 #include "Analyzer/include/JetIds.h"
 #include "Analyzer/include/MuonIds.h"
 #include "Analyzer/include/ElectronIds.h"
@@ -120,6 +121,7 @@ LQDMPreselectionTool::LQDMPreselectionTool(const Config & cfg) : BaseTool(cfg){
 
 
 bool LQDMPreselectionTool::Process(){
+  // cout << "++++++++++ NEW EVENT ++++++++++" << endl;
   if(!lumiblock_selection->passes(*event)) return false;
   lumiweight_applicator->process(*event);
 
@@ -189,6 +191,8 @@ void LQDMPreselectionTool::book_histograms(vector<TString> tags){
     book_HistFolder(mytag, new ElectronHists(mytag));
     mytag = tag+"_Taus";
     book_HistFolder(mytag, new TauHists(mytag));
+    mytag = tag+"_GenParticles";
+    book_HistFolder(mytag, new GenParticleHists(mytag));
   }
 }
 
@@ -203,6 +207,8 @@ void LQDMPreselectionTool::fill_histograms(TString tag){
   HistFolder<ElectronHists>(mytag)->fill(*event);
   mytag = tag+"_Taus";
   HistFolder<TauHists>(mytag)->fill(*event);
+  mytag = tag+"_GenParticles";
+  HistFolder<GenParticleHists>(mytag)->fill(*event);
 }
 
 

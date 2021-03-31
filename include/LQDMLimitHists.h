@@ -25,8 +25,10 @@ public:
 
 protected:
 
-  shared_ptr<TH1D> hstmet1, hstmet2;
+  shared_ptr<TH1D> hstmet1, hstmet2, hstmet3;
+  // , hstmet4, hstmet5;
 
-  vector<double> bins2;
+  vector<double> bins2, bins3;
+  // , bins4, bins5;
 
 };

@@ -25,6 +25,7 @@ class PostAnalyzer:
         self.pdf_per_systematic = pdf_per_systematic
         self.value_per_systematic = value_per_systematic
 
+        self.crosssection_path   = os.path.join(os.environ['GENERATORPATH'], 'crosssections', 'ChiPsi')
         self.finalselection_path = os.path.join(t3_base_path,     self.user, analysisname, year, 'Finalselection', selectionname)
         self.resultpath          = os.path.join(result_base_path, self.user, analysisname, year, 'Finalselection', selectionname)
         self.combineinput_path   = os.path.join(self.resultpath, 'data', 'combineinput')

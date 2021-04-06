@@ -3,7 +3,7 @@ import os, sys, math, time
 import subprocess
 from utils import *
 from collections import OrderedDict
-from ROOT import gROOT, TFile, TCanvas, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen
+from ROOT import gROOT, TFile, TCanvas, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen, kRed
 from array import array
 from tdrstyle_all import *
 
@@ -26,6 +26,7 @@ def PlotLimits(self, signal_scaled_by=1., draw_observed=False):
         for i in range(tree.GetEntries()):
             tree.GetEntry(i)
             limits_and_quantiles_per_mass[int(signalmass)][tree.quantileExpected] = tree.limit
+        rootfile.Close()
 
     g_expected = TGraph()
     g_68 = TGraphAsymmErrors()
@@ -50,13 +51,27 @@ def PlotLimits(self, signal_scaled_by=1., draw_observed=False):
         npoints_68 += 1
         npoints_95 += 1
 
+    # get theory prediction
+    crosssectionfiletag  = self.signals[0].split('_')[0].split('To')[0]
+    if crosssectionfiletag == 'LQLQ':
+        pass
+    else:
+        raise ValueError('PlotLimits() can only plot LQLQ cross section. This seems to be a different process (maybe PsiPsi?) and needs implementation.')
+    crosssectiongraphname = '_'.join([crosssectionfiletag, self.signals[0].split('_')[3], self.signals[0].split('_')[4]])
+    xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_%s.root' % (crosssectionfiletag))
+    xsecinfile = TFile(xsecinfilename, 'READ')
+    g_theory = xsecinfile.Get(crosssectiongraphname)
+
+
     c = tdrCanvas(canvName='c', x_min=min(limits_and_quantiles_per_mass), x_max=max(limits_and_quantiles_per_mass), y_min=1E-5, y_max=1E2, nameXaxis='M_{LQ} [GeV]', nameYaxis='#sigma (pp #rightarrow LQLQ) [pb]', square=True, iPeriod=0, iPos=11)
     c.SetLogy()
-    leg = tdrLeg(0.5,0.65,0.9,0.9)
+    leg = tdrLeg(0.45,0.65,0.85,0.9)
     tdrHeader(leg, '95% CL upper limits')
     tdrDraw(g_95, "3 SAME", mcolor=kOrange, lcolor=kOrange, fcolor=kOrange)
     tdrDraw(g_68, "3 SAME", mcolor=kGreen+1, lcolor=kGreen+1, fcolor=kGreen+1)
     tdrDraw(g_expected, "L SAME", mcolor=kBlack, lcolor=kBlack, fcolor=kBlack, lstyle=2)
+    tdrDraw(g_theory, "3L SAME", mcolor=kRed+2, lcolor=kRed+2, fcolor=kRed+2, lstyle=1, alpha=0.4)
+    leg.AddEntry(g_theory, 'LQ pair production', 'LF')
     leg.AddEntry(g_expected, 'Median expected', 'L')
     leg.AddEntry(g_68, '68% expected', 'F')
     leg.AddEntry(g_95, '95% expected', 'F')

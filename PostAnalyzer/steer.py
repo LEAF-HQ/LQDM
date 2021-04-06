@@ -9,9 +9,8 @@ from PostAnalyzer import *
 
 # All constants to be used
 analysisname     = 'LQDM'
-leaf_path        = os.environ['LEAFPATH'] # set up by setup.sh
-analyzer_path    = os.environ['ANALYZERPATH'] # set up by setup.sh
-lqdm_path        = os.path.join(analyzer_path, analysisname)
+# analyzer_path    = os.environ['ANALYZERPATH'] # set up by setup.sh
+# lqdm_path        = os.path.join(analyzer_path, analysisname)
 t3_base_path     = os.path.join('/pnfs/psi.ch/cms/trivcat/store/user')
 result_base_path = '/work'
 
@@ -32,10 +31,10 @@ def main():
 
 
     Analyzer17 = PostAnalyzer('2017', analysisname=analysisname, t3_base_path=t3_base_path, result_base_path=result_base_path, selectionname='TauTau_ElTau_MuTau_ElMu_2Jets_12LooseBTag_met50', systematics=systematics17, backgrounds=backgrounds17, signals=signals17, channels=channels17, histnames_in_out_per_category=histnames_in_out_per_category17, limithisttag=limithisttag17, processes_per_systematic=processes_per_systematic17, pdf_per_systematic=pdf_per_systematic17, value_per_systematic=value_per_systematic17)
-    Analyzer17.ProduceCombineHistograms(signal_scaled_by=0.01)
-    Analyzer17.CreateDatacards()
-    Analyzer17.CombineChannels()
-    Analyzer17.ExecuteCombineCombination()
+    # Analyzer17.ProduceCombineHistograms(signal_scaled_by=0.01)
+    # Analyzer17.CreateDatacards()
+    # Analyzer17.CombineChannels()
+    # Analyzer17.ExecuteCombineCombination()
     Analyzer17.PlotLimits(signal_scaled_by=0.01, draw_observed=False)
 
 

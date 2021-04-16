@@ -36,8 +36,9 @@ def ProduceCombineHistograms(self, signal_scaled_by=1.):
                         print green('    --> Sample: %s' % (sample))
 
                         if sample == 'DATA' and not syst == 'nominal': force_nominal = True
-                        if not sample in self.processes_per_systematic.keys() and not syst == 'nominal': raise ValueError('When producing combine histograms: found systematic in systematic list that is not covered by \'processes_per_systematic\' dictionary. Please add it there and in the other dictionaries.')
-                        if not syst == 'nominal' and not sample == self.processes_per_systematic[syst]: force_nominal = True
+                        if not syst in self.processes_per_systematic.keys() and not syst == 'nominal': raise ValueError('When producing combine histograms: found systematic in systematic list that is not covered by \'processes_per_systematic\' dictionary. Please add it there and in the other dictionaries.')
+                        if not syst == 'nominal' and not sample == self.processes_per_systematic[syst] and not self.processes_per_systematic[syst] == 'all': force_nominal = True
+                        if not syst == 'nominal' and self.pdf_per_systematic[syst] == 'lnN': force_nominal = True
                         # if not sample == 'TT' and syst == 'scale_TT':  force_nominal = True
                         # if not sample == 'ST' and syst == 'scale_ST':  force_nominal = True
                         # if not sample == 'DYJets' and syst == 'scale_DYJets':  force_nominal = True

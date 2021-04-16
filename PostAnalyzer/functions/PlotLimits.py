@@ -79,3 +79,4 @@ def PlotLimits(self, signal_scaled_by=1., draw_observed=False):
     c.RedrawAxis()
     outname = os.path.join(self.plotoutput_path, 'Limits.pdf')
     c.SaveAs(outname)
+    xsecinfile.Close()

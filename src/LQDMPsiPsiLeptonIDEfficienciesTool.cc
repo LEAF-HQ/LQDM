@@ -136,45 +136,45 @@ LQDMPsiPsiLeptonIDEfficienciesTool::LQDMPsiPsiLeptonIDEfficienciesTool(const Con
   book_histograms(histtags);
 
 
-  book_HistFolder("muon_cutsoft_Muons", new MuonHists("muon_cutsoft_Muons"));
-  book_HistFolder("muon_cutloose_Muons", new MuonHists("muon_cutloose_Muons"));
-  book_HistFolder("muon_cutmedium_Muons", new MuonHists("muon_cutmedium_Muons"));
-  book_HistFolder("muon_cuttight_Muons", new MuonHists("muon_cuttight_Muons"));
-  book_HistFolder("muon_mvasoft_Muons", new MuonHists("muon_mvasoft_Muons"));
-  book_HistFolder("muon_mvaloose_Muons", new MuonHists("muon_mvaloose_Muons"));
-  book_HistFolder("muon_mvamedium_Muons", new MuonHists("muon_mvamedium_Muons"));
-  book_HistFolder("muon_mvatight_Muons", new MuonHists("muon_mvatight_Muons"));
-  book_HistFolder("muon_cutsoft_GenParticles", new GenParticleHists("muon_cutsoft_GenParticles"));
-  book_HistFolder("muon_cutloose_GenParticles", new GenParticleHists("muon_cutloose_GenParticles"));
-  book_HistFolder("muon_cutmedium_GenParticles", new GenParticleHists("muon_cutmedium_GenParticles"));
-  book_HistFolder("muon_cuttight_GenParticles", new GenParticleHists("muon_cuttight_GenParticles"));
-  book_HistFolder("muon_mvasoft_GenParticles", new GenParticleHists("muon_mvasoft_GenParticles"));
-  book_HistFolder("muon_mvaloose_GenParticles", new GenParticleHists("muon_mvaloose_GenParticles"));
-  book_HistFolder("muon_mvamedium_GenParticles", new GenParticleHists("muon_mvamedium_GenParticles"));
-  book_HistFolder("muon_mvatight_GenParticles", new GenParticleHists("muon_mvatight_GenParticles"));
+  book_HistFolder("mu_cutsoft_Muons", new MuonHists("mu_cutsoft_Muons"));
+  book_HistFolder("mu_cutloose_Muons", new MuonHists("mu_cutloose_Muons"));
+  book_HistFolder("mu_cutmedium_Muons", new MuonHists("mu_cutmedium_Muons"));
+  book_HistFolder("mu_cuttight_Muons", new MuonHists("mu_cuttight_Muons"));
+  book_HistFolder("mu_mvasoft_Muons", new MuonHists("mu_mvasoft_Muons"));
+  book_HistFolder("mu_mvaloose_Muons", new MuonHists("mu_mvaloose_Muons"));
+  book_HistFolder("mu_mvamedium_Muons", new MuonHists("mu_mvamedium_Muons"));
+  book_HistFolder("mu_mvatight_Muons", new MuonHists("mu_mvatight_Muons"));
+  book_HistFolder("mu_cutsoft_GenParticles", new GenParticleHists("mu_cutsoft_GenParticles"));
+  book_HistFolder("mu_cutloose_GenParticles", new GenParticleHists("mu_cutloose_GenParticles"));
+  book_HistFolder("mu_cutmedium_GenParticles", new GenParticleHists("mu_cutmedium_GenParticles"));
+  book_HistFolder("mu_cuttight_GenParticles", new GenParticleHists("mu_cuttight_GenParticles"));
+  book_HistFolder("mu_mvasoft_GenParticles", new GenParticleHists("mu_mvasoft_GenParticles"));
+  book_HistFolder("mu_mvaloose_GenParticles", new GenParticleHists("mu_mvaloose_GenParticles"));
+  book_HistFolder("mu_mvamedium_GenParticles", new GenParticleHists("mu_mvamedium_GenParticles"));
+  book_HistFolder("mu_mvatight_GenParticles", new GenParticleHists("mu_mvatight_GenParticles"));
 
-  book_HistFolder("electron_cutveto_Electrons", new ElectronHists("electron_cutveto_Electrons"));
-  book_HistFolder("electron_cutloose_Electrons", new ElectronHists("electron_cutloose_Electrons"));
-  book_HistFolder("electron_cutmedium_Electrons", new ElectronHists("electron_cutmedium_Electrons"));
-  book_HistFolder("electron_cuttight_Electrons", new ElectronHists("electron_cuttight_Electrons"));
-  book_HistFolder("electron_cutheep_Electrons", new ElectronHists("electron_cutheep_Electrons"));
-  book_HistFolder("electron_mvaisoloose_Electrons", new ElectronHists("electron_mvaisoloose_Electrons"));
-  book_HistFolder("electron_mvaiso90_Electrons", new ElectronHists("electron_mvaiso90_Electrons"));
-  book_HistFolder("electron_mvaiso80_Electrons", new ElectronHists("electron_mvaiso80_Electrons"));
-  book_HistFolder("electron_mvanonisoloose_Electrons", new ElectronHists("electron_mvanonisoloose_Electrons"));
-  book_HistFolder("electron_mvanoniso90_Electrons", new ElectronHists("electron_mvanoniso90_Electrons"));
-  book_HistFolder("electron_mvanoniso80_Electrons", new ElectronHists("electron_mvanoniso80_Electrons"));
-  book_HistFolder("electron_cutveto_GenParticles", new GenParticleHists("electron_cutveto_GenParticles"));
-  book_HistFolder("electron_cutloose_GenParticles", new GenParticleHists("electron_cutloose_GenParticles"));
-  book_HistFolder("electron_cutmedium_GenParticles", new GenParticleHists("electron_cutmedium_GenParticles"));
-  book_HistFolder("electron_cuttight_GenParticles", new GenParticleHists("electron_cuttight_GenParticles"));
-  book_HistFolder("electron_cutheep_GenParticles", new GenParticleHists("electron_cutheep_GenParticles"));
-  book_HistFolder("electron_mvaisoloose_GenParticles", new GenParticleHists("electron_mvaisoloose_GenParticles"));
-  book_HistFolder("electron_mvaiso90_GenParticles", new GenParticleHists("electron_mvaiso90_GenParticles"));
-  book_HistFolder("electron_mvaiso80_GenParticles", new GenParticleHists("electron_mvaiso80_GenParticles"));
-  book_HistFolder("electron_mvanonisoloose_GenParticles", new GenParticleHists("electron_mvanonisoloose_GenParticles"));
-  book_HistFolder("electron_mvanoniso90_GenParticles", new GenParticleHists("electron_mvanoniso90_GenParticles"));
-  book_HistFolder("electron_mvanoniso80_GenParticles", new GenParticleHists("electron_mvanoniso80_GenParticles"));
+  book_HistFolder("el_cutveto_Electrons", new ElectronHists("el_cutveto_Electrons"));
+  book_HistFolder("el_cutloose_Electrons", new ElectronHists("el_cutloose_Electrons"));
+  book_HistFolder("el_cutmedium_Electrons", new ElectronHists("el_cutmedium_Electrons"));
+  book_HistFolder("el_cuttight_Electrons", new ElectronHists("el_cuttight_Electrons"));
+  book_HistFolder("el_cutheep_Electrons", new ElectronHists("el_cutheep_Electrons"));
+  book_HistFolder("el_mvaisoloose_Electrons", new ElectronHists("el_mvaisoloose_Electrons"));
+  book_HistFolder("el_mvaiso90_Electrons", new ElectronHists("el_mvaiso90_Electrons"));
+  book_HistFolder("el_mvaiso80_Electrons", new ElectronHists("el_mvaiso80_Electrons"));
+  book_HistFolder("el_mvanonisoloose_Electrons", new ElectronHists("el_mvanonisoloose_Electrons"));
+  book_HistFolder("el_mvanoniso90_Electrons", new ElectronHists("el_mvanoniso90_Electrons"));
+  book_HistFolder("el_mvanoniso80_Electrons", new ElectronHists("el_mvanoniso80_Electrons"));
+  book_HistFolder("el_cutveto_GenParticles", new GenParticleHists("el_cutveto_GenParticles"));
+  book_HistFolder("el_cutloose_GenParticles", new GenParticleHists("el_cutloose_GenParticles"));
+  book_HistFolder("el_cutmedium_GenParticles", new GenParticleHists("el_cutmedium_GenParticles"));
+  book_HistFolder("el_cuttight_GenParticles", new GenParticleHists("el_cuttight_GenParticles"));
+  book_HistFolder("el_cutheep_GenParticles", new GenParticleHists("el_cutheep_GenParticles"));
+  book_HistFolder("el_mvaisoloose_GenParticles", new GenParticleHists("el_mvaisoloose_GenParticles"));
+  book_HistFolder("el_mvaiso90_GenParticles", new GenParticleHists("el_mvaiso90_GenParticles"));
+  book_HistFolder("el_mvaiso80_GenParticles", new GenParticleHists("el_mvaiso80_GenParticles"));
+  book_HistFolder("el_mvanonisoloose_GenParticles", new GenParticleHists("el_mvanonisoloose_GenParticles"));
+  book_HistFolder("el_mvanoniso90_GenParticles", new GenParticleHists("el_mvanoniso90_GenParticles"));
+  book_HistFolder("el_mvanoniso80_GenParticles", new GenParticleHists("el_mvanoniso80_GenParticles"));
 
 
   jet_lepton_cleaner.reset(new JetLeptonCleaner(cfg, year, "AK4PFchs"));
@@ -228,43 +228,43 @@ bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
   // Here, fill all histograms after each cleaning, compare to 'jettaucleaner' as denominator
   vector<Muon> original_muons = *event->muons;
   cleaner_muon_cutsoft->process(*event);
-  HistFolder<MuonHists>("muon_cutsoft_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_cutsoft_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_cutsoft_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_cutsoft_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_cutloose->process(*event);
-  HistFolder<MuonHists>("muon_cutloose_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_cutloose_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_cutloose_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_cutloose_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_cutmedium->process(*event);
-  HistFolder<MuonHists>("muon_cutmedium_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_cutmedium_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_cutmedium_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_cutmedium_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_cuttight->process(*event);
-  HistFolder<MuonHists>("muon_cuttight_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_cuttight_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_cuttight_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_cuttight_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_mvasoft->process(*event);
-  HistFolder<MuonHists>("muon_mvasoft_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_mvasoft_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_mvasoft_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_mvasoft_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_mvaloose->process(*event);
-  HistFolder<MuonHists>("muon_mvaloose_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_mvaloose_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_mvaloose_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_mvaloose_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_mvamedium->process(*event);
-  HistFolder<MuonHists>("muon_mvamedium_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_mvamedium_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_mvamedium_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_mvamedium_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
   cleaner_muon_mvatight->process(*event);
-  HistFolder<MuonHists>("muon_mvatight_Muons")->fill(*event);
-  HistFolder<GenParticleHists>("muon_mvatight_GenParticles")->fill(*event);
+  HistFolder<MuonHists>("mu_mvatight_Muons")->fill(*event);
+  HistFolder<GenParticleHists>("mu_mvatight_GenParticles")->fill(*event);
   *event->muons = original_muons;
 
 
@@ -275,58 +275,58 @@ bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
   vector<Electron> original_electrons = *event->electrons;
 
   cleaner_electron_cutveto->process(*event);
-  HistFolder<ElectronHists>("electron_cutveto_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_cutveto_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_cutveto_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_cutveto_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_cutloose->process(*event);
-  HistFolder<ElectronHists>("electron_cutloose_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_cutloose_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_cutloose_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_cutloose_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_cutmedium->process(*event);
-  HistFolder<ElectronHists>("electron_cutmedium_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_cutmedium_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_cutmedium_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_cutmedium_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_cuttight->process(*event);
-  HistFolder<ElectronHists>("electron_cuttight_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_cuttight_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_cuttight_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_cuttight_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_cutheep->process(*event);
-  HistFolder<ElectronHists>("electron_cutheep_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_cutheep_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_cutheep_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_cutheep_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvaisoloose->process(*event);
-  HistFolder<ElectronHists>("electron_mvaisoloose_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvaisoloose_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvaisoloose_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvaisoloose_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvaiso90->process(*event);
-  HistFolder<ElectronHists>("electron_mvaiso90_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvaiso90_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvaiso90_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvaiso90_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvaiso80->process(*event);
-  HistFolder<ElectronHists>("electron_mvaiso80_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvaiso80_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvaiso80_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvaiso80_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvanonisoloose->process(*event);
-  HistFolder<ElectronHists>("electron_mvanonisoloose_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvanonisoloose_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvanonisoloose_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvanonisoloose_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvanoniso90->process(*event);
-  HistFolder<ElectronHists>("electron_mvanoniso90_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvanoniso90_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvanoniso90_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvanoniso90_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
   cleaner_electron_mvanoniso80->process(*event);
-  HistFolder<ElectronHists>("electron_mvanoniso80_Electrons")->fill(*event);
-  HistFolder<GenParticleHists>("electron_mvanoniso80_GenParticles")->fill(*event);
+  HistFolder<ElectronHists>("el_mvanoniso80_Electrons")->fill(*event);
+  HistFolder<GenParticleHists>("el_mvanoniso80_GenParticles")->fill(*event);
   *event->electrons = original_electrons;
 
 

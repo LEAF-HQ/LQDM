@@ -34,7 +34,8 @@ def main():
 
 
     ScriptRunner17 = ScriptRunner(year='2017', analysisname=analysisname, t3_base_path=t3_base_path, result_base_path=result_base_path, selectionstage='Studies', selectionname='PsiPsi_LeptonIDEfficiencies', backgrounds=[], signals=['PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0'])
-    ScriptRunner17.CalculateLeptonReconstructionEfficiencies()
+    # ScriptRunner17.CalculateLeptonReconstructionEfficiencies()
+    ScriptRunner17.CalculateLeptonIDEfficiencies()
 
 
 

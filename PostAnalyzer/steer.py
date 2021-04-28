@@ -33,9 +33,12 @@ def main():
 
 
 
-    ScriptRunner17 = ScriptRunner(year='2017', analysisname=analysisname, t3_base_path=t3_base_path, result_base_path=result_base_path, selectionstage='Studies', selectionname='PsiPsi_LeptonIDEfficiencies', backgrounds=[], signals=['PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0'])
-    # ScriptRunner17.CalculateLeptonReconstructionEfficiencies()
-    ScriptRunner17.CalculateLeptonIDEfficiencies()
+    StudiesRunner17 = ScriptRunner(year='2017', analysisname=analysisname, t3_base_path=t3_base_path, result_base_path=result_base_path, selectionstage='Studies', selectionname='PsiPsi_LeptonIDEfficiencies', backgrounds=[], signals=['PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0'])
+    # StudiesRunner17.CalculateLeptonReconstructionEfficiencies()
+    StudiesRunner17.CalculateLeptonIDEfficiencies()
+
+    PreselectionRunner17 = ScriptRunner(year='2017', analysisname=analysisname, t3_base_path=t3_base_path, result_base_path=result_base_path, selectionstage='Preselection', selectionname='PsiPsi_Initial', backgrounds=['TT', 'DYJets', 'ST', 'WJets', 'QCD_Had'], signals=['PsiPsiToLQChi_MLQ1000_MPS117_MC1100_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS244_MC1214_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS567_MC1457_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS1051_MC1977_L1p0', 'PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0'])
+    # PreselectionRunner17.CalculateSelectionEfficiencies(num_and_denom=[('pteta1muon', 'iddenominator'), ('pteta1electron', 'iddenominator'), ('pteta1tau', 'iddenominator'), ('pteta1lepton', 'iddenominator'), ('mva1muon', 'iddenominator'), ('mva1electron', 'iddenominator'), ('mva1lepton', 'iddenominator'), ('mvaip1muon', 'iddenominator'), ('mvaip1electron', 'iddenominator'), ('mvaip1lepton', 'iddenominator'), ('tauvsmu1tau', 'iddenominator'), ('tauvsmuvse1tau', 'iddenominator'), ('tauvsmuvsevsjet1tau', 'iddenominator'), ('final', 'iddenominator')])
 
 
 

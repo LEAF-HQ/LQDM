@@ -4,6 +4,7 @@ from utils import *
 from collections import OrderedDict
 import functions.CalculateLeptonReconstructionEfficiencies
 import functions.CalculateLeptonIDEfficiencies
+import functions.CalculateSelectionEfficiencies
 
 
 class ScriptRunner:
@@ -26,6 +27,7 @@ class ScriptRunner:
         # now bind functions
         ScriptRunner.CalculateLeptonReconstructionEfficiencies = functions.CalculateLeptonReconstructionEfficiencies.CalculateLeptonReconstructionEfficiencies
         ScriptRunner.CalculateLeptonIDEfficiencies = functions.CalculateLeptonIDEfficiencies.CalculateLeptonIDEfficiencies
+        ScriptRunner.CalculateSelectionEfficiencies = functions.CalculateSelectionEfficiencies.CalculateSelectionEfficiencies
         print green('--> Set up ScriptRunner for year %s:' % (str(year)))
         for key in self.__dict__.keys():
             print green('  --> %s: %s' % (str(key), str(self.__dict__[key])))

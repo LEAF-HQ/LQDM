@@ -13,7 +13,6 @@ def CalculateLeptonReconstructionEfficiencies(self):
     ROOT.gErrorIgnoreLevel = kError
 
     lep_flavors = ['vistau', 'el', 'mu']
-    # lep_flavors = ['el', 'mu']
     histnametags_per_lepton = {
     'el': ['', 'fromtau', 'fromhad'],
     'mu': ['', 'fromtau', 'fromhad'],
@@ -28,7 +27,7 @@ def CalculateLeptonReconstructionEfficiencies(self):
     ids_per_lepton = {
     'mu': ['iddenominator', 'pteta', 'mu_mvasoft', 'mu_pteta', 'mu_mvaloose', 'mu_mvatight', 'mu_cutsoft', 'mu_cutloose', 'mu_cuttight'],
     'el': ['iddenominator', 'pteta', 'el_cutveto', 'el_pteta', 'el_cutloose', 'el_cuttight', 'el_mvaisoloose', 'el_mvanonisoloose', 'el_mvaiso90', 'el_mvanoniso90'],
-    'vistau': ['iddenominator', 'pteta']
+    'vistau': ['iddenominator', 'pteta', 'tau_vsjetvvvloose', 'tau_vsjetvvloose', 'tau_vsjetvloose', 'tau_vsjetloose', 'tau_vsjetmedium', 'tau_vsjettight', 'tau_vsjetvtight', 'tau_vsjetvvtight']
     }
 
     histfolders_denom = {

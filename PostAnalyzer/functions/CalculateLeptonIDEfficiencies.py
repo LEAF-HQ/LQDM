@@ -12,19 +12,30 @@ def CalculateLeptonIDEfficiencies(self):
     gROOT.SetBatch(1)
     ROOT.gErrorIgnoreLevel = kError
 
-    signalcategory = 'fromtau'
-    backgroundcategories = ['fromhad', 'unmatched']
+    signalcategory_per_lepton = {
+    'el': 'fromtau',
+    'mu': 'fromtau',
+    'tau': 'matched'
+    }
+    backgroundcategories_per_lepton = {
+    'el': ['fromhad', 'unmatched'],
+    'mu': ['fromhad', 'unmatched'],
+    'tau': ['unmatched']
+    }
     histnametags_per_lepton = {
-    'el': [''] + [signalcategory] + backgroundcategories,
-    'mu': [''] + [signalcategory] + backgroundcategories
+    'el': [''] + [signalcategory_per_lepton['el']] + backgroundcategories_per_lepton['el'],
+    'mu': [''] + [signalcategory_per_lepton['mu']] + backgroundcategories_per_lepton['mu'],
+    'tau': [''] + [signalcategory_per_lepton['tau']] + backgroundcategories_per_lepton['tau']
     }
     histclassname_per_lepton = {
     'el': ('Electrons', 'electron'),
-    'mu': ('Muons', 'muon')
+    'mu': ('Muons', 'muon'),
+    'tau': ('Taus', 'tau')
     }
     ids_per_lepton = {
     'mu': ['pteta', 'mvasoft', 'mvaloose', 'mvatight', 'cutsoft', 'cutloose', 'cuttight'],
-    'el': ['pteta', 'cutveto', 'cutloose', 'cuttight', 'mvaisoloose', 'mvanonisoloose', 'mvaiso90', 'mvanoniso90']
+    'el': ['pteta', 'cutveto', 'cutloose', 'cuttight', 'mvaisoloose', 'mvanonisoloose', 'mvaiso90', 'mvanoniso90'],
+    'tau': ['pteta', 'vsjetvvvloose', 'vsjetvvloose', 'vsjetvloose', 'vsjetloose', 'vsjetmedium', 'vsjettight', 'vsjetvtight', 'vsjetvvtight', 'vselevvvloose', 'vselevvloose', 'vselevloose', 'vseleloose', 'vselemedium', 'vseletight', 'vselevtight', 'vselevvtight', 'vsmuvloose', 'vsmuloose', 'vsmumedium', 'vsmutight']
     }
     colors = [kRed+4, kRed+1, kAzure-2, kOrange, kGreen-2]
     tags_denominator = {
@@ -65,8 +76,8 @@ def CalculateLeptonIDEfficiencies(self):
                     npass_unm_per_signal[signal] = 0
                     ntot_unm_per_signal[signal]  = 0
                 for tag in histnametags_per_lepton[lep]:
-                    is_signal = tag == signalcategory
-                    is_background = tag in backgroundcategories
+                    is_signal = tag == signalcategory_per_lepton[lep]
+                    is_background = tag in backgroundcategories_per_lepton[lep]
                     is_had = tag == 'fromhad'
                     is_unmatched = tag == 'unmatched'
                     hists_total = []
@@ -133,10 +144,10 @@ def CalculateLeptonIDEfficiencies(self):
                     c.SaveAs(os.path.join(self.plotoutput_path, 'IDEfficiency_%s_%s_%s%s.pdf' % (lep, tags_denominator[denomtag], id, tagstr)))
 
                 for signal in self.signals:
-                    eff_sig_per_signal[signal] = npass_sig_per_signal[signal]/ntot_sig_per_signal[signal]
-                    eff_bkg_per_signal[signal] = npass_bkg_per_signal[signal]/ntot_bkg_per_signal[signal]
-                    eff_had_per_signal[signal] = npass_had_per_signal[signal]/ntot_had_per_signal[signal]
-                    eff_unm_per_signal[signal] = npass_unm_per_signal[signal]/ntot_unm_per_signal[signal]
+                    eff_sig_per_signal[signal] = npass_sig_per_signal[signal]/ntot_sig_per_signal[signal] if not ntot_sig_per_signal[signal] == 0 else 0
+                    eff_bkg_per_signal[signal] = npass_bkg_per_signal[signal]/ntot_bkg_per_signal[signal] if not ntot_bkg_per_signal[signal] == 0 else 0
+                    eff_had_per_signal[signal] = npass_had_per_signal[signal]/ntot_had_per_signal[signal] if not ntot_had_per_signal[signal] == 0 else 0
+                    eff_unm_per_signal[signal] = npass_unm_per_signal[signal]/ntot_unm_per_signal[signal] if not ntot_unm_per_signal[signal] == 0 else 0
                 eff_sig_per_denomtag[denomtag] = eff_sig_per_signal
                 eff_bkg_per_denomtag[denomtag] = eff_bkg_per_signal
                 eff_had_per_denomtag[denomtag] = eff_had_per_signal
@@ -171,7 +182,7 @@ def CalculateLeptonIDEfficiencies(self):
                     graph_unm.SetPoint(0, eff_sig_per_id[id][denomtag][signal], eff_unm_per_id[id][denomtag][signal])
                     legends_unm.append(id)
                     graphs_unm.append(graph_unm)
-                cgrbkg = tdrCanvas('cgrbkg', 0, 1, 1E-3, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'other %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                cgrbkg = tdrCanvas('cgrbkg', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'other %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_bkg = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_bkg)):
                     g = graphs_bkg[i]
@@ -181,7 +192,7 @@ def CalculateLeptonIDEfficiencies(self):
                 cgrbkg.SetLogy()
                 cgrbkg.SaveAs(os.path.join(self.plotoutput_path, 'IDEfficiencyVsBackground_%s_%s_%s.pdf' % (lep, signal, tags_denominator[denomtag])))
 
-                cgrhad = tdrCanvas('cgrhad', 0, 1, 1E-3, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), '%s from had. efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                cgrhad = tdrCanvas('cgrhad', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), '%s from had. efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_had = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_had)):
                     g = graphs_had[i]
@@ -191,7 +202,7 @@ def CalculateLeptonIDEfficiencies(self):
                 cgrhad.SetLogy()
                 cgrhad.SaveAs(os.path.join(self.plotoutput_path, 'IDEfficiencyVsHadronic_%s_%s_%s.pdf' % (lep, signal, tags_denominator[denomtag])))
 
-                cgrunm = tdrCanvas('cgrunm', 0, 1, 1E-3, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'unmatched %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                cgrunm = tdrCanvas('cgrunm', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'unmatched %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_unm = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_unm)):
                     g = graphs_unm[i]

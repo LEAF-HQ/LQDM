@@ -58,7 +58,7 @@ private:
   // cleaners
   unique_ptr<JetCleaner> cleaner_jet;
   unique_ptr<JetCleaner> cleaner_jettauoverlap;
-  unique_ptr<TauCleaner> cleaner_tau_pteta, cleaner_tau;
+  unique_ptr<TauCleaner> cleaner_tau_pteta, cleaner_tau_vsjetvvvloose, cleaner_tau_vsjetvvloose, cleaner_tau_vsjetvloose, cleaner_tau_vsjetloose, cleaner_tau_vsjetmedium, cleaner_tau_vsjettight, cleaner_tau_vsjetvtight, cleaner_tau_vsjetvvtight, cleaner_tau_vselevvvloose, cleaner_tau_vselevvloose, cleaner_tau_vselevloose, cleaner_tau_vseleloose, cleaner_tau_vselemedium, cleaner_tau_vseletight, cleaner_tau_vselevtight, cleaner_tau_vselevvtight, cleaner_tau_vsmuvloose, cleaner_tau_vsmuloose, cleaner_tau_vsmumedium, cleaner_tau_vsmutight;
   unique_ptr<MuonCleaner> cleaner_muon_cutsoft, cleaner_muon_pteta, cleaner_muon_cutloose, cleaner_muon_cutmedium, cleaner_muon_cuttight, cleaner_muon_mvasoft, cleaner_muon_mvaloose, cleaner_muon_mvamedium, cleaner_muon_mvatight;
   unique_ptr<ElectronCleaner> cleaner_electron_cutveto, cleaner_electron_pteta, cleaner_electron_cutloose, cleaner_electron_cutmedium, cleaner_electron_cuttight, cleaner_electron_cutheep, cleaner_electron_mvaisoloose, cleaner_electron_mvaiso90, cleaner_electron_mvaiso80, cleaner_electron_mvanonisoloose, cleaner_electron_mvanoniso90, cleaner_electron_mvanoniso80;
 
@@ -103,7 +103,31 @@ LQDMPsiPsiLeptonIDEfficienciesTool::LQDMPsiPsiLeptonIDEfficienciesTool(const Con
   MultiID<Electron> electron_id_mvanoniso80 = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoEff80)};
 
   MultiID<Tau> tau_id_pteta = {PtEtaId(18, 2.1)};
-  MultiID<Tau> tau_id = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVLoose), TauID(Tau::DeepTauVsEleVVLoose), TauID(Tau::DeepTauVsMuLoose)};
+  MultiID<Tau> tau_id_vsjetvvvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVVLoose)};
+  MultiID<Tau> tau_id_vsjetvvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVLoose)};
+  MultiID<Tau> tau_id_vsjetvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVLoose)};
+  MultiID<Tau> tau_id_vsjetloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetLoose)};
+  MultiID<Tau> tau_id_vsjetmedium = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetMedium)};
+  MultiID<Tau> tau_id_vsjettight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetTight)};
+  MultiID<Tau> tau_id_vsjetvtight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVTight)};
+  MultiID<Tau> tau_id_vsjetvvtight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVTight)};
+
+  MultiID<Tau> tau_id_vselevvvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVVVLoose)};
+  MultiID<Tau> tau_id_vselevvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVVLoose)};
+  MultiID<Tau> tau_id_vselevloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVLoose)};
+  MultiID<Tau> tau_id_vseleloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleLoose)};
+  MultiID<Tau> tau_id_vselemedium = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleMedium)};
+  MultiID<Tau> tau_id_vseletight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleTight)};
+  MultiID<Tau> tau_id_vselevtight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVTight)};
+  MultiID<Tau> tau_id_vselevvtight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVVTight)};
+  MultiID<Tau> tau_id_vsmuvloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuVLoose)};
+  MultiID<Tau> tau_id_vsmuloose = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuLoose)};
+  MultiID<Tau> tau_id_vsmumedium = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuMedium)};
+  MultiID<Tau> tau_id_vsmutight = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuTight)};
+
+
+
+
   MultiID<Jet> jet_id = {PtEtaId(15, 2.5), JetID(JetID::WP_TIGHT), JetPUID(JetPUID::WP_TIGHT)};
   MultiID<Jet> jet_overlapid = {JetTauOverlapID(0.5)};
 
@@ -131,7 +155,27 @@ LQDMPsiPsiLeptonIDEfficienciesTool::LQDMPsiPsiLeptonIDEfficienciesTool(const Con
   cleaner_electron_mvanoniso80.reset(new ElectronCleaner(electron_id_mvanoniso80));
 
   cleaner_tau_pteta.reset(new TauCleaner(tau_id_pteta));
-  cleaner_tau.reset(new TauCleaner(tau_id));
+  cleaner_tau_vsjetvvvloose.reset(new TauCleaner(tau_id_vsjetvvvloose));
+  cleaner_tau_vsjetvvloose.reset(new TauCleaner(tau_id_vsjetvvloose));
+  cleaner_tau_vsjetvloose.reset(new TauCleaner(tau_id_vsjetvloose));
+  cleaner_tau_vsjetloose.reset(new TauCleaner(tau_id_vsjetloose));
+  cleaner_tau_vsjetmedium.reset(new TauCleaner(tau_id_vsjetmedium));
+  cleaner_tau_vsjettight.reset(new TauCleaner(tau_id_vsjettight));
+  cleaner_tau_vsjetvtight.reset(new TauCleaner(tau_id_vsjetvtight));
+  cleaner_tau_vsjetvvtight.reset(new TauCleaner(tau_id_vsjetvvtight));
+  cleaner_tau_vselevvvloose.reset(new TauCleaner(tau_id_vselevvvloose));
+  cleaner_tau_vselevvloose.reset(new TauCleaner(tau_id_vselevvloose));
+  cleaner_tau_vselevloose.reset(new TauCleaner(tau_id_vselevloose));
+  cleaner_tau_vseleloose.reset(new TauCleaner(tau_id_vseleloose));
+  cleaner_tau_vselemedium.reset(new TauCleaner(tau_id_vselemedium));
+  cleaner_tau_vseletight.reset(new TauCleaner(tau_id_vseletight));
+  cleaner_tau_vselevtight.reset(new TauCleaner(tau_id_vselevtight));
+  cleaner_tau_vselevvtight.reset(new TauCleaner(tau_id_vselevvtight));
+  cleaner_tau_vsmuvloose.reset(new TauCleaner(tau_id_vsmuvloose));
+  cleaner_tau_vsmuloose.reset(new TauCleaner(tau_id_vsmuloose));
+  cleaner_tau_vsmumedium.reset(new TauCleaner(tau_id_vsmumedium));
+  cleaner_tau_vsmutight.reset(new TauCleaner(tau_id_vsmutight));
+
   cleaner_jet.reset(new JetCleaner(jet_id));
   cleaner_jettauoverlap.reset(new JetCleaner(jet_overlapid));
 
@@ -187,10 +231,53 @@ LQDMPsiPsiLeptonIDEfficienciesTool::LQDMPsiPsiLeptonIDEfficienciesTool(const Con
   book_HistFolder("el_mvanoniso90_GenParticles", new GenParticleHists("el_mvanoniso90_GenParticles"));
   book_HistFolder("el_mvanoniso80_GenParticles", new GenParticleHists("el_mvanoniso80_GenParticles"));
 
+  book_HistFolder("tau_pteta_Taus", new TauHists("tau_pteta_Taus"));
+  book_HistFolder("tau_vsjetvvvloose_Taus", new TauHists("tau_vsjetvvvloose_Taus"));
+  book_HistFolder("tau_vsjetvvloose_Taus", new TauHists("tau_vsjetvvloose_Taus"));
+  book_HistFolder("tau_vsjetvloose_Taus", new TauHists("tau_vsjetvloose_Taus"));
+  book_HistFolder("tau_vsjetloose_Taus", new TauHists("tau_vsjetloose_Taus"));
+  book_HistFolder("tau_vsjetmedium_Taus", new TauHists("tau_vsjetmedium_Taus"));
+  book_HistFolder("tau_vsjettight_Taus", new TauHists("tau_vsjettight_Taus"));
+  book_HistFolder("tau_vsjetvtight_Taus", new TauHists("tau_vsjetvtight_Taus"));
+  book_HistFolder("tau_vsjetvvtight_Taus", new TauHists("tau_vsjetvvtight_Taus"));
+  book_HistFolder("tau_vselevvvloose_Taus", new TauHists("tau_vselevvvloose_Taus"));
+  book_HistFolder("tau_vselevvloose_Taus", new TauHists("tau_vselevvloose_Taus"));
+  book_HistFolder("tau_vselevloose_Taus", new TauHists("tau_vselevloose_Taus"));
+  book_HistFolder("tau_vseleloose_Taus", new TauHists("tau_vseleloose_Taus"));
+  book_HistFolder("tau_vselemedium_Taus", new TauHists("tau_vselemedium_Taus"));
+  book_HistFolder("tau_vseletight_Taus", new TauHists("tau_vseletight_Taus"));
+  book_HistFolder("tau_vselevtight_Taus", new TauHists("tau_vselevtight_Taus"));
+  book_HistFolder("tau_vselevvtight_Taus", new TauHists("tau_vselevvtight_Taus"));
+  book_HistFolder("tau_vsmuvloose_Taus", new TauHists("tau_vsmuvloose_Taus"));
+  book_HistFolder("tau_vsmuloose_Taus", new TauHists("tau_vsmuloose_Taus"));
+  book_HistFolder("tau_vsmumedium_Taus", new TauHists("tau_vsmumedium_Taus"));
+  book_HistFolder("tau_vsmutight_Taus", new TauHists("tau_vsmutight_Taus"));
+  book_HistFolder("tau_pteta_GenParticles", new GenParticleHists("tau_pteta_GenParticles"));
+  book_HistFolder("tau_vsjetvvvloose_GenParticles", new GenParticleHists("tau_vsjetvvvloose_GenParticles"));
+  book_HistFolder("tau_vsjetvvloose_GenParticles", new GenParticleHists("tau_vsjetvvloose_GenParticles"));
+  book_HistFolder("tau_vsjetvloose_GenParticles", new GenParticleHists("tau_vsjetvloose_GenParticles"));
+  book_HistFolder("tau_vsjetloose_GenParticles", new GenParticleHists("tau_vsjetloose_GenParticles"));
+  book_HistFolder("tau_vsjetmedium_GenParticles", new GenParticleHists("tau_vsjetmedium_GenParticles"));
+  book_HistFolder("tau_vsjettight_GenParticles", new GenParticleHists("tau_vsjettight_GenParticles"));
+  book_HistFolder("tau_vsjetvtight_GenParticles", new GenParticleHists("tau_vsjetvtight_GenParticles"));
+  book_HistFolder("tau_vsjetvvtight_GenParticles", new GenParticleHists("tau_vsjetvvtight_GenParticles"));
+  book_HistFolder("tau_vselevvvloose_GenParticles", new GenParticleHists("tau_vselevvvloose_GenParticles"));
+  book_HistFolder("tau_vselevvloose_GenParticles", new GenParticleHists("tau_vselevvloose_GenParticles"));
+  book_HistFolder("tau_vselevloose_GenParticles", new GenParticleHists("tau_vselevloose_GenParticles"));
+  book_HistFolder("tau_vseleloose_GenParticles", new GenParticleHists("tau_vseleloose_GenParticles"));
+  book_HistFolder("tau_vselemedium_GenParticles", new GenParticleHists("tau_vselemedium_GenParticles"));
+  book_HistFolder("tau_vseletight_GenParticles", new GenParticleHists("tau_vseletight_GenParticles"));
+  book_HistFolder("tau_vselevtight_GenParticles", new GenParticleHists("tau_vselevtight_GenParticles"));
+  book_HistFolder("tau_vselevvtight_GenParticles", new GenParticleHists("tau_vselevvtight_GenParticles"));
+  book_HistFolder("tau_vsmuvloose_GenParticles", new GenParticleHists("tau_vsmuvloose_GenParticles"));
+  book_HistFolder("tau_vsmuloose_GenParticles", new GenParticleHists("tau_vsmuloose_GenParticles"));
+  book_HistFolder("tau_vsmumedium_GenParticles", new GenParticleHists("tau_vsmumedium_GenParticles"));
+  book_HistFolder("tau_vsmutight_GenParticles", new GenParticleHists("tau_vsmutight_GenParticles"));
+
 
   jet_lepton_cleaner.reset(new JetLeptonCleaner(cfg, year, "AK4PFchs"));
   jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDCutBasedSoft)); // something very loose to get away most OK muons
-  jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoEff90)); // something very loose to get away most OK muons
+  jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoLoose)); // something very loose to get away most OK muons
   jec_corrector.reset(new JECCorrector(cfg, year, "AK4PFchs"));
   jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(1)));
 
@@ -227,24 +314,26 @@ bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
 
 
   // cleaners
-  cleaner_tau->process(*event);
+  // cleaner_tau->process(*event);
   cleaner_jet->process(*event);
   fill_histograms("hadcleaner");
 
   cleaner_jettauoverlap->process(*event);
   fill_histograms("jettaucleaner");
-
   fill_histograms("iddenominator");
 
 
   vector<Muon> original_muons = *event->muons;
   vector<Electron> original_electrons = *event->electrons;
+  vector<Tau> original_taus = *event->taus;
 
   cleaner_muon_pteta->process(*event);
   cleaner_electron_pteta->process(*event);
+  cleaner_tau_pteta->process(*event);
   fill_histograms("pteta");
   *event->muons = original_muons;
   *event->electrons = original_electrons;
+  *event->taus = original_taus;
 
   cleaner_muon_pteta->process(*event);
   HistFolder<MuonHists>("mu_pteta_Muons")->fill(*event);
@@ -356,6 +445,112 @@ bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
   *event->electrons = original_electrons;
 
 
+
+
+  cleaner_tau_pteta->process(*event);
+  HistFolder<TauHists>("tau_pteta_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_pteta_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetvvvloose->process(*event);
+  HistFolder<TauHists>("tau_vsjetvvvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetvvvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetvvloose->process(*event);
+  HistFolder<TauHists>("tau_vsjetvvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetvvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetvloose->process(*event);
+  HistFolder<TauHists>("tau_vsjetvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetloose->process(*event);
+  HistFolder<TauHists>("tau_vsjetloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetmedium->process(*event);
+  HistFolder<TauHists>("tau_vsjetmedium_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetmedium_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjettight->process(*event);
+  HistFolder<TauHists>("tau_vsjettight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjettight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetvtight->process(*event);
+  HistFolder<TauHists>("tau_vsjetvtight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetvtight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsjetvvtight->process(*event);
+  HistFolder<TauHists>("tau_vsjetvvtight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsjetvvtight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselevvvloose->process(*event);
+  HistFolder<TauHists>("tau_vselevvvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselevvvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselevvloose->process(*event);
+  HistFolder<TauHists>("tau_vselevvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselevvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselevloose->process(*event);
+  HistFolder<TauHists>("tau_vselevloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselevloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vseleloose->process(*event);
+  HistFolder<TauHists>("tau_vseleloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vseleloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselemedium->process(*event);
+  HistFolder<TauHists>("tau_vselemedium_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselemedium_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vseletight->process(*event);
+  HistFolder<TauHists>("tau_vseletight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vseletight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselevtight->process(*event);
+  HistFolder<TauHists>("tau_vselevtight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselevtight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vselevvtight->process(*event);
+  HistFolder<TauHists>("tau_vselevvtight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vselevvtight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsmuvloose->process(*event);
+  HistFolder<TauHists>("tau_vsmuvloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsmuvloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsmuloose->process(*event);
+  HistFolder<TauHists>("tau_vsmuloose_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsmuloose_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsmumedium->process(*event);
+  HistFolder<TauHists>("tau_vsmumedium_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsmumedium_GenParticles")->fill(*event);
+  *event->taus = original_taus;
+
+  cleaner_tau_vsmutight->process(*event);
+  HistFolder<TauHists>("tau_vsmutight_Taus")->fill(*event);
+  HistFolder<GenParticleHists>("tau_vsmutight_GenParticles")->fill(*event);
+  *event->taus = original_taus;
 
 
 

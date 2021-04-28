@@ -58,12 +58,15 @@ private:
   // cleaners
   unique_ptr<JetCleaner> cleaner_jet;
   unique_ptr<JetCleaner> cleaner_jettauoverlap;
-  unique_ptr<TauCleaner> cleaner_tau;
-  unique_ptr<MuonCleaner> cleaner_muon_cutsoft, cleaner_muon_cutloose, cleaner_muon_cutmedium, cleaner_muon_cuttight, cleaner_muon_mvasoft, cleaner_muon_mvaloose, cleaner_muon_mvamedium, cleaner_muon_mvatight;
-  unique_ptr<ElectronCleaner> cleaner_electron_cutveto, cleaner_electron_cutloose, cleaner_electron_cutmedium, cleaner_electron_cuttight, cleaner_electron_cutheep, cleaner_electron_mvaisoloose, cleaner_electron_mvaiso90, cleaner_electron_mvaiso80, cleaner_electron_mvanonisoloose, cleaner_electron_mvanoniso90, cleaner_electron_mvanoniso80;
+  unique_ptr<TauCleaner> cleaner_tau_pteta, cleaner_tau_vsjet, cleaner_tau_vse, cleaner_tau_vsmu;
+  unique_ptr<MuonCleaner> cleaner_muon_pteta, cleaner_muon_mvasoft, cleaner_muon_mvasoft_ip;
+  unique_ptr<ElectronCleaner> cleaner_electron_pteta, cleaner_electron_mvanonisoloose, cleaner_electron_mvanonisoloose_ip;
 
   // selections
   unique_ptr<LumiblockSelection> lumiblock_selection;
+  unique_ptr<NMuonSelection> nmuon_selection;
+  unique_ptr<NElectronSelection> nelectron_selection;
+  unique_ptr<NTauSelection> ntau_selection;
 
   // constants
   TString year;
@@ -78,89 +81,59 @@ LQDMPsiPsiPreselectionTool::LQDMPsiPsiPreselectionTool(const Config & cfg) : Bas
 
   year = cfg.dataset_year();
 
-  MultiID<Muon> muon_id_cutsoft = {PtEtaId(3, 2.4), MuonID(Muon::IDCutBasedSoft)};
-  MultiID<Muon> muon_id_cutloose = {PtEtaId(3, 2.4), MuonID(Muon::IDCutBasedLoose)};
-  MultiID<Muon> muon_id_cutmedium = {PtEtaId(3, 2.4), MuonID(Muon::IDCutBasedMedium)};
-  MultiID<Muon> muon_id_cuttight = {PtEtaId(3, 2.4), MuonID(Muon::IDCutBasedTight)};
+  MultiID<Muon> muon_id_pteta = {PtEtaId(3, 2.4)};
   MultiID<Muon> muon_id_mvasoft = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaSoft)};
-  MultiID<Muon> muon_id_mvaloose = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaLoose)};
-  MultiID<Muon> muon_id_mvamedium = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaMedium)};
-  MultiID<Muon> muon_id_mvatight = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaTight)};
+  MultiID<Muon> muon_id_mvasoft_ip = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaSoft), MuonIPID(0., 0.01)};
 
-  MultiID<Electron> electron_id_cutveto = {PtEtaId(5, 2.4), ElectronID(Electron::IDCutBasedVeto)};
-  MultiID<Electron> electron_id_cutloose = {PtEtaId(5, 2.4), ElectronID(Electron::IDCutBasedLoose)};
-  MultiID<Electron> electron_id_cutmedium = {PtEtaId(5, 2.4), ElectronID(Electron::IDCutBasedMedium)};
-  MultiID<Electron> electron_id_cuttight = {PtEtaId(5, 2.4), ElectronID(Electron::IDCutBasedTight)};
-  MultiID<Electron> electron_id_cutheep = {PtEtaId(5, 2.4), ElectronID(Electron::IDCutBasedHEEP)};
-  MultiID<Electron> electron_id_mvaisoloose = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVAIsoLoose)};
-  MultiID<Electron> electron_id_mvaiso90 = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVAIsoEff90)};
-  MultiID<Electron> electron_id_mvaiso80 = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVAIsoEff80)};
+
+  MultiID<Electron> electron_id_pteta = {PtEtaId(5, 2.4)};
   MultiID<Electron> electron_id_mvanonisoloose = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoLoose)};
-  MultiID<Electron> electron_id_mvanoniso90 = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoEff90)};
-  MultiID<Electron> electron_id_mvanoniso80 = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoEff80)};
+  MultiID<Electron> electron_id_mvanonisoloose_ip = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoLoose), ElectronIPID(0., 0.01)};
 
-  MultiID<Tau> tau_id = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVLoose), TauID(Tau::DeepTauVsEleVVLoose), TauID(Tau::DeepTauVsMuLoose)};
+  MultiID<Tau> tau_id_pteta = {PtEtaId(18, 2.1)};
+  MultiID<Tau> tau_id_vsjet = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVVLoose)};
+  MultiID<Tau> tau_id_vse = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVLoose)};
+  MultiID<Tau> tau_id_vsmu = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuTight)};
   MultiID<Jet> jet_id = {PtEtaId(15, 2.5), JetID(JetID::WP_TIGHT), JetPUID(JetPUID::WP_TIGHT)};
   MultiID<Jet> jet_overlapid = {JetTauOverlapID(0.5)};
 
-  cleaner_muon_cutsoft.reset(new MuonCleaner(muon_id_cutsoft));
-  cleaner_muon_cutloose.reset(new MuonCleaner(muon_id_cutloose));
-  cleaner_muon_cutmedium.reset(new MuonCleaner(muon_id_cutmedium));
-  cleaner_muon_cuttight.reset(new MuonCleaner(muon_id_cuttight));
-  cleaner_muon_mvasoft.reset(new MuonCleaner(muon_id_mvasoft));
-  cleaner_muon_mvaloose.reset(new MuonCleaner(muon_id_mvaloose));
-  cleaner_muon_mvamedium.reset(new MuonCleaner(muon_id_mvamedium));
-  cleaner_muon_mvatight.reset(new MuonCleaner(muon_id_mvatight));
 
-  cleaner_electron_cutveto.reset(new ElectronCleaner(electron_id_cutveto));
-  cleaner_electron_cutloose.reset(new ElectronCleaner(electron_id_cutloose));
-  cleaner_electron_cutmedium.reset(new ElectronCleaner(electron_id_cutmedium));
-  cleaner_electron_cuttight.reset(new ElectronCleaner(electron_id_cuttight));
-  cleaner_electron_cutheep.reset(new ElectronCleaner(electron_id_cutheep));
-  cleaner_electron_mvaisoloose.reset(new ElectronCleaner(electron_id_mvaisoloose));
-  cleaner_electron_mvaiso90.reset(new ElectronCleaner(electron_id_mvaiso90));
-  cleaner_electron_mvaiso80.reset(new ElectronCleaner(electron_id_mvaiso80));
-  cleaner_electron_mvanonisoloose.reset(new ElectronCleaner(electron_id_mvanonisoloose));
-  cleaner_electron_mvanoniso90.reset(new ElectronCleaner(electron_id_mvanoniso90));
-  cleaner_electron_mvanoniso80.reset(new ElectronCleaner(electron_id_mvanoniso80));
-
-  cleaner_tau.reset(new TauCleaner(tau_id));
+  // cleaner_tau.reset(new TauCleaner(tau_id));
   cleaner_jet.reset(new JetCleaner(jet_id));
   cleaner_jettauoverlap.reset(new JetCleaner(jet_overlapid));
 
+  cleaner_muon_pteta.reset(new MuonCleaner(muon_id_pteta));
+  cleaner_electron_pteta.reset(new ElectronCleaner(electron_id_pteta));
+  cleaner_tau_pteta.reset(new TauCleaner(tau_id_pteta));
+
+  cleaner_muon_mvasoft.reset(new MuonCleaner(muon_id_mvasoft));
+  cleaner_electron_mvanonisoloose.reset(new ElectronCleaner(electron_id_mvanonisoloose));
+
+  cleaner_muon_mvasoft_ip.reset(new MuonCleaner(muon_id_mvasoft_ip));
+  cleaner_electron_mvanonisoloose_ip.reset(new ElectronCleaner(electron_id_mvanonisoloose_ip));
+
+  cleaner_tau_vsjet.reset(new TauCleaner(tau_id_vsjet));
+  cleaner_tau_vse.reset(new TauCleaner(tau_id_vse));
+  cleaner_tau_vsmu.reset(new TauCleaner(tau_id_vsmu));
+
+
   lumiweight_applicator.reset(new LumiWeightApplicator(cfg));
+
+  nmuon_selection.reset(new NMuonSelection(cfg, 1, -1));
+  nelectron_selection.reset(new NElectronSelection(cfg, 1, -1));
+  ntau_selection.reset(new NTauSelection(cfg, 1, -1));
 
 
   // histfolders
-  vector<TString> histtags = {"input", "corrector", "hadcleaner", "jettaucleaner"};
+  vector<TString> histtags = {"input", "corrector", "hadcleaner", "jettaucleaner", "iddenominator", "ptetacleaner", "pteta1muon", "pteta1electron", "pteta1tau", "pteta1lepton", "mvacleaner", "mva1muon", "mva1electron", "mva1lepton", "mvaipcleaner", "mvaip1muon", "mvaip1electron", "mvaip1lepton", "tauvsmucleaner", "tauvsmu1tau", "tauvsmuvsecleaner", "tauvsmuvse1tau", "tauvsmuvsevsjetcleaner", "tauvsmuvsevsjet1tau", "final"};
   book_histograms(histtags);
 
 
-  book_HistFolder("muon_cutsoft", new MuonHists("muon_cutsoft"));
-  book_HistFolder("muon_cutloose", new MuonHists("muon_cutloose"));
-  book_HistFolder("muon_cutmedium", new MuonHists("muon_cutmedium"));
-  book_HistFolder("muon_cuttight", new MuonHists("muon_cuttight"));
-  book_HistFolder("muon_mvasoft", new MuonHists("muon_mvasoft"));
-  book_HistFolder("muon_mvaloose", new MuonHists("muon_mvaloose"));
-  book_HistFolder("muon_mvamedium", new MuonHists("muon_mvamedium"));
-  book_HistFolder("muon_mvatight", new MuonHists("muon_mvatight"));
-
-  book_HistFolder("electron_cutveto", new ElectronHists("electron_cutveto"));
-  book_HistFolder("electron_cutloose", new ElectronHists("electron_cutloose"));
-  book_HistFolder("electron_cutmedium", new ElectronHists("electron_cutmedium"));
-  book_HistFolder("electron_cuttight", new ElectronHists("electron_cuttight"));
-  book_HistFolder("electron_cutheep", new ElectronHists("electron_cutheep"));
-  book_HistFolder("electron_mvaisoloose", new ElectronHists("electron_mvaisoloose"));
-  book_HistFolder("electron_mvaiso90", new ElectronHists("electron_mvaiso90"));
-  book_HistFolder("electron_mvaiso80", new ElectronHists("electron_mvaiso80"));
-  book_HistFolder("electron_mvanonisoloose", new ElectronHists("electron_mvanonisoloose"));
-  book_HistFolder("electron_mvanoniso90", new ElectronHists("electron_mvanoniso90"));
-  book_HistFolder("electron_mvanoniso80", new ElectronHists("electron_mvanoniso80"));
 
 
   jet_lepton_cleaner.reset(new JetLeptonCleaner(cfg, year, "AK4PFchs"));
-  jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDCutBasedSoft)); // something very loose to get away most OK muons
-  jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoEff90)); // something very loose to get away most OK muons
+  jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDMvaSoft)); // something very loose to get away most OK muons
+  jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoLoose)); // something very loose to get away most OK muons
   jec_corrector.reset(new JECCorrector(cfg, year, "AK4PFchs"));
   jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(1)));
 
@@ -180,6 +153,7 @@ bool LQDMPsiPsiPreselectionTool::Process(){
   sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
   sort_by_pt<GenParticle>(*event->genparticles_final);
+  sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets);
   sort_by_pt<Muon>(*event->muons);
@@ -197,105 +171,103 @@ bool LQDMPsiPsiPreselectionTool::Process(){
 
 
   // cleaners
-  cleaner_tau->process(*event);
   cleaner_jet->process(*event);
   fill_histograms("hadcleaner");
 
   cleaner_jettauoverlap->process(*event);
   fill_histograms("jettaucleaner");
+  fill_histograms("iddenominator");
 
-  // Here, fill all histograms after each cleaning, compare to 'jettaucleaner' as denominator
-  vector<Muon> original_muons = *event->muons;
-  cleaner_muon_cutsoft->process(*event);
-  HistFolder<MuonHists>("muon_cutsoft")->fill(*event);
-  *event->muons = original_muons;
 
-  cleaner_muon_cutloose->process(*event);
-  HistFolder<MuonHists>("muon_cutloose")->fill(*event);
-  *event->muons = original_muons;
+  cleaner_muon_pteta->process(*event);
+  cleaner_electron_pteta->process(*event);
+  cleaner_tau_pteta->process(*event);
+  fill_histograms("ptetacleaner");
 
-  cleaner_muon_cutmedium->process(*event);
-  HistFolder<MuonHists>("muon_cutmedium")->fill(*event);
-  *event->muons = original_muons;
+  if(nmuon_selection->passes(*event)){
+    fill_histograms("pteta1muon");
+  }
 
-  cleaner_muon_cuttight->process(*event);
-  HistFolder<MuonHists>("muon_cuttight")->fill(*event);
-  *event->muons = original_muons;
+  if(nelectron_selection->passes(*event)){
+    fill_histograms("pteta1electron");
+  }
+
+  if(ntau_selection->passes(*event)){
+    fill_histograms("pteta1tau");
+  }
+
+  if(nelectron_selection->passes(*event) || nmuon_selection->passes(*event)){
+    fill_histograms("pteta1lepton");
+  }
+
 
   cleaner_muon_mvasoft->process(*event);
-  HistFolder<MuonHists>("muon_mvasoft")->fill(*event);
-  *event->muons = original_muons;
-
-  cleaner_muon_mvaloose->process(*event);
-  HistFolder<MuonHists>("muon_mvaloose")->fill(*event);
-  *event->muons = original_muons;
-
-  cleaner_muon_mvamedium->process(*event);
-  HistFolder<MuonHists>("muon_mvamedium")->fill(*event);
-  *event->muons = original_muons;
-
-  cleaner_muon_mvatight->process(*event);
-  HistFolder<MuonHists>("muon_mvatight")->fill(*event);
-  *event->muons = original_muons;
-
-
-
-
-
-
-  vector<Electron> original_electrons = *event->electrons;
-
-  cleaner_electron_cutveto->process(*event);
-  HistFolder<ElectronHists>("electron_cutveto")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_cutloose->process(*event);
-  HistFolder<ElectronHists>("electron_cutloose")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_cutmedium->process(*event);
-  HistFolder<ElectronHists>("electron_cutmedium")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_cuttight->process(*event);
-  HistFolder<ElectronHists>("electron_cuttight")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_cutheep->process(*event);
-  HistFolder<ElectronHists>("electron_cutheep")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_mvaisoloose->process(*event);
-  HistFolder<ElectronHists>("electron_mvaisoloose")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_mvaiso90->process(*event);
-  HistFolder<ElectronHists>("electron_mvaiso90")->fill(*event);
-  *event->electrons = original_electrons;
-
-  cleaner_electron_mvaiso80->process(*event);
-  HistFolder<ElectronHists>("electron_mvaiso80")->fill(*event);
-  *event->electrons = original_electrons;
-
   cleaner_electron_mvanonisoloose->process(*event);
-  HistFolder<ElectronHists>("electron_mvanonisoloose")->fill(*event);
-  *event->electrons = original_electrons;
+  fill_histograms("mvacleaner");
 
-  cleaner_electron_mvanoniso90->process(*event);
-  HistFolder<ElectronHists>("electron_mvanoniso90")->fill(*event);
-  *event->electrons = original_electrons;
+  if(nmuon_selection->passes(*event)){
+    fill_histograms("mva1muon");
+  }
 
-  cleaner_electron_mvanoniso80->process(*event);
-  HistFolder<ElectronHists>("electron_mvanoniso80")->fill(*event);
-  *event->electrons = original_electrons;
+  if(nelectron_selection->passes(*event)){
+    fill_histograms("mva1electron");
+  }
 
-
-
-
-
+  if(nelectron_selection->passes(*event) || nmuon_selection->passes(*event)){
+    fill_histograms("mva1lepton");
+  }
 
 
-  return false;
+  cleaner_muon_mvasoft_ip->process(*event);
+  cleaner_electron_mvanonisoloose_ip->process(*event);
+  fill_histograms("mvaipcleaner");
+
+  if(nmuon_selection->passes(*event)){
+    fill_histograms("mvaip1muon");
+  }
+
+  if(nelectron_selection->passes(*event)){
+    fill_histograms("mvaip1electron");
+  }
+
+  if(nelectron_selection->passes(*event) || nmuon_selection->passes(*event)){
+    fill_histograms("mvaip1lepton");
+  }
+
+
+  cleaner_tau_vsmu->process(*event);
+  fill_histograms("tauvsmucleaner");
+
+  if(ntau_selection->passes(*event)){
+    fill_histograms("tauvsmu1tau");
+  }
+
+  cleaner_tau_vse->process(*event);
+  fill_histograms("tauvsmuvsecleaner");
+
+  if(ntau_selection->passes(*event)){
+    fill_histograms("tauvsmuvse1tau");
+  }
+
+  cleaner_tau_vsjet->process(*event);
+  fill_histograms("tauvsmuvsevsjetcleaner");
+
+  if(ntau_selection->passes(*event)){
+    fill_histograms("tauvsmuvsevsjet1tau");
+  }
+
+  if(!(nelectron_selection->passes(*event) || nmuon_selection->passes(*event) || ntau_selection->passes(*event))) return false;
+
+
+
+
+
+
+
+
+
+  fill_histograms("final");
+  return true;
 }
 
 

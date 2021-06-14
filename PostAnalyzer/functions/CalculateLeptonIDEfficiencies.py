@@ -12,20 +12,35 @@ def CalculateLeptonIDEfficiencies(self):
     gROOT.SetBatch(1)
     ROOT.gErrorIgnoreLevel = kError
 
-    signalcategory_per_lepton = {
-    'el': 'fromtau',
-    'mu': 'fromtau',
-    'tau': 'matched'
+    # signalcategory_per_lepton = {
+    # 'el': 'fromtau',
+    # 'mu': 'fromtau',
+    # 'tau': 'matched'
+    # }
+    signalcategories_per_lepton = {
+    'el':  ['fromtau', 'fromhad'],
+    'mu':  ['fromtau', 'fromhad'],
+    'tau': ['matched']
     }
+    # backgroundcategories_per_lepton = {
+    # 'el': ['fromhad', 'unmatched'],
+    # 'mu': ['fromhad', 'unmatched'],
+    # 'tau': ['unmatched']
+    # }
     backgroundcategories_per_lepton = {
-    'el': ['fromhad', 'unmatched'],
-    'mu': ['fromhad', 'unmatched'],
+    'el': ['unmatched'],
+    'mu': ['unmatched'],
     'tau': ['unmatched']
     }
+    # histnametags_per_lepton = {
+    # 'el': [''] + [signalcategory_per_lepton['el']] + backgroundcategories_per_lepton['el'],
+    # 'mu': [''] + [signalcategory_per_lepton['mu']] + backgroundcategories_per_lepton['mu'],
+    # 'tau': [''] + [signalcategory_per_lepton['tau']] + backgroundcategories_per_lepton['tau']
+    # }
     histnametags_per_lepton = {
-    'el': [''] + [signalcategory_per_lepton['el']] + backgroundcategories_per_lepton['el'],
-    'mu': [''] + [signalcategory_per_lepton['mu']] + backgroundcategories_per_lepton['mu'],
-    'tau': [''] + [signalcategory_per_lepton['tau']] + backgroundcategories_per_lepton['tau']
+    'el': [''] + signalcategories_per_lepton['el'] + backgroundcategories_per_lepton['el'],
+    'mu': [''] + signalcategories_per_lepton['mu'] + backgroundcategories_per_lepton['mu'],
+    'tau': [''] + signalcategories_per_lepton['tau'] + backgroundcategories_per_lepton['tau']
     }
     histclassname_per_lepton = {
     'el': ('Electrons', 'electron'),
@@ -76,7 +91,8 @@ def CalculateLeptonIDEfficiencies(self):
                     npass_unm_per_signal[signal] = 0
                     ntot_unm_per_signal[signal]  = 0
                 for tag in histnametags_per_lepton[lep]:
-                    is_signal = tag == signalcategory_per_lepton[lep]
+                    # is_signal = tag == signalcategory_per_lepton[lep]
+                    is_signal = tag in signalcategories_per_lepton[lep]
                     is_background = tag in backgroundcategories_per_lepton[lep]
                     is_had = tag == 'fromhad'
                     is_unmatched = tag == 'unmatched'
@@ -182,7 +198,17 @@ def CalculateLeptonIDEfficiencies(self):
                     graph_unm.SetPoint(0, eff_sig_per_id[id][denomtag][signal], eff_unm_per_id[id][denomtag][signal])
                     legends_unm.append(id)
                     graphs_unm.append(graph_unm)
-                cgrbkg = tdrCanvas('cgrbkg', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'other %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                if len(signalcategories_per_lepton[lep]) == 1 and signalcategories_per_lepton[lep][0] == 'fromtau': # e or mu
+                    xaxis_label_postfix = 'from #tau efficiency'
+                if len(signalcategories_per_lepton[lep]) == 1 and signalcategories_per_lepton[lep][0] == 'fromhad': # e or mu
+                    xaxis_label_postfix = 'from had. efficiency'
+                elif len(signalcategories_per_lepton[lep]) == 2 and 'fromhad' in signalcategories_per_lepton[lep] and 'fromtau' in signalcategories_per_lepton[lep]: # e or mu
+                    xaxis_label_postfix = 'matched efficiency'
+                elif len(signalcategories_per_lepton[lep]) == 1 and lep == 'tau':
+                    xaxis_label_postfix = 'matched efficiency'
+                else:
+                    raise ValueError('Combination of signal categories not yet handled, add x-axis label for this case.')
+                cgrbkg = tdrCanvas('cgrbkg', 0, 1, 1E-5, 1, '%s %s' % (histclassname_per_lepton[lep][1], xaxis_label_postfix), 'other %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_bkg = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_bkg)):
                     g = graphs_bkg[i]
@@ -192,7 +218,7 @@ def CalculateLeptonIDEfficiencies(self):
                 cgrbkg.SetLogy()
                 cgrbkg.SaveAs(os.path.join(self.plotoutput_path, 'IDEfficiencyVsBackground_%s_%s_%s.pdf' % (lep, signal, tags_denominator[denomtag])))
 
-                cgrhad = tdrCanvas('cgrhad', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), '%s from had. efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                cgrhad = tdrCanvas('cgrhad', 0, 1, 1E-5, 1, '%s %s' % (histclassname_per_lepton[lep][1], xaxis_label_postfix), '%s from had. efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_had = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_had)):
                     g = graphs_had[i]
@@ -202,7 +228,7 @@ def CalculateLeptonIDEfficiencies(self):
                 cgrhad.SetLogy()
                 cgrhad.SaveAs(os.path.join(self.plotoutput_path, 'IDEfficiencyVsHadronic_%s_%s_%s.pdf' % (lep, signal, tags_denominator[denomtag])))
 
-                cgrunm = tdrCanvas('cgrunm', 0, 1, 1E-5, 1, '%s from #tau efficiency' % (histclassname_per_lepton[lep][1]), 'unmatched %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
+                cgrunm = tdrCanvas('cgrunm', 0, 1, 1E-5, 1, '%s %s' % (histclassname_per_lepton[lep][1], xaxis_label_postfix), 'unmatched %s efficiency' % (histclassname_per_lepton[lep][1]), True, 0, 11)
                 legend_unm = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
                 for i in range(len(graphs_unm)):
                     g = graphs_unm[i]

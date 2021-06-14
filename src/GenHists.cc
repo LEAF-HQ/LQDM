@@ -99,11 +99,11 @@ GenHists::GenHists(TString dir_) : BaseHists(dir_){
 
   hptmet = book<TH1F>("ptmet", ";E_{T}^{miss} (GenMET) [GeV]; Events / bin", 300, 0, 3000);
   hphimet = book<TH1F>("phimet", ";#phi(E_{T}^{miss} (GenMET)); Events / bin", 60, -3.5, 3.5);
-  hptmetfrominvis = book<TH1F>("ptmetfrominvis", ";E_{T}^{miss} (from invis.) [GeV]; Events / bin", 300, 0, 3000);
-  hphimetfrominvis = book<TH1F>("phimetfrominvis", ";#phi(E_{T}^{miss} (from invis.)); Events / bin", 60, -3.5, 3.5);
+  // hptmetfrominvis = book<TH1F>("ptmetfrominvis", ";E_{T}^{miss} (from invis.) [GeV]; Events / bin", 300, 0, 3000);
+  // hphimetfrominvis = book<TH1F>("phimetfrominvis", ";#phi(E_{T}^{miss} (from invis.)); Events / bin", 60, -3.5, 3.5);
   hst = book<TH1F>("st", ";S_{T} [GeV]; Events / bin", 300, 0, 3000);
   hstmet = book<TH1F>("stmet", ";S_{T}^{MET} [GeV]; Events / bin", 300, 0, 3000);
-  hstmetfrominvis = book<TH1F>("stmetfrominvis", ";S_{T}^{MET} (from invis.) [GeV]; Events / bin", 300, 0, 3000);
+  // hstmetfrominvis = book<TH1F>("stmetfrominvis", ";S_{T}^{MET} (from invis.) [GeV]; Events / bin", 300, 0, 3000);
 
   hmj1tauvis1 = book<TH1F>("mj1tauvis1", ";M(jet 1, vis. #tau 1) [GeV]; Events / bin", 300, 0, 3000);
 
@@ -120,8 +120,8 @@ void GenHists::fill(const GenEvent & event){
 
   size_t nlq, nchi, npsi, nbhard, ntauhard;
   nlq = nchi = npsi = nbhard = ntauhard = 0;
-  for(size_t i=0; i<event.genparticles_hard->size(); i++){
-    GenParticle gp = event.genparticles_hard->at(i);
+  for(size_t i=0; i<event.genparticles_all->size(); i++){
+    GenParticle gp = event.genparticles_all->at(i);
     int id = abs(gp.pdgid());
 
     // hard LQs
@@ -307,23 +307,23 @@ void GenHists::fill(const GenEvent & event){
   // MET
   hptmet->Fill(event.genmet->pt(), weight);
   hphimet->Fill(event.genmet->phi(), weight);
-  hptmetfrominvis->Fill(event.genmet_invis->pt(), weight);
-  hphimetfrominvis->Fill(event.genmet_invis->phi(), weight);
+  // hptmetfrominvis->Fill(event.genmet_invis->pt(), weight);
+  // hphimetfrominvis->Fill(event.genmet_invis->phi(), weight);
 
   // calculate ST
   double st = 0;
   double stmet = event.genmet->pt();
-  double stmetfrominvis = event.genmet_invis->pt();
+  // double stmetfrominvis = event.genmet_invis->pt();
   int njetsmax = min((size_t)2, event.genjets->size());
   int ntauvismax = min((size_t)2, event.genparticles_visibletaus->size());
   for(int i=0; i<njetsmax; i++) st += event.genjets->at(i).pt();
   for(int i=0; i<ntauvismax; i++) st += event.genparticles_visibletaus->at(i).pt();
   stmet += st;
-  stmetfrominvis += st;
+  // stmetfrominvis += st;
 
   hst->Fill(st, weight);
   hstmet->Fill(stmet, weight);
-  hstmetfrominvis->Fill(stmetfrominvis, weight);
+  // hstmetfrominvis->Fill(stmetfrominvis, weight);
 
   double mj1tauvis1 = 0.;
   if(njets > 0 && ntauvis > 0) mj1tauvis1 = (event.genjets->at(0).p4() + event.genparticles_visibletaus->at(0).p4()).M();

@@ -104,9 +104,10 @@ bool LQDMFinalselectionTool::Process(){
   // cout << endl << "+++++ NEW EVENT ++++++" << endl;
 
   // order all objecs in pT
-  sort_by_pt<GenParticle>(*event->genparticles_hard);
+  // sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_final);
+  // sort_by_pt<GenParticle>(*event->genparticles_final);
+  sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets);
   sort_by_pt<Muon>(*event->muons);

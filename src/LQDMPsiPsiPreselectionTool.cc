@@ -13,6 +13,7 @@
 #include "Analyzer/include/ElectronHists.h"
 #include "Analyzer/include/TauHists.h"
 #include "Analyzer/include/GenParticleHists.h"
+#include "Analyzer/include/FlagHists.h"
 #include "Analyzer/include/JetIds.h"
 #include "Analyzer/include/MuonIds.h"
 #include "Analyzer/include/ElectronIds.h"
@@ -23,6 +24,7 @@
 #include "Analyzer/include/NElectronSelection.h"
 #include "Analyzer/include/NTauSelection.h"
 #include "Analyzer/include/NJetSelection.h"
+#include "Analyzer/include/FlagSelection.h"
 
 #include "Analyzer/include/LumiWeightApplicator.h"
 
@@ -58,15 +60,18 @@ private:
   // cleaners
   unique_ptr<JetCleaner> cleaner_jet;
   unique_ptr<JetCleaner> cleaner_jettauoverlap;
-  unique_ptr<TauCleaner> cleaner_tau_pteta, cleaner_tau_vsjet, cleaner_tau_vse, cleaner_tau_vsmu;
-  unique_ptr<MuonCleaner> cleaner_muon_pteta, cleaner_muon_mvasoft, cleaner_muon_mvasoft_ip;
-  unique_ptr<ElectronCleaner> cleaner_electron_pteta, cleaner_electron_mvanonisoloose, cleaner_electron_mvanonisoloose_ip;
+  unique_ptr<TauCleaner> cleaner_tau_pteta, cleaner_tau_vsx;
+  unique_ptr<MuonCleaner> cleaner_muon_pteta, cleaner_muon_cutloose;
+  unique_ptr<ElectronCleaner> cleaner_electron_pteta, cleaner_electron_mvanonisoloose;
 
   // selections
   unique_ptr<LumiblockSelection> lumiblock_selection;
   unique_ptr<NMuonSelection> nmuon_selection;
   unique_ptr<NElectronSelection> nelectron_selection;
   unique_ptr<NTauSelection> ntau_selection;
+
+  unique_ptr<FlagSelection> trigger_selection_met1, trigger_selection_met2,  trigger_selection_met3,  trigger_selection_met4,  trigger_selection_met5,  trigger_selection_met6,  trigger_selection_met7,  trigger_selection_met8,  trigger_selection_met9,  trigger_selection_met10, trigger_selection_met11, trigger_selection_met12, trigger_selection_met13, trigger_selection_met14, trigger_selection_met15;
+  unique_ptr<FlagSelection> trigger_selection_singlemu1, trigger_selection_doublemu1, trigger_selection_mutau1, trigger_selection_mutau2, trigger_selection_mutau3, trigger_selection_mutau4, trigger_selection_mutau5, trigger_selection_mutau6, trigger_selection_singleele1, trigger_selection_elejet1, trigger_selection_elejet2, trigger_selection_eletau1, trigger_selection_eletau2, trigger_selection_eletau3, trigger_selection_eletau4, trigger_selection_eletau5, trigger_selection_eletau6, trigger_selection_ditau1, trigger_selection_ditau2, trigger_selection_ditau3;
 
   // constants
   TString year;
@@ -82,23 +87,19 @@ LQDMPsiPsiPreselectionTool::LQDMPsiPsiPreselectionTool(const Config & cfg) : Bas
   year = cfg.dataset_year();
 
   MultiID<Muon> muon_id_pteta = {PtEtaId(3, 2.4)};
-  MultiID<Muon> muon_id_mvasoft = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaSoft)};
-  MultiID<Muon> muon_id_mvasoft_ip = {PtEtaId(3, 2.4), MuonID(Muon::IDMvaSoft), MuonIPID(0., 0.01)};
+  MultiID<Muon> muon_id_cutloose = {PtEtaId(3, 2.4), MuonID(Muon::IDCutBasedLoose)};
 
 
   MultiID<Electron> electron_id_pteta = {PtEtaId(5, 2.4)};
   MultiID<Electron> electron_id_mvanonisoloose = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoLoose)};
-  MultiID<Electron> electron_id_mvanonisoloose_ip = {PtEtaId(5, 2.4), ElectronID(Electron::IDMVANonIsoLoose), ElectronIPID(0., 0.01)};
 
   MultiID<Tau> tau_id_pteta = {PtEtaId(18, 2.1)};
-  MultiID<Tau> tau_id_vsjet = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVVLoose)};
-  MultiID<Tau> tau_id_vse = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsEleVLoose)};
-  MultiID<Tau> tau_id_vsmu = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsMuTight)};
+  MultiID<Tau> tau_id_vsx = {PtEtaId(18, 2.1), TauID(Tau::DeepTauVsJetVVVLoose), TauID(Tau::DeepTauVsEleVLoose), TauID(Tau::DeepTauVsMuTight)};
+
   MultiID<Jet> jet_id = {PtEtaId(15, 2.5), JetID(JetID::WP_TIGHT), JetPUID(JetPUID::WP_TIGHT)};
   MultiID<Jet> jet_overlapid = {JetTauOverlapID(0.5)};
 
 
-  // cleaner_tau.reset(new TauCleaner(tau_id));
   cleaner_jet.reset(new JetCleaner(jet_id));
   cleaner_jettauoverlap.reset(new JetCleaner(jet_overlapid));
 
@@ -106,15 +107,9 @@ LQDMPsiPsiPreselectionTool::LQDMPsiPsiPreselectionTool(const Config & cfg) : Bas
   cleaner_electron_pteta.reset(new ElectronCleaner(electron_id_pteta));
   cleaner_tau_pteta.reset(new TauCleaner(tau_id_pteta));
 
-  cleaner_muon_mvasoft.reset(new MuonCleaner(muon_id_mvasoft));
+  cleaner_muon_cutloose.reset(new MuonCleaner(muon_id_cutloose));
   cleaner_electron_mvanonisoloose.reset(new ElectronCleaner(electron_id_mvanonisoloose));
-
-  cleaner_muon_mvasoft_ip.reset(new MuonCleaner(muon_id_mvasoft_ip));
-  cleaner_electron_mvanonisoloose_ip.reset(new ElectronCleaner(electron_id_mvanonisoloose_ip));
-
-  cleaner_tau_vsjet.reset(new TauCleaner(tau_id_vsjet));
-  cleaner_tau_vse.reset(new TauCleaner(tau_id_vse));
-  cleaner_tau_vsmu.reset(new TauCleaner(tau_id_vsmu));
+  cleaner_tau_vsx.reset(new TauCleaner(tau_id_vsx));
 
 
   lumiweight_applicator.reset(new LumiWeightApplicator(cfg));
@@ -123,16 +118,71 @@ LQDMPsiPsiPreselectionTool::LQDMPsiPsiPreselectionTool(const Config & cfg) : Bas
   nelectron_selection.reset(new NElectronSelection(cfg, 1, -1));
   ntau_selection.reset(new NTauSelection(cfg, 1, -1));
 
+  trigger_selection_met1.reset(new FlagSelection(cfg, "HLT_PFMET120_PFMHT120_IDTight_PFHT60_v*"));
+  trigger_selection_met2.reset(new FlagSelection(cfg, "HLT_PFMET120_PFMHT120_IDTight_v*"));
+  trigger_selection_met3.reset(new FlagSelection(cfg, "HLT_PFMET130_PFMHT130_IDTight_v*"));
+  trigger_selection_met4.reset(new FlagSelection(cfg, "HLT_PFMET140_PFMHT140_IDTight_v*"));
+  trigger_selection_met5.reset(new FlagSelection(cfg, "HLT_PFMET250_HBHECleaned_v*"));
+  trigger_selection_met6.reset(new FlagSelection(cfg, "HLT_PFMET300_HBHECleaned_v*"));
+  trigger_selection_met7.reset(new FlagSelection(cfg, "HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_PFHT60_v*"));
+  trigger_selection_met8.reset(new FlagSelection(cfg, "HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_v*"));
+  trigger_selection_met9.reset(new FlagSelection(cfg, "HLT_PFMETNoMu130_PFMHTNoMu130_IDTight_v*"));
+  trigger_selection_met10.reset(new FlagSelection(cfg, "HLT_PFMETNoMu140_PFMHTNoMu140_IDTight_v*"));
+  trigger_selection_met11.reset(new FlagSelection(cfg, "HLT_PFMETTypeOne120_PFMHT120_IDTight_PFHT60_v*"));
+  trigger_selection_met12.reset(new FlagSelection(cfg, "HLT_PFMETTypeOne120_PFMHT120_IDTight_v*"));
+  trigger_selection_met13.reset(new FlagSelection(cfg, "HLT_PFMETTypeOne130_PFMHT130_IDTight_v*"));
+  trigger_selection_met14.reset(new FlagSelection(cfg, "HLT_PFMETTypeOne140_PFMHT140_IDTight_v*"));
+  trigger_selection_met15.reset(new FlagSelection(cfg, "HLT_PFMETTypeOne200_HBHE_BeamHaloCleaned_v*"));
+
+  trigger_selection_singlemu1.reset(new FlagSelection(cfg, "HLT_IsoMu27_v*"));
+
+  trigger_selection_doublemu1.reset(new FlagSelection(cfg, "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8_v*"));
+
+  trigger_selection_mutau1.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_CrossL1_v*"));
+  trigger_selection_mutau2.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_LooseChargedIsoPFTau27_eta2p1_TightID_CrossL1_v*"));
+  trigger_selection_mutau3.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_MediumChargedIsoPFTau27_eta2p1_CrossL1_v*"));
+  trigger_selection_mutau4.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_MediumChargedIsoPFTau27_eta2p1_TightID_CrossL1_v*"));
+  trigger_selection_mutau5.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_TightChargedIsoPFTau27_eta2p1_CrossL1_v*"));
+  trigger_selection_mutau6.reset(new FlagSelection(cfg, "HLT_IsoMu20_eta2p1_TightChargedIsoPFTau27_eta2p1_TightID_CrossL1_v*"));
+
+  trigger_selection_singleele1.reset(new FlagSelection(cfg, "HLT_Ele35_WPTight_Gsf_v*"));
+
+  trigger_selection_elejet1.reset(new FlagSelection(cfg, "HLT_Ele30_eta2p1_WPTight_Gsf_CentralPFJet35_EleCleaned_v*"));
+  trigger_selection_elejet2.reset(new FlagSelection(cfg, "HLT_Ele28_eta2p1_WPTight_Gsf_HT150_v*"));
+
+  trigger_selection_eletau1.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTau30_eta2p1_CrossL1_v*"));
+  trigger_selection_eletau2.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTau30_eta2p1_TightID_CrossL1_v*"));
+  trigger_selection_eletau3.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_MediumChargedIsoPFTau30_eta2p1_CrossL1_v*"));
+  trigger_selection_eletau4.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_MediumChargedIsoPFTau30_eta2p1_TightID_CrossL1_v*"));
+  trigger_selection_eletau5.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_TightChargedIsoPFTau30_eta2p1_CrossL1_v*"));
+  trigger_selection_eletau6.reset(new FlagSelection(cfg, "HLT_Ele24_eta2p1_WPTight_Gsf_TightChargedIsoPFTau30_eta2p1_TightID_CrossL1_v*"));
+
+  trigger_selection_ditau1.reset(new FlagSelection(cfg, "HLT_DoubleTightChargedIsoPFTau35_Trk1_TightID_eta2p1_Reg_v*"));
+  trigger_selection_ditau2.reset(new FlagSelection(cfg, "HLT_DoubleTightChargedIsoPFTau40_Trk1_TightID_eta2p1_Reg_v*"));
+  trigger_selection_ditau3.reset(new FlagSelection(cfg, "HLT_DoubleTightChargedIsoPFTau40_Trk1_eta2p1_Reg_v*"));
+
 
   // histfolders
-  vector<TString> histtags = {"input", "corrector", "hadcleaner", "jettaucleaner", "iddenominator", "ptetacleaner", "pteta1muon", "pteta1electron", "pteta1tau", "pteta1lepton", "mvacleaner", "mva1muon", "mva1electron", "mva1lepton", "mvaipcleaner", "mvaip1muon", "mvaip1electron", "mvaip1lepton", "tauvsmucleaner", "tauvsmu1tau", "tauvsmuvsecleaner", "tauvsmuvse1tau", "tauvsmuvsevsjetcleaner", "tauvsmuvsevsjet1tau", "final"};
+  vector<TString> histtags = {"input", "corrector", "jetcleaner", "ptetacleaner", "pteta1muon", "pteta1electron", "pteta1tau", "pteta1lepton", "idcleaner", "id1muon", "id1electron", "id1lepton", "tauvsxcleaner", "tauvsx1tau", "mettrigger", "mutrigger", "eletrigger", "tautrigger", "trigger", "nottrigger", "emutau1", "final"};
   book_histograms(histtags);
+
+  book_HistFolder("input_Flags", new FlagHists("input_Flags"));
+  book_HistFolder("id1muon_Flags", new FlagHists("id1muon_Flags"));
+  book_HistFolder("id1electron_Flags", new FlagHists("id1electron_Flags"));
+  book_HistFolder("tauvsx1tau_Flags", new FlagHists("tauvsx1tau_Flags"));
+  book_HistFolder("mettrigger_Flags", new FlagHists("mettrigger_Flags"));
+  book_HistFolder("mutrigger_Flags", new FlagHists("mutrigger_Flags"));
+  book_HistFolder("eletrigger_Flags", new FlagHists("eletrigger_Flags"));
+  book_HistFolder("tautrigger_Flags", new FlagHists("tautrigger_Flags"));
+  book_HistFolder("trigger_Flags", new FlagHists("trigger_Flags"));
+  book_HistFolder("nottrigger_Flags", new FlagHists("nottrigger_Flags"));
+  book_HistFolder("final_Flags", new FlagHists("final_Flags"));
 
 
 
 
   jet_lepton_cleaner.reset(new JetLeptonCleaner(cfg, year, "AK4PFchs"));
-  jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDMvaSoft)); // something very loose to get away most OK muons
+  jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDCutBasedLoose)); // something very loose to get away most OK muons
   jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoLoose)); // something very loose to get away most OK muons
   jec_corrector.reset(new JECCorrector(cfg, year, "AK4PFchs"));
   jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(1)));
@@ -150,9 +200,7 @@ bool LQDMPsiPsiPreselectionTool::Process(){
 
 
   // order all objecs in pT
-  sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_final);
   sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets);
@@ -160,6 +208,7 @@ bool LQDMPsiPsiPreselectionTool::Process(){
   sort_by_pt<Electron>(*event->electrons);
   sort_by_pt<Tau>(*event->taus);
   fill_histograms("input");
+  HistFolder<FlagHists>("input_Flags")->fill(*event);
 
 
   // correctors
@@ -172,11 +221,8 @@ bool LQDMPsiPsiPreselectionTool::Process(){
 
   // cleaners
   cleaner_jet->process(*event);
-  fill_histograms("hadcleaner");
-
   cleaner_jettauoverlap->process(*event);
-  fill_histograms("jettaucleaner");
-  fill_histograms("iddenominator");
+  fill_histograms("jetcleaner");
 
 
   cleaner_muon_pteta->process(*event);
@@ -201,73 +247,94 @@ bool LQDMPsiPsiPreselectionTool::Process(){
   }
 
 
-  cleaner_muon_mvasoft->process(*event);
+
+
+  cleaner_muon_cutloose->process(*event);
   cleaner_electron_mvanonisoloose->process(*event);
-  fill_histograms("mvacleaner");
+  fill_histograms("idcleaner");
 
   if(nmuon_selection->passes(*event)){
-    fill_histograms("mva1muon");
+    fill_histograms("id1muon");
+    HistFolder<FlagHists>("id1muon_Flags")->fill(*event);
   }
 
   if(nelectron_selection->passes(*event)){
-    fill_histograms("mva1electron");
+    fill_histograms("id1electron");
+    HistFolder<FlagHists>("id1electron_Flags")->fill(*event);
   }
 
   if(nelectron_selection->passes(*event) || nmuon_selection->passes(*event)){
-    fill_histograms("mva1lepton");
+    fill_histograms("id1lepton");
   }
 
 
-  cleaner_muon_mvasoft_ip->process(*event);
-  cleaner_electron_mvanonisoloose_ip->process(*event);
-  fill_histograms("mvaipcleaner");
-
-  if(nmuon_selection->passes(*event)){
-    fill_histograms("mvaip1muon");
-  }
-
-  if(nelectron_selection->passes(*event)){
-    fill_histograms("mvaip1electron");
-  }
-
-  if(nelectron_selection->passes(*event) || nmuon_selection->passes(*event)){
-    fill_histograms("mvaip1lepton");
-  }
-
-
-  cleaner_tau_vsmu->process(*event);
-  fill_histograms("tauvsmucleaner");
+  cleaner_tau_vsx->process(*event);
+  fill_histograms("tauvsxcleaner");
 
   if(ntau_selection->passes(*event)){
-    fill_histograms("tauvsmu1tau");
+    fill_histograms("tauvsx1tau");
+    HistFolder<FlagHists>("tauvsx1tau_Flags")->fill(*event);
   }
 
-  cleaner_tau_vse->process(*event);
-  fill_histograms("tauvsmuvsecleaner");
 
-  if(ntau_selection->passes(*event)){
-    fill_histograms("tauvsmuvse1tau");
+
+
+
+
+  bool pass_hlt_met = (trigger_selection_met1->passes(*event) || trigger_selection_met2->passes(*event) || trigger_selection_met3->passes(*event) || trigger_selection_met4->passes(*event) || trigger_selection_met5->passes(*event) || trigger_selection_met6->passes(*event) || trigger_selection_met7->passes(*event) || trigger_selection_met8->passes(*event) || trigger_selection_met9->passes(*event) || trigger_selection_met10->passes(*event) || trigger_selection_met11->passes(*event) || trigger_selection_met12->passes(*event) || trigger_selection_met13->passes(*event) || trigger_selection_met14->passes(*event) || trigger_selection_met15->passes(*event));
+  bool pass_hlt_singlemu = (trigger_selection_singlemu1->passes(*event));
+  bool pass_hlt_doublemu = (trigger_selection_doublemu1->passes(*event));
+  bool pass_hlt_mutau    = (trigger_selection_mutau1->passes(*event) || trigger_selection_mutau2->passes(*event) || trigger_selection_mutau3->passes(*event) || trigger_selection_mutau4->passes(*event) || trigger_selection_mutau5->passes(*event) || trigger_selection_mutau6->passes(*event));
+  bool pass_hlt_singleele = (trigger_selection_singleele1->passes(*event));
+  bool pass_hlt_elejet = (trigger_selection_elejet1->passes(*event) || trigger_selection_elejet2->passes(*event));
+  bool pass_hlt_eletau    = (trigger_selection_eletau1->passes(*event) || trigger_selection_eletau2->passes(*event) || trigger_selection_eletau3->passes(*event) || trigger_selection_eletau4->passes(*event) || trigger_selection_eletau5->passes(*event) || trigger_selection_eletau6->passes(*event));
+  bool pass_hlt_ditau = (trigger_selection_ditau1->passes(*event) || trigger_selection_ditau2->passes(*event) || trigger_selection_ditau3->passes(*event));
+
+  bool pass_hlt_mu  = pass_hlt_singlemu || pass_hlt_doublemu || pass_hlt_mutau;
+  bool pass_hlt_ele = pass_hlt_singleele || pass_hlt_elejet || pass_hlt_eletau;
+  bool pass_hlt_tau = pass_hlt_ditau;
+
+  bool pass_hlt = pass_hlt_met || pass_hlt_mu || pass_hlt_ele || pass_hlt_tau;
+
+
+
+  if(pass_hlt_met){
+    fill_histograms("mettrigger");
+    HistFolder<FlagHists>("mettrigger_Flags")->fill(*event);
+  }
+  if(pass_hlt_mu){
+    fill_histograms("mutrigger");
+    HistFolder<FlagHists>("mutrigger_Flags")->fill(*event);
+  }
+  if(pass_hlt_ele){
+    fill_histograms("eletrigger");
+    HistFolder<FlagHists>("eletrigger_Flags")->fill(*event);
+  }
+  if(pass_hlt_tau){
+    fill_histograms("tautrigger");
+    HistFolder<FlagHists>("tautrigger_Flags")->fill(*event);
   }
 
-  cleaner_tau_vsjet->process(*event);
-  fill_histograms("tauvsmuvsevsjetcleaner");
-
-  if(ntau_selection->passes(*event)){
-    fill_histograms("tauvsmuvsevsjet1tau");
+  if(pass_hlt){
+    fill_histograms("trigger");
+    HistFolder<FlagHists>("trigger_Flags")->fill(*event);
   }
+  else{
+    fill_histograms("nottrigger");
+    HistFolder<FlagHists>("nottrigger_Flags")->fill(*event);
+    return false;
+  }
+
+
 
   if(!(nelectron_selection->passes(*event) || nmuon_selection->passes(*event) || ntau_selection->passes(*event))) return false;
-
-
-
-
-
-
+  fill_histograms("emutau1");
 
 
 
   fill_histograms("final");
-  return true;
+  HistFolder<FlagHists>("final_Flags")->fill(*event);
+  return false;
 }
 
 

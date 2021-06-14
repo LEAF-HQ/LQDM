@@ -288,22 +288,20 @@ LQDMPsiPsiLeptonIDEfficienciesTool::LQDMPsiPsiLeptonIDEfficienciesTool(const Con
 
 
 bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
-  // cout << "++++++++++ NEW EVENT ++++++++++" << endl;
+  // cout << endl << "++++++++++ NEW EVENT ++++++++++" << endl;
   if(!lumiblock_selection->passes(*event)) return false;
   lumiweight_applicator->process(*event);
 
 
   // order all objecs in pT
-  sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_final);
+  sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets);
   sort_by_pt<Muon>(*event->muons);
   sort_by_pt<Electron>(*event->electrons);
   sort_by_pt<Tau>(*event->taus);
   fill_histograms("input");
-
 
   // correctors
   jet_lepton_cleaner->process(*event);
@@ -314,7 +312,6 @@ bool LQDMPsiPsiLeptonIDEfficienciesTool::Process(){
 
 
   // cleaners
-  // cleaner_tau->process(*event);
   cleaner_jet->process(*event);
   fill_histograms("hadcleaner");
 

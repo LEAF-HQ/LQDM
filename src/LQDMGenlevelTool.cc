@@ -72,9 +72,10 @@ bool LQDMGenlevelTool::Process(){
   // cout << "invis:  " << event->genmet_invis->pt() << endl;
 
   // order all objecs in pT
-  sort_by_pt<GenParticle>(*event->genparticles_hard);
+  // sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_final);
+  // sort_by_pt<GenParticle>(*event->genparticles_final);
+  sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
   fill_histograms("input");
 
@@ -95,7 +96,8 @@ bool LQDMGenlevelTool::Process(){
 
   // calculate STMET
   double st = 0;
-  double stmet = event->genmet_invis->pt();
+  // double stmet = event->genmet_invis->pt();
+  double stmet = event->genmet->pt();
   int njetsmax = min((size_t)2, event->genjets->size());
   int ntauvismax = min((size_t)2, event->genparticles_visibletaus->size());
   for(int i=0; i<njetsmax; i++) st += event->genjets->at(i).pt();

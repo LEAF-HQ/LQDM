@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration PUBLIC "" "Configuration.dtd"[
+
+
+<!ENTITY TargetLumi  "41480" >
+<!ENTITY Channel     "tau" > <!-- tau muon -->
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Preselection/TChannelTauNu_&Channel;" >
+
+
+<!ENTITY DATA_Tau_B SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_B.xml" >
+<!ENTITY DATA_Tau_C SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_C.xml" >
+<!ENTITY DATA_Tau_D SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_D.xml" >
+<!ENTITY DATA_Tau_E SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_E.xml" >
+<!ENTITY DATA_Tau_F SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_F.xml" >
+
+<!ENTITY DATA_SingleMuon_B SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleMuon_B.xml" >
+<!ENTITY DATA_SingleMuon_C SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleMuon_C.xml" >
+<!ENTITY DATA_SingleMuon_D SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleMuon_D.xml" >
+<!ENTITY DATA_SingleMuon_E SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleMuon_E.xml" >
+<!ENTITY DATA_SingleMuon_F SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleMuon_F.xml" >
+
+<!ENTITY DATA_SingleElectron_B SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleElectron_B.xml" >
+<!ENTITY DATA_SingleElectron_C SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleElectron_C.xml" >
+<!ENTITY DATA_SingleElectron_D SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleElectron_D.xml" >
+<!ENTITY DATA_SingleElectron_E SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleElectron_E.xml" >
+<!ENTITY DATA_SingleElectron_F SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_SingleElectron_F.xml" >
+
+
+<!ENTITY TTToSemiLeptonic SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/TTToSemiLeptonic.xml" >
+<!ENTITY TTTo2L2Nu SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/TTTo2L2Nu.xml" >
+<!ENTITY TTToHadronic SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/TTToHadronic.xml" >
+<!ENTITY WJetsToLNu_Inclusive SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_Inclusive.xml" >
+<!ENTITY WJetsToLNu_HT70To100 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT70To100.xml" >
+<!ENTITY WJetsToLNu_HT100To200 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT100To200.xml" >
+<!ENTITY WJetsToLNu_HT200To400 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT200To400.xml" >
+<!ENTITY WJetsToLNu_HT400To600 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT400To600.xml" >
+<!ENTITY WJetsToLNu_HT600To800 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT600To800.xml" >
+<!ENTITY WJetsToLNu_HT800To1200 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT800To1200.xml" >
+<!ENTITY WJetsToLNu_HT1200To2500 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WJetsToLNu_HT1200To2500.xml" >
+<!ENTITY DYJetsToLL_M10To50_Inclusive SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M10To50_Inclusive.xml" >
+<!ENTITY DYJetsToLL_M50_Inclusive SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_Inclusive.xml" >
+<!ENTITY DYJetsToLL_M50_HT70To100 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT70To100.xml" >
+<!ENTITY DYJetsToLL_M50_HT100To200 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT100To200.xml" >
+<!ENTITY DYJetsToLL_M50_HT200To400 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT200To400.xml" >
+<!ENTITY DYJetsToLL_M50_HT400To600 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT400To600.xml" >
+<!ENTITY DYJetsToLL_M50_HT600To800 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT600To800.xml" >
+<!ENTITY DYJetsToLL_M50_HT800To1200 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT800To1200.xml" >
+<!ENTITY DYJetsToLL_M50_HT1200To2500 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT1200To2500.xml" >
+<!ENTITY DYJetsToLL_M50_HT2500ToInf SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/DYJetsToLL_M50_HT2500ToInf.xml" >
+<!ENTITY ST_tch_ele SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_tch_ele.xml" >
+<!ENTITY ST_tch_mu SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_tch_mu.xml" >
+<!ENTITY ST_tch_tau SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_tch_tau.xml" >
+<!ENTITY ST_sch SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_sch.xml" >
+<!ENTITY ST_tW_top SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_tW_top.xml" >
+<!ENTITY ST_tW_antitop SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ST_tW_antitop.xml" >
+<!ENTITY WW_2L2Nu SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WW_2L2Nu.xml" >
+<!ENTITY WZ_3LNu SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/WZ_3LNu.xml" >
+<!ENTITY ZZ_2L2Nu SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ZZ_2L2Nu.xml" >
+<!ENTITY ZZ_4L SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/ZZ_4L.xml" >
+<!ENTITY QCD_Pt_15to30 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_15to30.xml" >
+<!ENTITY QCD_Pt_30to50 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_30to50.xml" >
+<!ENTITY QCD_Pt_50to80 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_50to80.xml" >
+<!ENTITY QCD_Pt_80to120 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_80to120.xml" >
+<!ENTITY QCD_Pt_120to170 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_120to170.xml" >
+<!ENTITY QCD_Pt_170to300 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_170to300.xml" >
+<!ENTITY QCD_Pt_300to470 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_300to470.xml" >
+<!ENTITY QCD_Pt_470to600 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_470to600.xml" >
+<!ENTITY QCD_Pt_600to800 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_600to800.xml" >
+<!ENTITY QCD_Pt_800to1000 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_800to1000.xml" >
+<!ENTITY QCD_Pt_1000to1400 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_1000to1400.xml" >
+<!ENTITY QCD_Pt_1400to1800 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_1400to1800.xml" >
+<!ENTITY QCD_Pt_1800to2400 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_1800to2400.xml" >
+<!ENTITY QCD_Pt_2400to3200 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_2400to3200.xml" >
+<!ENTITY QCD_Pt_3200toInf SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/QCD_Pt_3200toInf.xml" >
+
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauNu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauNu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0.xml" >
+
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelTauMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelTauMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0.xml" >
+
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0.xml" >
+<!ENTITY LQTChannelMuMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0 SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/Summer20/MINIAOD/LQTChannelMuMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0.xml" >
+
+]>
+
+
+<Configuration AnalysisTool="LQDMTChannelTauNuPreselectionTool" SEDirector="root://t3dcachedb03.psi.ch/" OutputDirectory="&outfilepath;" TargetLumi="&TargetLumi;" >
+
+    <SubmissionSettings EventsPerJob="-1" FilesPerJob="10" Walltime="02:00:00" />
+
+
+    <InputDatasets>
+        <Dataset Name="TTToSemiLeptonic"              Lumi="294008201.8"    Year="2017"  Type="MC"  Group="TT" >       &TTToSemiLeptonic;              </Dataset>
+        <Dataset Name="TTTo2L2Nu"                     Lumi="88261760.55"    Year="2017"  Type="MC"  Group="TT" >       &TTTo2L2Nu;                     </Dataset>
+        <Dataset Name="TTToHadronic"                  Lumi="205407883.4"    Year="2017"  Type="MC"  Group="TT" >       &TTToHadronic;                  </Dataset>
+
+        <!-- <Dataset Name="WJetsToLNu_Inclusive"          Lumi="19997.57806"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_Inclusive;          </Dataset> -->
+        <Dataset Name="WJetsToLNu_HT70To100"          Lumi="28764.99516"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT70To100;          </Dataset>
+        <Dataset Name="WJetsToLNu_HT100To200"         Lumi="31157.90919"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT100To200;         </Dataset>
+        <Dataset Name="WJetsToLNu_HT200To400"         Lumi="99114.48639"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT200To400;         </Dataset>
+        <Dataset Name="WJetsToLNu_HT400To600"         Lumi="96466.38966"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT400To600;         </Dataset>
+        <Dataset Name="WJetsToLNu_HT600To800"         Lumi="410429.0151"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT600To800;         </Dataset>
+        <Dataset Name="WJetsToLNu_HT800To1200"        Lumi="877379.4738"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT800To1200;        </Dataset>
+        <Dataset Name="WJetsToLNu_HT1200To2500"       Lumi="3523056.208"    Year="2017"  Type="MC"  Group="WJets" >    &WJetsToLNu_HT1200To2500;       </Dataset>
+
+        <!-- <Dataset Name="DYJetsToLL_M10To50_Inclusive"  Lumi="4391.151384"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M10To50_Inclusive;  </Dataset>
+        <Dataset Name="DYJetsToLL_M50_Inclusive"      Lumi="339998.3489"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_Inclusive;      </Dataset> -->
+        <Dataset Name="DYJetsToLL_M50_HT70To100"      Lumi="75142.50663"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT70To100;      </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT100To200"     Lumi="115836.136"     Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT100To200;     </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT200To400"     Lumi="234870.0162"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT200To400;     </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT400To600"     Lumi="937287.212"     Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT400To600;     </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT600To800"     Lumi="3689162.036"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT600To800;     </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT800To1200"    Lumi="7041180.971"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT800To1200;    </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT1200To2500"   Lumi="28572033.74"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT1200To2500;   </Dataset>
+        <Dataset Name="DYJetsToLL_M50_HT2500ToInf"    Lumi="389485985.8"    Year="2017"  Type="MC"  Group="DYJets" >   &DYJetsToLL_M50_HT2500ToInf;    </Dataset>
+
+        <Dataset Name="ST_tch_ele"                    Lumi="47527.23971"    Year="2017"  Type="MC"  Group="ST" >       &ST_tch_ele;                    </Dataset>
+        <Dataset Name="ST_tch_mu"                     Lumi="45121.19499"    Year="2017"  Type="MC"  Group="ST" >       &ST_tch_mu;                     </Dataset>
+        <Dataset Name="ST_tch_tau"                    Lumi="46440.83199"    Year="2017"  Type="MC"  Group="ST" >       &ST_tch_tau;                    </Dataset>
+        <Dataset Name="ST_sch"                        Lumi="7752544.406"    Year="2017"  Type="MC"  Group="ST" >       &ST_sch;                        </Dataset>
+        <Dataset Name="ST_tW_top"                     Lumi="14052795.15"    Year="2017"  Type="MC"  Group="ST" >       &ST_tW_top;                     </Dataset>
+        <Dataset Name="ST_tW_antitop"                 Lumi="13811376.86"    Year="2017"  Type="MC"  Group="ST" >       &ST_tW_antitop;                 </Dataset>
+
+        <Dataset Name="WW_2L2Nu"                      Lumi="6905507.458"    Year="2017"  Type="MC"  Group="VV" >       &WW_2L2Nu;                      </Dataset>
+        <Dataset Name="WZ_3LNu"                       Lumi="62103935.84"    Year="2017"  Type="MC"  Group="VV" >       &WZ_3LNu;                       </Dataset>
+        <Dataset Name="ZZ_2L2Nu"                      Lumi="40512539.26"    Year="2017"  Type="MC"  Group="VV" >       &ZZ_2L2Nu;                      </Dataset>
+        <Dataset Name="ZZ_4L"                         Lumi="41697211.71"    Year="2017"  Type="MC"  Group="VV" >       &ZZ_4L;                         </Dataset>
+
+        <Dataset Name="QCD_Pt_15to30"                 Lumi="0.01601598635"  Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_15to30;                 </Dataset>
+        <Dataset Name="QCD_Pt_30to50"                 Lumi="0.1860586011"   Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_30to50;                 </Dataset>
+        <Dataset Name="QCD_Pt_50to80"                 Lumi="1.285347044"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_50to80;                 </Dataset>
+        <Dataset Name="QCD_Pt_80to120"                Lumi="12.93419438"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_80to120;                </Dataset>
+        <Dataset Name="QCD_Pt_120to170"               Lumi="73.22021975"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_120to170;               </Dataset>
+        <Dataset Name="QCD_Pt_170to300"               Lumi="289.122076"     Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_170to300;               </Dataset>
+        <Dataset Name="QCD_Pt_300to470"               Lumi="8389.942167"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_300to470;               </Dataset>
+        <Dataset Name="QCD_Pt_470to600"               Lumi="96648.05481"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_470to600;               </Dataset>
+        <Dataset Name="QCD_Pt_600to800"               Lumi="438590.8313"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_600to800;               </Dataset>
+        <Dataset Name="QCD_Pt_800to1000"              Lumi="1446138.15"     Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_800to1000;              </Dataset>
+        <Dataset Name="QCD_Pt_1000to1400"             Lumi="2690685.591"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_1000to1400;             </Dataset>
+        <Dataset Name="QCD_Pt_1400to1800"             Lumi="17116612.17"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_1400to1800;             </Dataset>
+        <Dataset Name="QCD_Pt_1800to2400"             Lumi="63326029.29"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_1800to2400;             </Dataset>
+        <Dataset Name="QCD_Pt_2400to3200"             Lumi="577123050.3"    Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_2400to3200;             </Dataset>
+        <Dataset Name="QCD_Pt_3200toInf"              Lumi="7462686567"     Year="2017"  Type="MC"  Group="QCD_Had" >  &QCD_Pt_3200toInf;              </Dataset>
+
+
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauNu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauNu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0;  </Dataset>
+
+        <!-- <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0;  </Dataset>
+        <Dataset Name="LQTChannelTauMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0"  Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelTauMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0;  </Dataset>
+
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ1000_MPS117_MC1100_L1p0;   </Dataset>
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ1360_MPS117_MC1100_L1p0;   </Dataset>
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ1810_MPS117_MC1100_L1p0;   </Dataset>
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ2170_MPS117_MC1100_L1p0;   </Dataset>
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ2620_MPS117_MC1100_L1p0;   </Dataset>
+        <Dataset Name="LQTChannelMuMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0"   Lumi="100000"  Year="2017"  Type="MC"  Group="None" >  &LQTChannelMuMu_DynamicScale_MLQ2980_MPS117_MC1100_L1p0;   </Dataset> -->
+    </InputDatasets>
+
+    <AdditionalVariables>
+        <Variable Name="Channel" Value="&Channel;"/>
+        <Variable Name="JECDirection" Value="nominal"/>
+        <Variable Name="JERDirection" Value="nominal"/>
+
+        <Variable Name="LumiblockFile" Value="data/2017/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.root"/>
+    </AdditionalVariables>
+</Configuration>

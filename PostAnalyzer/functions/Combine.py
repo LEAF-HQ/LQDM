@@ -53,8 +53,20 @@ def ExecuteCombineCombination(self):
             for cat in self.histnames_in_out_per_category.keys():
                 combcard = '_'.join([combcard, cat])
         combcard = '_'.join([combcard, signal]) + '.txt'
-        signaltag = signal.split('_')[0]
-        signalmass = signal.split('_')[1][3:]
+
+        parts = signal.split('_')
+        signaltag = ''
+        signalmass = -1
+        for part in parts:
+            if not 'MLQ' in part:
+                if signaltag == '': signaltag = part
+                else: signaltag = '_'.join([signaltag, part])
+            else:
+                signalmass = part[3:]
+                break
+
+        # signaltag = signal.split('_')[0]
+        # signalmass = signal.split('_')[1][3:]
         signalmasses.append(signalmass)
         sourceprecommands = '. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gcc/7.0.0-omkpbe2/etc/profile.d/init.sh; . /cvmfs/cms.cern.ch/${SCRAM_ARCH}/lcg/root/6.12.07-gnimlf5/bin/thisroot.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gsl/2.2.1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/tbb/2018_U1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/cms/vdt/0.4.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/boost/1.63.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/pcre/8.37-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/eigen/64060da8461a627eb25b5a7bc0616776068db58b/etc/profile.d/init.sh; cd $CMSSW_COMBINE_BASE/src; eval `scramv1 runtime -sh`; cd -;'
         command = '%s combine -M AsymptoticLimits --run blind -n %s -m %s %s' % (sourceprecommands, signaltag, signalmass, combcard)

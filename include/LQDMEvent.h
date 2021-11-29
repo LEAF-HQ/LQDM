@@ -15,10 +15,14 @@ class LQDMEvent : public RecoEvent{
 
 public:
   // Constructors, destructor
-  LQDMEvent();
-  ~LQDMEvent();
+  LQDMEvent(){}
+  ~LQDMEvent(){}
 
-  void clear();
-  void reset();
+  void clear(){
+    RecoEvent::clear();
+  }
+  void reset(){
+    RecoEvent::reset();
+  }
 
 };

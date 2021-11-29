@@ -3,8 +3,9 @@
 
 
 <!ENTITY TargetLumi  "41480" >
-<!-- <!ENTITY outfilepath "/work/areimers/LQDM/UL17/Preselection/Initial" > -->
-<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Preselection/PsiPsi_Initial" >
+<!ENTITY Channel     "met"  >
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Preselection/PsiPsi_&Channel;" >
+<!-- <!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Preselection/PsiPsi_02LessTriggers" > -->
 
 
 <!ENTITY DATA_Tau_B SYSTEM "/work/areimers/LEAF/Analyzer/datasets/UL17/MINIAOD/DATA_Tau_B.xml" >
@@ -127,7 +128,7 @@
 
 <Configuration AnalysisTool="LQDMPsiPsiPreselectionTool" SEDirector="root://t3dcachedb03.psi.ch/" OutputDirectory="&outfilepath;" TargetLumi="&TargetLumi;" >
 
-    <SubmissionSettings EventsPerJob="-1" FilesPerJob="20" />
+    <SubmissionSettings EventsPerJob="-1" FilesPerJob="4" Walltime="01:00:00" />
 
 
     <InputDatasets>
@@ -176,8 +177,38 @@
         <Dataset Name="QCD_Pt_1800to2400" Lumi="31933467.88"   Year="2017" Type="MC" Group="QCD_Had" >  &QCD_Pt_1800to2400;  </Dataset>
         <Dataset Name="QCD_Pt_2400to3200" Lumi="367881378.8"   Year="2017" Type="MC" Group="QCD_Had" >  &QCD_Pt_2400to3200;  </Dataset>
         <Dataset Name="QCD_Pt_3200toInf"  Lumi="5970149254"    Year="2017" Type="MC" Group="QCD_Had" >   &QCD_Pt_3200toInf;  </Dataset>
+-->
+
+        <Dataset Name="TTToSemiLeptonic"  Lumi="93839570.66"   Year="2017" Type="MC" Group="TT" >      &TTToSemiLeptonic;  </Dataset>
+        <Dataset Name="TTTo2L2Nu"         Lumi="54713939.31"   Year="2017" Type="MC" Group="TT" >      &TTTo2L2Nu;         </Dataset>
+        <Dataset Name="TTToHadronic"      Lumi="107117908.4"   Year="2017" Type="MC" Group="TT" >      &TTToHadronic;      </Dataset>
+        <Dataset Name="WJetsToLNu"        Lumi="170012677.6"   Year="2017" Type="MC" Group="WJets" >   &WJetsToLNu;        </Dataset>
+        <Dataset Name="DYJetsToLL"        Lumi="590254676.4"   Year="2017" Type="MC" Group="DYJets" >  &DYJetsToLL;        </Dataset>
+        <Dataset Name="ST_tch_top"        Lumi="4816921.28"    Year="2017" Type="MC" Group="ST" >      &ST_tch_top;        </Dataset>
+        <Dataset Name="ST_tch_antitop"    Lumi="3275160.352"   Year="2017" Type="MC" Group="ST" >      &ST_tch_antitop;    </Dataset>
+        <Dataset Name="ST_sch"            Lumi="20971915.73"   Year="2017" Type="MC" Group="ST" >      &ST_sch;            </Dataset>
+        <Dataset Name="ST_tW_top"         Lumi="16645424.62"   Year="2017" Type="MC" Group="ST" >      &ST_tW_top;         </Dataset>
+        <Dataset Name="ST_tW_antitop"     Lumi="14890032.72"   Year="2017" Type="MC" Group="ST" >      &ST_tW_antitop;     </Dataset>
+        <Dataset Name="QCD_Pt_15to30"     Lumi="0.01621849148" Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_15to30;     </Dataset>
+        <Dataset Name="QCD_Pt_30to50"     Lumi="0.1803610586"  Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_30to50;     </Dataset>
+        <Dataset Name="QCD_Pt_50to80"     Lumi="1.276452442"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_50to80;     </Dataset>
+        <Dataset Name="QCD_Pt_80to120"    Lumi="12.7832823"    Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_80to120;    </Dataset>
+        <Dataset Name="QCD_Pt_120to170"   Lumi="74.22981123"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_120to170;   </Dataset>
+        <Dataset Name="QCD_Pt_170to300"   Lumi="287.7397661"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_170to300;   </Dataset>
+        <Dataset Name="QCD_Pt_300to470"   Lumi="8479.676033"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_300to470;   </Dataset>
+        <Dataset Name="QCD_Pt_470to600"   Lumi="50474.97476"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_470to600;   </Dataset>
+        <Dataset Name="QCD_Pt_600to800"   Lumi="349937.3323"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_600to800;   </Dataset>
+        <Dataset Name="QCD_Pt_800to1000"  Lumi="1512971.098"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_800to1000;  </Dataset>
+        <Dataset Name="QCD_Pt_1000to1400" Lumi="2699067.315"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_1000to1400; </Dataset>
+        <Dataset Name="QCD_Pt_1400to1800" Lumi="8461466.604"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_1400to1800; </Dataset>
+        <Dataset Name="QCD_Pt_1800to2400" Lumi="34594625.76"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_1800to2400; </Dataset>
+        <Dataset Name="QCD_Pt_2400to3200" Lumi="363604852.7"   Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_2400to3200; </Dataset>
+        <Dataset Name="QCD_Pt_3200toInf"  Lumi="5970149254"    Year="2017" Type="MC" Group="QCD_Had" > &QCD_Pt_3200toInf;  </Dataset>
 
 
+
+
+<!--
         <Dataset Name="LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0"         Lumi="100000"  Year="2017" Type="MC" Group="None" >            &LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0;  </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest"        Lumi="100000"  Year="2017" Type="MC" Group="None" >           &LQLQToBTau_MLQ1000_MPS117_MC1100_Lbest;  </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0"         Lumi="100000"  Year="2017" Type="MC" Group="None" >            &LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0;  </Dataset>
@@ -250,6 +281,8 @@
     </InputDatasets>
 
     <AdditionalVariables>
+        <Variable Name="Channel" Value="&Channel;"/>
+
         <Variable Name="JECDirection" Value="nominal"/>
         <Variable Name="JERDirection" Value="nominal"/>
 

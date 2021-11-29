@@ -5,7 +5,7 @@ from utils import *
 from collections import OrderedDict
 from ROOT import TFile, TH1D
 
-def ProduceCombineHistograms(self, signal_scaled_by=1.):
+def ProduceCombineHistograms(self, signal_scaled_by=1., blind=True):
     print green('  --> Producing histograms for combine.')
 
     samples = self.signals + self.backgrounds + ['DATA']

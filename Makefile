@@ -16,7 +16,7 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cc
 
 libLQDMClassDictionaries.so: $(LIBDIR)/ClassDictionaries.cxx
 	@echo "--> Creating shared library with custom class dictionaries."
-	@$(CC) $(CFLAGSDICT) -shared -o ../$(LIBDIR)/$@ $(ROOTLIBS) $^
+	@$(CC) $(CFLAGSDICT) $(LFLAGS) -shared -o ../$(LIBDIR)/$@ $(ROOTLIBS) $(CMSSWLIBS) $^
 
 $(LIBDIR)/ClassDictionaries.cxx: $(INCLUDES) include/Linkdef.hpp
 	@echo "--> Creating custom class dictionaries."

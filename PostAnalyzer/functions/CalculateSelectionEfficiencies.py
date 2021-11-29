@@ -4,7 +4,7 @@ import subprocess
 from utils import *
 from collections import OrderedDict
 import ROOT
-from ROOT import gROOT, TFile, TCanvas, TLatex, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen, kRed, kAzure, TGraphAsymmErrors, kFullCircle, kOpenCircle, kError
+from ROOT import gROOT, TFile, TCanvas, TLatex, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen, kRed, kAzure, kViolet, TGraphAsymmErrors, kFullCircle, kOpenCircle, kError
 from tdrstyle_all import *
 
 def CalculateSelectionEfficiencies(self, num_and_denom):
@@ -12,11 +12,12 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
     gROOT.SetBatch(1)
     ROOT.gErrorIgnoreLevel = kError
     setTDRStyle()
-    colors = [kRed+4, kRed+1, kAzure-2, kOrange, kGreen-2]
+    colors = [kRed+4, kRed+1, kViolet, kAzure-2, kOrange, kGreen-2]
 
     legends = {
         "QCD_Had": "QCD",
         "TT":      "t#bar{t}",
+        "VV":      "VV",
         "ST":      "Single t",
         "DYJets":  "DY #rightarrow ll",
         "WJets":   "W+jets #rightarrow l#nu"
@@ -63,6 +64,7 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
 
     haxis = graphs[graphs.keys()[0]]
     haxis.SetMaximum(1.2)
+    haxis.SetMinimum(0.)
     haxis.Draw('AXIS')
     legend = tdrLeg(0.45,0.65,0.95,0.9, textSize=0.025)
     idx_sig = 0
@@ -81,7 +83,14 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
             idx_sig += 1
         legend.AddEntry(graphs[signal], legtext, 'LP')
 
-    c.SaveAs(os.path.join(self.plotoutput_path, 'SelectionEfficiencies.pdf'))
+    plotoutname = 'SelectionEfficiencies.pdf'
+    c.SaveAs(os.path.join(self.plotoutput_path, plotoutname))
+
+    haxis.SetMaximum(1E2)
+    haxis.SetMinimum(1E-4)
+    c.SetLogy()
+    c.SaveAs(os.path.join(self.plotoutput_path, plotoutname.replace('.pdf', '_logy.pdf')))
+
 
 
 

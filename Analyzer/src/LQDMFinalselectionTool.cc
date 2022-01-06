@@ -34,9 +34,9 @@
 #include "Analyzer/include/BTaggingMCEfficiencyHists.h"
 
 
-#include "Analyzer/LQDM/include/LQDMEvent.h"
-#include "Analyzer/LQDM/include/LQDMPreselectionHists.h"
-#include "Analyzer/LQDM/include/LQDMLimitHists.h"
+#include "LQDM/Analyzer/include/LQDMEvent.h"
+#include "LQDM/Analyzer/include/LQDMPreselectionHists.h"
+#include "LQDM/Analyzer/include/LQDMLimitHists.h"
 
 using namespace std;
 

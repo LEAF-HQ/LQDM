@@ -5,9 +5,9 @@
 #include <map>
 #include <TTreeReader.h>
 #include <TROOT.h>
-#include "Analyzer/LQDM/include/LQDMEvent.h"
+#include "LQDM/Analyzer/include/LQDMEvent.h"
 #include "Analyzer/include/BaseHists.h"
-#include "Analyzer/LQDM/include/NeutrinoReconstruction.h"
+#include "LQDM/Analyzer/include/NeutrinoReconstruction.h"
 
 using namespace std;
 

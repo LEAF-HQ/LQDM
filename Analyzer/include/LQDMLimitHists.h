@@ -5,7 +5,7 @@
 #include <map>
 #include <TTreeReader.h>
 #include <TROOT.h>
-#include "Analyzer/LQDM/include/LQDMEvent.h"
+#include "LQDM/Analyzer/include/LQDMEvent.h"
 #include "Analyzer/include/BaseHists.h"
 
 using namespace std;

@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include "Analyzer/include/Registry.h"
 #include "Analyzer/include/GenEvent.h"
-#include "Analyzer/LQDM/include/GenHists.h"
+#include "LQDM/Analyzer/include/GenHists.h"
 
 using namespace std;
 

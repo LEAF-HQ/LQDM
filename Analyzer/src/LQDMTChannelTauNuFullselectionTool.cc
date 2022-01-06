@@ -33,9 +33,9 @@
 #include "Analyzer/include/LumiWeightApplicator.h"
 
 
-#include "Analyzer/LQDM/include/LQDMEvent.h"
-#include "Analyzer/LQDM/include/LQDMPreselectionHists.h"
-#include "Analyzer/LQDM/include/NeutrinoReconstruction.h"
+#include "LQDM/Analyzer/include/LQDMEvent.h"
+#include "LQDM/Analyzer/include/LQDMPreselectionHists.h"
+#include "LQDM/Analyzer/include/NeutrinoReconstruction.h"
 
 using namespace std;
 

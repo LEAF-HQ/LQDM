@@ -12,6 +12,7 @@
 #include "Analyzer/include/MuonHists.h"
 #include "Analyzer/include/ElectronHists.h"
 #include "Analyzer/include/TauHists.h"
+#include "Analyzer/include/GenParticleHists.h"
 #include "Analyzer/include/JetIds.h"
 #include "Analyzer/include/MuonIds.h"
 #include "Analyzer/include/ElectronIds.h"
@@ -34,19 +35,18 @@
 #include "Analyzer/include/BTaggingMCEfficiencyHists.h"
 
 
-#include "Analyzer/LQDM/include/LQDMEvent.h"
-#include "Analyzer/LQDM/include/LQDMPreselectionHists.h"
-#include "Analyzer/LQDM/include/LQDMLimitHists.h"
+#include "LQDM/Analyzer/include/LQDMEvent.h"
+#include "LQDM/Analyzer/include/LQDMPreselectionHists.h"
 
 using namespace std;
 
-class LQDMFinalselectionTool : public BaseTool {
+class LQDMPsiPsiFullselectionTool : public BaseTool {
 
 public:
   // Constructors, destructor
-  LQDMFinalselectionTool(const Config & cfg);
-  ~LQDMFinalselectionTool() = default;
-  void ProcessDataset(const Config & cfg) override {LoopEvents<LQDMFinalselectionTool, LQDMEvent>(cfg, event, *this);};
+  LQDMPsiPsiFullselectionTool(const Config & cfg);
+  ~LQDMPsiPsiFullselectionTool() = default;
+  void ProcessDataset(const Config & cfg) override {LoopEvents<LQDMPsiPsiFullselectionTool, LQDMEvent>(cfg, event, *this);};
   virtual bool Process() override;
   void book_histograms(vector<TString>);
   void fill_histograms(TString);
@@ -60,10 +60,7 @@ private:
   unique_ptr<NElectronSelection> electronveto_selection;
   unique_ptr<NMuonSelection>     nmuon_selection;
   unique_ptr<NMuonSelection>     muonveto_selection;
-
   unique_ptr<NTauSelection>      nditau_selection;
-
-  unique_ptr<NJetSelection>      nbtag2_selection;
 
   // constants
   TString year;
@@ -71,22 +68,16 @@ private:
 
 
 
-LQDMFinalselectionTool::LQDMFinalselectionTool(const Config & cfg) : BaseTool(cfg){
+LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : BaseTool(cfg){
 
   event = new LQDMEvent();
   event->reset();
 
   year = cfg.dataset_year();
 
-  // JetBTag::wp btag_wp = JetBTag::DeepCSV_Medium;
-  JetBTag::wp btag_wp = JetBTag::DeepCSV_Loose;
-
   // histfolders
-  vector<TString> histtags = {"input", "much", "much_cat2_nominal", "much_cat1_nominal", "elch", "elch_cat2_nominal", "elch_cat1_nominal", "elmuch", "elmuch_cat2_nominal", "elmuch_cat1_nominal", "tach", "tach_cat2_nominal", "tach_cat1_nominal"};
+  vector<TString> histtags = {"input", "much", "elch", "elmuch", "tach", "noch"};
   book_histograms(histtags);
-
-
-  MultiID<Jet> btag_id = {JetBTag(btag_wp)};
 
   nmuon_selection.reset(new NMuonSelection(cfg, 1, 1));
   muonveto_selection.reset(new NMuonSelection(cfg, 0, 0));
@@ -94,13 +85,12 @@ LQDMFinalselectionTool::LQDMFinalselectionTool(const Config & cfg) : BaseTool(cf
   electronveto_selection.reset(new NElectronSelection(cfg, 0, 0));
   nditau_selection.reset(new NTauSelection(cfg, 2, 2));
 
-  nbtag2_selection.reset(new NJetSelection(cfg, 2, -1, btag_id));
 }
 
 
 
 
-bool LQDMFinalselectionTool::Process(){
+bool LQDMPsiPsiFullselectionTool::Process(){
   // cout << endl << "+++++ NEW EVENT ++++++" << endl;
 
   // order all objecs in pT
@@ -115,32 +105,28 @@ bool LQDMFinalselectionTool::Process(){
   sort_by_pt<Tau>(*event->taus);
   fill_histograms("input");
 
+
+  double stmet = event->met->pt();
+  for (Jet & jet : *event->jets) stmet += jet.pt();
+  for (Electron & e : *event->electrons) stmet += e.pt();
+  for (Muon & mu : *event->muons) stmet += mu.pt();
+  for (Tau & tau : *event->taus) stmet += tau.pt();
+
+
   if(nmuon_selection->passes(*event) && electronveto_selection->passes(*event)){
     fill_histograms("much");
-
-    if(nbtag2_selection->passes(*event)) fill_histograms("much_cat2_nominal");
-    else fill_histograms("much_cat1_nominal");
   }
-
   else if(nelectron_selection->passes(*event) && muonveto_selection->passes(*event)){
     fill_histograms("elch");
-
-    if(nbtag2_selection->passes(*event)) fill_histograms("elch_cat2_nominal");
-    else fill_histograms("elch_cat1_nominal");
   }
-
   else if(nelectron_selection->passes(*event) && nmuon_selection->passes(*event)){
     fill_histograms("elmuch");
-
-    if(nbtag2_selection->passes(*event)) fill_histograms("elmuch_cat2_nominal");
-    else fill_histograms("elmuch_cat1_nominal");
   }
-
   else if(nditau_selection->passes(*event)){
     fill_histograms("tach");
-
-    if(nbtag2_selection->passes(*event)) fill_histograms("tach_cat2_nominal");
-    else fill_histograms("tach_cat1_nominal");
+  }
+  else{
+    fill_histograms("noch");
   }
 
 
@@ -159,7 +145,7 @@ bool LQDMFinalselectionTool::Process(){
 
 
 
-void LQDMFinalselectionTool::book_histograms(vector<TString> tags){
+void LQDMPsiPsiFullselectionTool::book_histograms(vector<TString> tags){
   for(const TString & tag : tags){
     TString mytag = tag+"_General";
     book_HistFolder(mytag, new LQDMPreselectionHists(mytag));
@@ -171,12 +157,12 @@ void LQDMFinalselectionTool::book_histograms(vector<TString> tags){
     book_HistFolder(mytag, new ElectronHists(mytag));
     mytag = tag+"_Taus";
     book_HistFolder(mytag, new TauHists(mytag));
-    mytag = tag+"_Limits";
-    book_HistFolder(mytag, new LQDMLimitHists(mytag));
+    mytag = tag+"_GenParticles";
+    book_HistFolder(mytag, new GenParticleHists(mytag));
   }
 }
 
-void LQDMFinalselectionTool::fill_histograms(TString tag){
+void LQDMPsiPsiFullselectionTool::fill_histograms(TString tag){
   TString mytag = tag+"_General";
   HistFolder<LQDMPreselectionHists>(mytag)->fill(*event);
   mytag = tag+"_Jets";
@@ -187,11 +173,11 @@ void LQDMFinalselectionTool::fill_histograms(TString tag){
   HistFolder<ElectronHists>(mytag)->fill(*event);
   mytag = tag+"_Taus";
   HistFolder<TauHists>(mytag)->fill(*event);
-  mytag = tag+"_Limits";
-  HistFolder<LQDMLimitHists>(mytag)->fill(*event);
+  mytag = tag+"_GenParticles";
+  HistFolder<GenParticleHists>(mytag)->fill(*event);
 }
 
 
 
 
-REGISTER_TOOL(LQDMFinalselectionTool)
+REGISTER_TOOL(LQDMPsiPsiFullselectionTool)

@@ -1,4 +1,4 @@
-#include "Analyzer/LQDM/include/NeutrinoReconstruction.h"
+#include "LQDM/Analyzer/include/NeutrinoReconstruction.h"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "Analyzer/LQDM/include/GenHists.h"
+#include "LQDM/Analyzer/include/GenHists.h"
 #include "Analyzer/include/constants.h"
 #include "Analyzer/include/useful_functions.h"
 #include <TH1F.h>

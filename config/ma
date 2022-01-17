@@ -1,0 +1,5 @@
+#! /bin/bash
+cd ../../Analyzer
+make clean
+make -j 20
+cd -

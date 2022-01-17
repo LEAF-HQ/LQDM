@@ -3,12 +3,12 @@
 #include <TChain.h>
 #include <iostream>
 
-#include "Analyzer/include/BaseTool.h"
-#include "Analyzer/include/useful_functions.h"
+#include "LEAF/Analyzer/include/BaseTool.h"
+#include "LEAF/Analyzer/include/useful_functions.h"
 #include <sys/stat.h>
-#include "Analyzer/include/Registry.h"
-#include "Analyzer/include/GenEvent.h"
-#include "LQDM/Analyzer/include/GenHists.h"
+#include "LEAF/Analyzer/include/Registry.h"
+#include "LEAF/Analyzer/include/GenEvent.h"
+#include "LEAF/LQDM/include/GenHists.h"
 
 using namespace std;
 

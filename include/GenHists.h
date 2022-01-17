@@ -5,8 +5,8 @@
 #include <map>
 #include <TTreeReader.h>
 #include <TROOT.h>
-#include "Analyzer/include/GenEvent.h"
-#include "Analyzer/include/BaseHists.h"
+#include "LEAF/Analyzer/include/GenEvent.h"
+#include "LEAF/Analyzer/include/BaseHists.h"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "LQDM/Analyzer/include/XPDFScaleFactorApplicator.h"
+#include "LEAF/LQDM/include/XPDFScaleFactorApplicator.h"
 
 using namespace std;
 

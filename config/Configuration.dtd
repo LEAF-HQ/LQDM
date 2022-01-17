@@ -5,7 +5,7 @@
 <!ATTLIST Configuration
     TargetLumi           CDATA            #REQUIRED
     OutputDirectory      CDATA            #REQUIRED
-    SEDirector           CDATA            #REQUIRED
+    SEDirector           CDATA            ""
     PostFix              CDATA            ""
     AnalysisTool         CDATA            #REQUIRED
     NEventsMax           CDATA            "-1"
@@ -34,12 +34,6 @@
 <!ELEMENT InputFile EMPTY>
 <!ATTLIST InputFile
     FileName    CDATA       #REQUIRED
->
-
-
-<!ELEMENT AnalysisTool EMPTY>
-<!ATTLIST AnalysisTool
-    Name        CDATA       #REQUIRED
 >
 
 <!ELEMENT AdditionalVariables (Variable*)>

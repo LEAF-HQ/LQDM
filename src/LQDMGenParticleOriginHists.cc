@@ -1,6 +1,6 @@
-#include "LQDM/Analyzer/include/LQDMGenParticleOriginHists.h"
-#include "Analyzer/include/constants.h"
-#include "Analyzer/include/useful_functions.h"
+#include "LEAF/LQDM/include/LQDMGenParticleOriginHists.h"
+#include "LEAF/Analyzer/include/constants.h"
+#include "LEAF/Analyzer/include/useful_functions.h"
 #include <TH1F.h>
 #include <TFile.h>
 #include <TGraphAsymmErrors.h>

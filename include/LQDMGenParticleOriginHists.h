@@ -5,10 +5,10 @@
 #include <map>
 #include <TTreeReader.h>
 #include <TROOT.h>
-#include "LQDM/Analyzer/include/LQDMEvent.h"
-#include "Analyzer/include/BaseHists.h"
-#include "Analyzer/include/Muon.h"
-#include "Analyzer/include/useful_functions.h"
+#include "LEAF/LQDM/include/LQDMEvent.h"
+#include "LEAF/Analyzer/include/BaseHists.h"
+#include "LEAF/Analyzer/include/Muon.h"
+#include "LEAF/Analyzer/include/useful_functions.h"
 
 using namespace std;
 

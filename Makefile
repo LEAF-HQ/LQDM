@@ -1,8 +1,9 @@
 -include $(ANALYZERPATH)/Makefile.common
 
-.PHONY: lib all
+.PHONY: lib dict all
 
 lib: libLQDM.so
+dict: libLQDMClassDictionaries.so
 all: lib
 
 libLQDM.so: libLQDMClassDictionaries.so $(OBJECTS)
@@ -16,7 +17,9 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cc
 
 libLQDMClassDictionaries.so: $(LIBDIR)/ClassDictionaries.cxx
 	@echo "--> Creating shared library with custom class dictionaries."
-	@$(CC) $(CFLAGSDICT) $(LFLAGS) -shared -o $(ANALYZERPATH)/$(LIBDIR)/$@ $(ROOTLIBS) $(CMSSWLIBS) $^
+	@$(CC) $(CFLAGSDICT) -shared -o $(ANALYZERPATH)/$(LIBDIR)/$@ $(ROOTLIBS) $^
+	@echo "--> Copying library with class dictionary to local CMSSW library folder: $(LIBDIR_CMSSW)"
+	@cp $(ANALYZERPATH)/$(LIBDIR)/$@ $(LIBDIR_CMSSW)/
 
 $(LIBDIR)/ClassDictionaries.cxx: $(INCLUDES) include/Linkdef.hpp
 	@echo "--> Creating custom class dictionaries."

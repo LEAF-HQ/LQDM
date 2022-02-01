@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE PlotterConfiguration PUBLIC "" "PlotterConfiguration.dtd"[]>
+
+
+<PlotterConfiguration>
+
+  <FileConfiguration
+    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Studies/LQDMHLTCheck/"
+    OutputDirectory = "/work/areimers/LQDM/2017/Studies/LQDMHLTCheck//plots/distributions"
+    PreFix          = "LQLQToBTau_"
+    SEDirector      = "root://t3dcachedb03.psi.ch/"
+  />
+
+  <PlottingConfiguration
+    lumitext   = "41.5 fb^{-1} (13 TeV)"
+    blind      = "true"
+    logY       = "true"
+    normalize  = "false"
+    singlePDF  = "false"
+    numerator  = ""
+  />
+
+  <InputDatasets>
+    <Dataset Name="LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="LQ LQ #rightarrow b#tau b#tau (M=1.00 TeV)"   Type="MC" />
+    <Dataset Name="LQLQToBTau_MLQ1360_MPS117_MC1100_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="LQ LQ #rightarrow b#tau b#tau (M=1.36 TeV)"   Type="MC" />
+    <Dataset Name="LQLQToBTau_MLQ1810_MPS117_MC1100_L1p0"   Stack="false"  Color="858"    Linestyle="1"   Legend="LQ LQ #rightarrow b#tau b#tau (M=1.81 TeV)"   Type="MC" />
+    <Dataset Name="LQLQToBTau_MLQ2170_MPS117_MC1100_L1p0"   Stack="false"  Color="800"    Linestyle="1"   Legend="LQ LQ #rightarrow b#tau b#tau (M=2.17 TeV)"   Type="MC" />
+    <Dataset Name="LQLQToBTau_MLQ2620_MPS117_MC1100_L1p0"   Stack="false"  Color="414"    Linestyle="1"   Legend="LQ LQ #rightarrow b#tau b#tau (M=2.62 TeV)"   Type="MC" />
+
+  </InputDatasets>
+
+<!--
+kWhite    0,
+kBlack    1,
+kYellow   400
+kGreen    416
+kCyan     432
+kBlue     600
+kMagenta  616
+kRed      632
+kOrange   800
+kSpring   820
+kTeal     840
+kAzure    860
+kViolet   880
+kPink     900
+kGray     920
+
+-->
+
+
+
+
+
+
+</PlotterConfiguration>

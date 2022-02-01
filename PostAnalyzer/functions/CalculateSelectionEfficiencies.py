@@ -12,7 +12,8 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
     gROOT.SetBatch(1)
     ROOT.gErrorIgnoreLevel = kError
     setTDRStyle()
-    colors = [kRed+4, kRed+1, kViolet, kAzure-2, kOrange, kGreen-2]
+    # colors = [kRed+4, kRed+1, kViolet, kAzure-2, kOrange, kGreen-2]
+    colors = [kRed+1, kAzure-2, kOrange, kGreen-2, kViolet, kRed+4]
 
     legends = {
         "QCD_Had": "QCD",
@@ -20,7 +21,11 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
         "VV":      "VV",
         "ST":      "Single t",
         "DYJets":  "DY #rightarrow ll",
-        "WJets":   "W+jets #rightarrow l#nu"
+        "WJets":   "W+jets #rightarrow l#nu",
+        # 'LQLQToBTau_MLQ1000_MPS117_MC1100_L1p0': 'LQ LQ #rightarrow b#tau b#tau',
+        # 'LQLQToBTauPsiChi_MLQ1000_MPS117_MC1100_L1p0': 'LQ LQ #rightarrow b#tau #psi#chi_{1}',
+        # 'LQLQToPsiChi_MLQ1000_MPS117_MC1100_L1p0': 'LQ LQ #rightarrow #psi#chi_{1} #psi#chi_{1}',
+        # 'PsiPsiToLQChi_MLQ1000_MPS2221_MC12089_L1p0': '#psi #psi #rightarrow LQ#chi_{1} LQ#chi_{1}'
     }
     processes = self.signals + self.backgrounds
 
@@ -30,9 +35,11 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
         infile = TFile(infilename, 'READ')
 
 
-        h_pass = TH1D('h_num', ';;Selection efficiency', len(num_and_denom), 0, len(num_and_denom))
-        h_total = TH1D('h_denom', ';;Selection efficiency', len(num_and_denom), 0, len(num_and_denom))
+        h_pass = TH1D('h_num', ';Trigger object;Trigger selection efficiency', len(num_and_denom), 0, len(num_and_denom))
+        h_total = TH1D('h_denom', ';Trigger object;Trigger selection efficiency', len(num_and_denom), 0, len(num_and_denom))
         for i, (n, d) in enumerate(num_and_denom):
+            # if n == 'tau':
+            #     n = 'ditau'
             h_pass.GetXaxis().SetBinLabel(i+1,n)
             h_total.GetXaxis().SetBinLabel(i+1,n)
 
@@ -66,7 +73,7 @@ def CalculateSelectionEfficiencies(self, num_and_denom):
     haxis.SetMaximum(1.2)
     haxis.SetMinimum(0.)
     haxis.Draw('AXIS')
-    legend = tdrLeg(0.45,0.65,0.95,0.9, textSize=0.025)
+    legend = tdrLeg(0.25,0.72,0.75,0.93, textSize=0.025)
     idx_sig = 0
     idx_bkg = 0
     for i, signal in enumerate(graphs):

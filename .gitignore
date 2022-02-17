@@ -9,3 +9,5 @@ PostAnalyzer/obj/*
 PostAnalyzer/lib/*
 .DS_Store
 ._.DS_Store
+Generator/gridpacks/*
+Generator/cards/ChiPsi/LQLQToBTau/*.dat

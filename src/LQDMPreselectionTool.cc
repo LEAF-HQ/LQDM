@@ -106,7 +106,7 @@ LQDMPreselectionTool::LQDMPreselectionTool(const Config & cfg) : BaseTool(cfg){
   jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDCutBasedLoose)); // something very loose to get away most OK muons
   jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDCutBasedLoose)); // something very loose to get away most OK muons
   jec_corrector.reset(new JECCorrector(cfg, year, "AK4PFchs"));
-  jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(1)));
+  jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC_Info.at((string)year).at("JER_Version"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC_Info.at((string)year).at("JER_Version"), "AK4PFchs").at(1)));
 
   lumiblock_selection.reset(new LumiblockSelection(cfg));
   nmuon_selection.reset(new NMuonSelection(cfg, 1, 1));

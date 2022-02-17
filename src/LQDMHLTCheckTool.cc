@@ -208,7 +208,8 @@ LQDMHLTCheckTool::LQDMHLTCheckTool(const Config & cfg) : BaseTool(cfg){
   jet_lepton_cleaner->set_muon_id(MuonID(Muon::IDCutBasedLoose)); // something very loose to get away most OK muons
   jet_lepton_cleaner->set_electron_id(ElectronID(Electron::IDMVANonIsoLoose)); // something very loose to get away most OK muons
   jec_corrector.reset(new JECCorrector(cfg, year, "AK4PFchs"));
-  jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC.at((string)year).at("JER"), "AK4PFchs").at(1)));
+  jer_corrector.reset(new JERCorrector(cfg, JERCFiles("JER", "MC", JERC_Info.at((string)year).at("JER_Version"), "AK4PFchs").at(0), JERCFiles("JER", "MC", JERC_Info.at((string)year).at("JER_Version"), "AK4PFchs").at(1)));
+
 
   lumiblock_selection.reset(new LumiblockSelection(cfg));
 }
@@ -220,7 +221,11 @@ bool LQDMHLTCheckTool::Process(){
   // cout << "++++++++++ NEW EVENT ++++++++++" << endl;
   if(!lumiblock_selection->passes(*event)) return false;
   lumiweight_applicator->process(*event);
+  // cout << "number of pfcands: " << event->pfcands->size() << endl;
+  // cout << "number of triggerobjects: " << event->triggerobjects->size() << endl;
+  return true;
 
+  // cout << "in module: " << event->pfcands << endl;
 
   // order all objecs in pT
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
@@ -424,8 +429,8 @@ void LQDMHLTCheckTool::book_histograms(vector<TString> tags){
     book_HistFolder(mytag, new TauHists(mytag));
     mytag = tag+"_GenParticles";
     book_HistFolder(mytag, new GenParticleHists(mytag));
-    mytag = tag+"_GenInfo";
-    book_HistFolder(mytag, new GenInfoHists(mytag));
+    // mytag = tag+"_GenInfo";
+    // book_HistFolder(mytag, new GenInfoHists(mytag));
   }
 }
 
@@ -442,8 +447,8 @@ void LQDMHLTCheckTool::fill_histograms(TString tag){
   HistFolder<TauHists>(mytag)->fill(*event);
   mytag = tag+"_GenParticles";
   HistFolder<GenParticleHists>(mytag)->fill(*event);
-  mytag = tag+"_GenInfo";
-  HistFolder<GenInfoHists>(mytag)->fill(*event);
+  // mytag = tag+"_GenInfo";
+  // HistFolder<GenInfoHists>(mytag)->fill(*event);
 }
 
 

@@ -11,3 +11,14 @@ PostAnalyzer/lib/*
 ._.DS_Store
 Generator/gridpacks/*
 Generator/cards/ChiPsi/LQLQToBTau/*.dat
+Generator/cards/ChiPsi/LQLQToBTauPsiChi/*.dat
+Generator/cards/ChiPsi/LQLQToPsiChi/*.dat
+Generator/cards/ChiPsi/PsiPsiToLQChi/*.dat
+Generator/cards/ChiPsi/CrossBR/PsiPsi/*
+Generator/cards/ChiPsi/CrossBR/LQLQ/*
+Generator/crosssections/ChiPsi/LQLQ/*
+Generator/crosssections/ChiPsi/LQLQToBTau/*
+Generator/crosssections/ChiPsi/LQLQToBTauPsiChi/*
+Generator/crosssections/ChiPsi/LQLQToPsiChi/*
+Generator/crosssections/ChiPsi/PsiPsi/*
+Generator/crosssections/ChiPsi/plots/*.pdf

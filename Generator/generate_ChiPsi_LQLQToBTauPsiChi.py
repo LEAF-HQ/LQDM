@@ -9,6 +9,7 @@ from operator import itemgetter
 import importlib
 from utils import *
 from functions import *
+from functions_LQDM import *
 from constants import *
 from collections import OrderedDict
 
@@ -61,7 +62,6 @@ for lamb in lambdas:
             dict['MC2']    = (int(round(2*mps - mch)), None) # delta_c2 = 2 * delta_ps => mc2 = 2mps - mch --> As done in paper, but value of mc2 doesn't matter for anomalies or relic abundance. Maybe increase to suppress this channel
             dict['MZP']    = (int(round(prefmlq/math.sqrt(2))), None) # as done in the paper, but doesn't really affect anomalies or relic abundance
             dict['LAMBDA'] = (lamb, 'L')
-            print 'appending: ', prefmlq, mch, mps
             individual_settings.append(dict)
 
 

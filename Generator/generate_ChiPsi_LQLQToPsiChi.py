@@ -26,10 +26,13 @@ import tdrstyle_all as TDR
 from CrossSectionRunner import *
 from GensimRunner import *
 
-processes = ['LQLQToBTau']
+processes = ['LQLQToPsiChi']
 mlqs     = [1000, 1400, 1800, 2200, 2600]
-mchs_exp = [2.0] # to reasonable precision, the LQ->btau decay kinematics do not depend on DM/Psi masses
+mchs_exp = [2.0, 2.66, 3.33, 4.0, 4.33] # to reasonable precision, the LQ->btau decay kinematics do not depend on DM/Psi masses
 lambdas  = [1.0, 'best']
+
+
+
 
 
 general_settings = {
@@ -46,6 +49,8 @@ for lamb in lambdas:
         for exp in mchs_exp:
             mch = find_closest(sorted(preferred_configurations[prefmlq].keys()), 10**exp)
             mps = preferred_configurations[prefmlq][mch][0]
+            if not are_masses_allowed(mlq=prefmlq, mps=mps, mch=mch, particle_produced='LQ', decaychannels=['BTau', 'PsiChi']):
+                continue
 
             dict = OrderedDict()
             # dict keys: what to replace in cards
@@ -149,7 +154,7 @@ submit = True
 
 
 EventGenerator = GensimRunner(processnames=processes, tag=tag, individual_settings=individual_settings, general_settings=general_settings[campaign], workdir_slurm=workdir_slurm, workarea=workarea, basefolder=basefolder, cardfolder=cardfolder, mgfolder=mgfolder, generatorfolder=generatorfolder, gridpackfolder=gridpackfolder, arch_tag=arch_tag, cmssw_tag_gp=cmssw_tag_gp, T2_director=T2_director, T2_path=T2_path, T2_director_root=T2_director_root, T3_director=T3_director, T3_path=T3_path, campaign=campaign, folderstructure=folderstructure, maxindex=maxindex, nevents=nevents, submit=submit)
-# EventGenerator.ProduceCards()
+EventGenerator.ProduceCards()
 EventGenerator.SubmitGridpacks(runtime=(3,00,00))
 # EventGenerator.SubmitGenerationStep(generation_step='GENSIM', ncores=2, runtime=(3,00,00), mode='new')
 # EventGenerator.SubmitGenerationStep(generation_step='GENSIM', ncores=8, runtime=(3,00,00), mode='resubmit')

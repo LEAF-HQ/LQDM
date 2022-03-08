@@ -173,7 +173,7 @@ bool LQDMFullselectionTool::Process(){
   // sort_by_pt<GenParticle>(*event->genparticles_final);
   sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
-  sort_by_pt<Jet>(*event->jets);
+  sort_by_pt<Jet>(*event->jets_ak4chs);
   sort_by_pt<Muon>(*event->muons);
   sort_by_pt<Electron>(*event->electrons);
   sort_by_pt<Tau>(*event->taus);
@@ -181,7 +181,7 @@ bool LQDMFullselectionTool::Process(){
 
 
   double stmet = event->met->pt();
-  for (Jet & jet : *event->jets) stmet += jet.pt();
+  for (Jet & jet : *event->jets_ak4chs) stmet += jet.pt();
   for (Electron & e : *event->electrons) stmet += e.pt();
   for (Muon & mu : *event->muons) stmet += mu.pt();
   for (Tau & tau : *event->taus) stmet += tau.pt();

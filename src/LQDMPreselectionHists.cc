@@ -79,7 +79,7 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
 
   double ht = 0;
   double lt = 0;
-  for (Jet & jet : *event.jets) ht += jet.pt();
+  for (Jet & jet : *event.jets_ak4chs) ht += jet.pt();
   for (Electron & e : *event.electrons) lt += e.pt();
   for (Muon & mu : *event.muons) lt += mu.pt();
   for (Tau & tau : *event.taus) lt += tau.pt();

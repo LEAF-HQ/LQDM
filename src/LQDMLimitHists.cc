@@ -38,7 +38,7 @@ void LQDMLimitHists::fill(const LQDMEvent & event){
   double weight = event.weight;
 
   double stmet = event.met->pt();
-  for (Jet & jet : *event.jets) stmet += jet.pt();
+  for (Jet & jet : *event.jets_ak4chs) stmet += jet.pt();
   for (Electron & e : *event.electrons) stmet += e.pt();
   for (Muon & mu : *event.muons) stmet += mu.pt();
   for (Tau & tau : *event.taus) stmet += tau.pt();

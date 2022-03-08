@@ -192,7 +192,7 @@ bool LQDMTChannelTauNuPreselectionTool::Process(){
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
   sort_by_pt<GenParticle>(*event->genparticles_all);
   sort_by_pt<GenJet>(*event->genjets);
-  sort_by_pt<Jet>(*event->jets);
+  sort_by_pt<Jet>(*event->jets_ak4chs);
   sort_by_pt<Muon>(*event->muons);
   sort_by_pt<Electron>(*event->electrons);
   sort_by_pt<Tau>(*event->taus);

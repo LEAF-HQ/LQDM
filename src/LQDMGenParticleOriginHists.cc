@@ -168,7 +168,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
     gpidx++;
     int id = abs(gp.pdgid());
     if(id != 11 && id != 13 && id != 15 && id != 5 && id != 12 && id != 14 && id != 16) continue;
-    if(!gp.get_statusflag(GenParticle::isLastCopy)) continue;
+    if(!gp.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
 
     if(id == 13){ // muons
       n_genmus++;
@@ -177,10 +177,10 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
       float dr_min = -1.;
       if(closest_mu != nullptr) dr_min = deltaR(gp, *closest_mu);
       int origin = 0.;
-      if(gp.get_statusflag(GenParticle::isDirectHardProcessTauDecayProduct)) origin = 1.;
-      else if(gp.get_statusflag(GenParticle::isDirectHadronDecayProduct)) origin = 2.;
+      if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHardProcessTauDecayProduct)) origin = 1.;
+      else if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHadronDecayProduct)) origin = 2.;
 
-      if(gp.get_statusflag(GenParticle::isDirectHardProcessTauDecayProduct)){
+      if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHardProcessTauDecayProduct)){
         hgenmusfromtautotal->Fill(0., weight);
         hptgenmufromtau->Fill(gp.pt(), weight);
         hptgenmufromtau_rebin->Fill(gp.pt(), weight);
@@ -188,7 +188,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgendimufromtau->Fill(deltaR(gp, gpmu), weight);
           hdphigendimufromtau->Fill(deltaPhi(gp, gpmu), weight);
@@ -197,7 +197,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenmufromtaue->Fill(deltaR(gp, gpe), weight);
           hdphigenmufromtaue->Fill(deltaPhi(gp, gpe), weight);
@@ -219,7 +219,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
           hptgenmufromtaumatched_rebin2->Fill(gp.pt(), weight);
         }
       }
-      else if(gp.get_statusflag(GenParticle::isDirectHadronDecayProduct)){
+      else if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHadronDecayProduct)){
         hgenmusfromhadtotal->Fill(0., weight);
         hptgenmufromhad->Fill(gp.pt(), weight);
         hptgenmufromhad_rebin->Fill(gp.pt(), weight);
@@ -227,7 +227,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgendimufromhad->Fill(deltaR(gp, gpmu), weight);
           hdphigendimufromhad->Fill(deltaPhi(gp, gpmu), weight);
@@ -236,7 +236,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenmufromhade->Fill(deltaR(gp, gpe), weight);
           hdphigenmufromhade->Fill(deltaPhi(gp, gpe), weight);
@@ -273,10 +273,10 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
       float dr_min = -1.;
       if(closest_el != nullptr) dr_min = deltaR(gp, *closest_el);
       int origin = 0.;
-      if(gp.get_statusflag(GenParticle::isDirectHardProcessTauDecayProduct)) origin = 1.;
-      else if(gp.get_statusflag(GenParticle::isDirectHadronDecayProduct)) origin = 2.;
+      if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHardProcessTauDecayProduct)) origin = 1.;
+      else if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHadronDecayProduct)) origin = 2.;
 
-      if(gp.get_statusflag(GenParticle::isDirectHardProcessTauDecayProduct)){
+      if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHardProcessTauDecayProduct)){
         hgenelsfromtautotal->Fill(0., weight);
         hptgenelfromtau->Fill(gp.pt(), weight);
         hptgenelfromtau_rebin->Fill(gp.pt(), weight);
@@ -284,7 +284,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenefromtaumu->Fill(deltaR(gp, gpmu), weight);
           hdphigenefromtaumu->Fill(deltaPhi(gp, gpmu), weight);
@@ -293,7 +293,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgendiefromtau->Fill(deltaR(gp, gpe), weight);
           hdphigendiefromtau->Fill(deltaPhi(gp, gpe), weight);
@@ -314,7 +314,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
           hptgenelfromtaumatched_rebin2->Fill(gp.pt(), weight);
         }
       }
-      else if(gp.get_statusflag(GenParticle::isDirectHadronDecayProduct)){
+      else if(gp.get_statusflag(GenParticle::StatusFlag::isDirectHadronDecayProduct)){
         hgenelsfromhadtotal->Fill(0., weight);
         hptgenelfromhad->Fill(gp.pt(), weight);
         hptgenelfromhad_rebin->Fill(gp.pt(), weight);
@@ -322,7 +322,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgendiefromhad->Fill(deltaR(gp, gpmu), weight);
           hdphigendiefromhad->Fill(deltaPhi(gp, gpmu), weight);
@@ -331,7 +331,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenefromhadmu->Fill(deltaR(gp, gpe), weight);
           hdphigenefromhadmu->Fill(deltaPhi(gp, gpe), weight);
@@ -367,16 +367,16 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
 
 
-      const Jet* closest_jet = closestParticle(gp, *event.jets);
+      const Jet* closest_jet = closestParticle(gp, *event.jets_ak4chs);
       float dr_min = -1.;
       if(closest_jet != nullptr) dr_min = deltaR(gp, *closest_jet);
       int origin = 0.;
-      if(gp.get_statusflag(GenParticle::fromHardProcess)){
+      if(gp.get_statusflag(GenParticle::StatusFlag::fromHardProcess)){
         origin = 1.;
       }
       else origin = 2.;
 
-      if(gp.get_statusflag(GenParticle::fromHardProcess)){
+      if(gp.get_statusflag(GenParticle::StatusFlag::fromHardProcess)){
         hgenbsfromhardtotal->Fill(0., weight);
         hptgenbfromhard->Fill(gp.pt(), weight);
         hptgenbfromhard_rebin->Fill(gp.pt(), weight);
@@ -384,7 +384,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenbfromhardmu->Fill(deltaR(gp, gpmu), weight);
           hdphigenbfromhardmu->Fill(deltaPhi(gp, gpmu), weight);
@@ -393,7 +393,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenbfromharde->Fill(deltaR(gp, gpe), weight);
           hdphigenbfromharde->Fill(deltaPhi(gp, gpe), weight);
@@ -409,7 +409,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=gpidx+1; i<event.genparticles_all->size(); i++){
           GenParticle gpb = event.genparticles_all->at(i);
-          if (abs(gpb.pdgid()) != 5 || !gpb.get_statusflag(GenParticle::isLastCopy) || !gpb.get_statusflag(GenParticle::fromHardProcess)) continue;
+          if (abs(gpb.pdgid()) != 5 || !gpb.get_statusflag(GenParticle::StatusFlag::isLastCopy) || !gpb.get_statusflag(GenParticle::StatusFlag::fromHardProcess)) continue;
           hdrgendibfromhard->Fill(deltaR(gp, gpb), weight);
           hdphigendibfromhard->Fill(deltaPhi(gp, gpb), weight);
           hdetagendibfromhard->Fill(deltaEta(gp, gpb), weight);
@@ -430,7 +430,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpmu = event.genparticles_all->at(i);
-          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpmu.pdgid()) != 13 || !gpmu.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenbnotfromhardmu->Fill(deltaR(gp, gpmu), weight);
           hdphigenbnotfromhardmu->Fill(deltaPhi(gp, gpmu), weight);
@@ -439,7 +439,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=0; i<event.genparticles_all->size(); i++){
           GenParticle gpe = event.genparticles_all->at(i);
-          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::isLastCopy)) continue;
+          if (abs(gpe.pdgid()) != 11 || !gpe.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
           if ((int)i == gpidx) continue;
           hdrgenbnotfromharde->Fill(deltaR(gp, gpe), weight);
           hdphigenbnotfromharde->Fill(deltaPhi(gp, gpe), weight);
@@ -455,7 +455,7 @@ void LQDMGenParticleOriginHists::fill(const LQDMEvent & event){
 
         for(size_t i=gpidx+1; i<event.genparticles_all->size(); i++){
           GenParticle gpb = event.genparticles_all->at(i);
-          if (abs(gpb.pdgid()) != 5 || !gpb.get_statusflag(GenParticle::isLastCopy) || gpb.get_statusflag(GenParticle::fromHardProcess)) continue;
+          if (abs(gpb.pdgid()) != 5 || !gpb.get_statusflag(GenParticle::StatusFlag::isLastCopy) || gpb.get_statusflag(GenParticle::StatusFlag::fromHardProcess)) continue;
           hdrgendibnotfromhard->Fill(deltaR(gp, gpb), weight);
           hdphigendibnotfromhard->Fill(deltaPhi(gp, gpb), weight);
           hdetagendibnotfromhard->Fill(deltaEta(gp, gpb), weight);

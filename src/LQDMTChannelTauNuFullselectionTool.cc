@@ -223,7 +223,7 @@ bool LQDMTChannelTauNuFullselectionTool::Process(){
     //   else{
     //     fill_histograms("tach_cat1jets_0btagloose_initial");
     //
-    //     if(event->jets->at(0).pt() < 30) return false;
+    //     if(event->jets_ak4chs->at(0).pt() < 30) return false;
     //     fill_histograms("tach_cat1jets_0btagloose_1jet30");
     //     fill_histograms("tach_cat1jets_0btagloose_nominal");
     //   }
@@ -238,10 +238,10 @@ bool LQDMTChannelTauNuFullselectionTool::Process(){
     //   else{
     //     fill_histograms("tach_cat2jets_0btagloose_nominal");
     //
-    //     if(event->jets->at(0).pt() < 30) return false;
+    //     if(event->jets_ak4chs->at(0).pt() < 30) return false;
     //     fill_histograms("tach_cat2jets_0btagloose_1jet30");
     //
-    //     if(event->jets->at(1).pt() < 30) return false;
+    //     if(event->jets_ak4chs->at(1).pt() < 30) return false;
     //     fill_histograms("tach_cat2jets_0btagloose_2jet30");
     //
     //     fill_histograms("tach_cat2jets_0btagloose_nominal");
@@ -264,8 +264,8 @@ bool LQDMTChannelTauNuFullselectionTool::Process(){
     if(njet_selection->passes(*event)) return false;
     fill_histograms("much_jetveto5");
 
-    if(event->jets->size() > 0){
-      if(deepb_tight(event->jets->at(0), *event)) return false;
+    if(event->jets_ak4chs->size() > 0){
+      if(deepb_tight(event->jets_ak4chs->at(0), *event)) return false;
     }
     fill_histograms("much_btagveto1");
 

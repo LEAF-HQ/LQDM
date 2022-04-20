@@ -75,7 +75,7 @@ bool LQDMGenlevelTool::Process(){
   // sort_by_pt<GenParticle>(*event->genparticles_hard);
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
   // sort_by_pt<GenParticle>(*event->genparticles_final);
-  sort_by_pt<GenParticle>(*event->genparticles_all);
+  sort_by_pt<GenParticle>(*event->genparticles_pruned);
   sort_by_pt<GenJet>(*event->genjets);
   fill_histograms("input");
 

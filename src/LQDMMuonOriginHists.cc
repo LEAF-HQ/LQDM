@@ -98,7 +98,7 @@ void LQDMMuonOriginHists::fill(const LQDMEvent & event){
     Muon m = event.muons->at(i);
     float gendr_min = 99999.;
     int gen_origin = -1;
-    for(const auto & gp : *event.genparticles_all){
+    for(const auto & gp : *event.genparticles_pruned){
       if(abs(gp.pdgid()) != 13) continue;
       if(!gp.get_statusflag(GenParticle::StatusFlag::isLastCopy)) continue;
       float dr = deltaR(m, gp);

@@ -5,8 +5,8 @@
 <PlotterConfiguration>
 
   <FileConfiguration
-    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/2017/Studies/LQDMHLTCheck/"
-    OutputDirectory = "/work/areimers/LQDM/2017/Studies/LQDMHLTCheck//plots/distributions"
+    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Studies/LQDMHLTCheck/"
+    OutputDirectory = "/work/areimers/LQDM/UL17/Studies/LQDMHLTCheck/plots/distributions"
     PreFix          = "LQLQToPsiChi_"
     SEDirector      = "root://t3dcachedb03.psi.ch/"
   />
@@ -21,12 +21,19 @@
   />
 
   <InputDatasets>
-    <Dataset Name="LQLQToPsiChi_MLQ1360_MPS117_MC1100_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.36 TeV, light #psi)"   Type="MC" />
-    <Dataset Name="LQLQToPsiChi_MLQ1360_MPS513_MC1457_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.36 TeV, heavy #psi)"   Type="MC" />
-    <Dataset Name="LQLQToPsiChi_MLQ1810_MPS117_MC1100_L1p0"   Stack="false"  Color="858"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.81 TeV, light #psi)"   Type="MC" />
-    <Dataset Name="LQLQToPsiChi_MLQ1810_MPS508_MC1457_L1p0"   Stack="false"  Color="800"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.81 TeV, heavy #psi)"   Type="MC" />
-    <Dataset Name="LQLQToPsiChi_MLQ2620_MPS117_MC1100_L1p0"   Stack="false"  Color="414"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=2.62 TeV, light #psi)"   Type="MC" />
-    <Dataset Name="LQLQToPsiChi_MLQ2620_MPS506_MC1457_L1p0"   Stack="false"  Color="880"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=2.62 TeV, heavy #psi)"   Type="MC" />
+    <Dataset Name="VV"       Stack="true"   Color="880"  Linestyle="0"   Legend="VV"                      Type="MC" />
+    <Dataset Name="ST"       Stack="true"   Color="858"  Linestyle="0"   Legend="Single t"                Type="MC" />
+    <Dataset Name="TT"       Stack="true"   Color="810"  Linestyle="0"   Legend="t#bar{t}"                Type="MC" />
+    <Dataset Name="DYJets"   Stack="true"   Color="798"  Linestyle="0"   Legend="DY #rightarrow ll"       Type="MC" />
+    <Dataset Name="WJets"    Stack="true"   Color="814"  Linestyle="0"   Legend="W+jets #rightarrow l#nu" Type="MC" />
+    <Dataset Name="QCDHad"   Stack="true"   Color="429"  Linestyle="0"   Legend="QCD"                     Type="MC" />
+
+    <Dataset Name="LQLQToPsiChi_MLQ1360_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.36 TeV, light #psi)"   Type="MC" />
+    <Dataset Name="LQLQToPsiChi_MLQ1360_MCH457_MPS513_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.36 TeV, heavy #psi)"   Type="MC" />
+    <Dataset Name="LQLQToPsiChi_MLQ1810_MCH100_MPS117_L1p0"   Stack="false"  Color="858"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.81 TeV, light #psi)"   Type="MC" />
+    <Dataset Name="LQLQToPsiChi_MLQ1810_MCH457_MPS508_L1p0"   Stack="false"  Color="800"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=1.81 TeV, heavy #psi)"   Type="MC" />
+    <Dataset Name="LQLQToPsiChi_MLQ2620_MCH100_MPS117_L1p0"   Stack="false"  Color="414"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=2.62 TeV, light #psi)"   Type="MC" />
+    <Dataset Name="LQLQToPsiChi_MLQ2620_MCH457_MPS506_L1p0"   Stack="false"  Color="880"    Linestyle="1"   Legend="LQ LQ #rightarrow #psi#chi #psi#chi (M_{LQ}=2.62 TeV, heavy #psi)"   Type="MC" />
 
     <!-- <Dataset Name="VV"        Stack="true"   Color="880"  Linestyle="0"   Legend="VV"              Type="MC" />
     <Dataset Name="ST"        Stack="true"   Color="858"  Linestyle="0"   Legend="Single t"              Type="MC" />

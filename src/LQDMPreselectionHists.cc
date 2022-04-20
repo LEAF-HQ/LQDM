@@ -28,6 +28,10 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
   hlt_rebin  = book<TH1D>("lt_rebin", ";L_{T} [GeV]; Events / bin", 50, 0, 1000);
   hstmet  = book<TH1D>("stmet", ";S_{T}^{MET} [GeV]; Events / bin", 90, 0, 3000);
   hstmet_rebin  = book<TH1D>("stmet_rebin", ";S_{T}^{MET} [GeV]; Events / bin", 50, 0, 1500);
+  hrt = book<TH1D>("rt", ";R_{T}; Events / bin", 24, 0, 1.2);
+  hrt_rebin = book<TH1D>("rt_rebin", ";R_{T}; Events / bin", 12, 0, 1.2);
+  hrt_rebin2 = book<TH1D>("rt_rebin2", ";R_{T}; Events / bin", 48, 0, 1.2);
+  hrt_rebin3 = book<TH1D>("rt_rebin3", ";R_{T}; Events / bin", 96, 0, 1.2);
   hmt_taumet  = book<TH1D>("mt_taumet", ";M_{T}(#tau, MET) [GeV]; Events / bin", 90, 0, 3000);
   hmt_taumet_rebin  = book<TH1D>("mt_taumet_rebin", ";M_{T}(#tau, MET) [GeV]; Events / bin", 50, 0, 1500);
 
@@ -96,6 +100,12 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
 
   hstmet->Fill(stmet, weight);
   hstmet_rebin->Fill(stmet, weight);
+
+  double rt = event.met->pt() / stmet;
+  hrt->Fill(rt, weight);
+  hrt_rebin->Fill(rt, weight);
+  hrt_rebin2->Fill(rt, weight);
+  hrt_rebin3->Fill(rt, weight);
 
   if(event.taus->size() > 0){
     Tau t = event.taus->at(0);

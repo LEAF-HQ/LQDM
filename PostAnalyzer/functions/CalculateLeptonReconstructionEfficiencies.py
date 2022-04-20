@@ -4,10 +4,10 @@ import subprocess
 from utils import *
 from collections import OrderedDict
 import ROOT
-from ROOT import gROOT, TFile, TCanvas, TLatex, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen, kRed, kAzure, TGraphAsymmErrors, kFullCircle, kOpenCircle, kError
+from ROOT import gROOT, TFile, TCanvas, TLatex, TH1D, TTree, TGraph, TGraphAsymmErrors, kBlack, kOrange, kGreen, kRed, kAzure, kViolet, TGraphAsymmErrors, kFullCircle, kOpenCircle, kError
 from tdrstyle_all import *
 
-def CalculateLeptonReconstructionEfficiencies(self):
+def CalculateLeptonReconstructionEfficiencies(self, backgrounds, signals):
     print green('  --> Producing lepton reconstruction efficiencies.')
     gROOT.SetBatch(1)
     ROOT.gErrorIgnoreLevel = kError
@@ -34,7 +34,7 @@ def CalculateLeptonReconstructionEfficiencies(self):
     'SAME':  'WrtAllGen',
     'pteta': 'WrtPtEta'
     }
-    colors = [kRed+4, kRed+1, kAzure-2, kOrange, kGreen-2]
+    colors = [kRed+4, kRed+1, kAzure-2, kOrange, kGreen-2, kViolet]
 
 
     for lep in lep_flavors:
@@ -47,13 +47,20 @@ def CalculateLeptonReconstructionEfficiencies(self):
                     hists_n_total = []
                     hists_n_pass  = []
 
-                    for signal in self.signals:
+                    for signal in signals:
                         infilename = os.path.join(self.inputpath, 'MC__'+signal+'.root')
                         infile = TFile(infilename, 'READ')
 
                         # '_'.join([tag_denominator, histclassname_per_lepton[lep])
-                        histfoldername_num = '_'.join([id, 'GenParticles'])
-                        histfoldername_denom = histfoldername_num if histfolder_denom == 'SAME' else '_'.join([histfolder_denom, 'GenParticles'])
+                        histbasename = 'GenParticleOrigins'
+                        # if lep in ['vistau', 'el']:
+                        #     histbasename = 'GenParticles'
+                        if not 'from' in tag:
+                            histbasename = 'GenParticles'
+                        # else:
+                        #     histbasename = 'GenParticles'
+                        histfoldername_num = '_'.join([id, histbasename])
+                        histfoldername_denom = histfoldername_num if histfolder_denom == 'SAME' else '_'.join([histfolder_denom, histbasename])
 
                         varnum = 'ptgen'+lep+tag+'matched_rebin2'
                         vardenom = 'ptgen'+lep+tag+'_rebin2' if histfolder_denom == 'SAME' else varnum
@@ -78,7 +85,7 @@ def CalculateLeptonReconstructionEfficiencies(self):
                     c = tdrDiCanvas('c', hists_total[0].GetBinLowEdge(1), hists_total[0].GetBinLowEdge(hists_total[0].GetNbinsX()+1), 1E-2, 1E8, 0.3,     1.7, hists_total[0].GetXaxis().GetTitle(), hists_total[0].GetYaxis().GetTitle(), 'efficiency', True, 0, 11)
                     leg = tdrLeg(0.25,0.65,0.85,0.9, textSize=0.025)
 
-                    for idx, signal in enumerate(self.signals):
+                    for idx, signal in enumerate(signals):
                         mlq, mps, mch = get_mlq_mps_mch(signal)
                         c.cd(1).SetLogy()
                         tdrDraw(hists_total[idx], "E", marker=kOpenCircle, mcolor=colors[idx], lcolor=colors[idx], fstyle=0)
@@ -90,7 +97,8 @@ def CalculateLeptonReconstructionEfficiencies(self):
                         tdrDraw(ratios[idx], "P", marker=kFullCircle, mcolor=colors[idx], lcolor=colors[idx], fstyle=0)
 
                     tagstr = '' if tag == '' else '_' + tag
-                    c.SaveAs(os.path.join(self.plotoutput_path, 'ReconstructionEfficiency_%s_%s_%s%s.pdf' % (lep, histfolders_denom[histfolder_denom], id, tagstr)))
+                    c.SaveAs(os.path.join(self.plotoutput_path, '_'.join([self.plotprefix, 'ReconstructionEfficiency_%s_%s_%s%s.pdf' % (lep, histfolders_denom[histfolder_denom], id, tagstr)])))
+                    # print os.path.join(self.plotoutput_path, '_'.join([self.plotprefix, 'ReconstructionEfficiency_%s_%s_%s%s.pdf' % (lep, histfolders_denom[histfolder_denom], id, tagstr)]))
 
 def get_mlq_mps_mch(samplename):
     parts = samplename.split('_')
@@ -99,6 +107,6 @@ def get_mlq_mps_mch(samplename):
             mlq = int(part[3:])
         if 'MPS' in part:
             mps = int(part[3:])
-        if 'MC1' in part:
+        if 'MCH' in part:
             mch = int(part[3:])
     return (mlq, mps, mch)

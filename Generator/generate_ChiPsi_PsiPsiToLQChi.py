@@ -62,6 +62,7 @@ for lamb in lambdas:
             dict['MC2']    = (int(round(2*mps - mch)), None) # delta_c2 = 2 * delta_ps => mc2 = 2mps - mch --> As done in paper, but value of mc2 doesn't matter for anomalies or relic abundance. Maybe increase to suppress this channel
             dict['MZP']    = (int(round(prefmlq/math.sqrt(2))), None) # as done in the paper, but doesn't really affect anomalies or relic abundance
             dict['LAMBDA'] = (lamb, 'L')
+            if not mps < 120: continue
             individual_settings.append(dict)
 
 
@@ -158,14 +159,15 @@ EventGenerator = GensimRunner(processnames=processes, tag=tag, individual_settin
 # EventGenerator.ProduceCards()
 # EventGenerator.SubmitGridpacks(runtime=(3,00,00))
 # EventGenerator.SubmitGenerationStep(generation_step='GENSIM', ncores=2, runtime=(3,00,00), mode='new')
-EventGenerator.SubmitGenerationStep(generation_step='GENSIM', ncores=8, runtime=(3,00,00), mode='resubmit')
+# EventGenerator.SubmitGenerationStep(generation_step='GENSIM', ncores=8, runtime=(3,00,00), mode='resubmit')
 # EventGenerator.SubmitGenerationStep(generation_step='DR', ncores=8, runtime=(10,00,00), mode='new')
-EventGenerator.SubmitGenerationStep(generation_step='DR', ncores=8, runtime=(10,00,00), mode='resubmit')
+# EventGenerator.SubmitGenerationStep(generation_step='DR', ncores=8, runtime=(10,00,00), mode='resubmit')
 # EventGenerator.SubmitGenerationStep(generation_step='HLT', ncores=8, runtime=(10,00,00), mode='new')
-EventGenerator.SubmitGenerationStep(generation_step='HLT', ncores=8, runtime=(10,00,00), mode='resubmit')
-# EventGenerator.RemoveSamples(generation_step='DR')
-EventGenerator.SubmitGenerationStep(generation_step='AOD', ncores=4, runtime=(10,00,00), mode='new')
+# EventGenerator.SubmitGenerationStep(generation_step='HLT', ncores=8, runtime=(10,00,00), mode='resubmit')
+EventGenerator.RemoveSamples(generation_step='DR')
+# EventGenerator.SubmitGenerationStep(generation_step='AOD', ncores=4, runtime=(10,00,00), mode='new')
 # EventGenerator.SubmitGenerationStep(generation_step='AOD', ncores=4, runtime=(10,00,00), mode='resubmit')
+EventGenerator.RemoveSamples(generation_step='HLT')
 # EventGenerator.SubmitGenerationStep(generation_step='MINIAODv2', ncores=2, runtime=(5,00,00), mode='new')
 # EventGenerator.SubmitGenerationStep(generation_step='MINIAODv2', ncores=2, runtime=(5,00,00), mode='resubmit')
 

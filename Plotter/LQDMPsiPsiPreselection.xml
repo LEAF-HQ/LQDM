@@ -5,8 +5,8 @@
 <PlotterConfiguration>
 
   <FileConfiguration
-    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Studies/LQDMHLTCheck/"
-    OutputDirectory = "/work/areimers/LQDM/UL17/Studies/LQDMHLTCheck/plots/distributions"
+    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/PsiPsi/"
+    OutputDirectory = "/work/areimers/LQDM/UL17/Preselection/PsiPsi/plots/distributions"
     PreFix          = "PsiPsiToLQChi_"
     SEDirector      = "root://t3dcachedb03.psi.ch/"
   />

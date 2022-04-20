@@ -223,13 +223,13 @@ bool LQDMHLTCheckTool::Process(){
   lumiweight_applicator->process(*event);
   // cout << "number of pfcands: " << event->pfcands->size() << endl;
   // cout << "number of triggerobjects: " << event->triggerobjects->size() << endl;
-  return true;
+  // return true;
 
   // cout << "in module: " << event->pfcands << endl;
 
   // order all objecs in pT
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_all);
+  sort_by_pt<GenParticle>(*event->genparticles_pruned);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets_ak4chs);
   sort_by_pt<Muon>(*event->muons);
@@ -278,7 +278,7 @@ bool LQDMHLTCheckTool::Process(){
     fill_histograms("electron");
   }
   if(pass_hlt_tau){
-    fill_histograms("ditau");
+    fill_histograms("tau");
   }
   if(pass_hlt_met){
     fill_histograms("MET");

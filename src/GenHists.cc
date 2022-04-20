@@ -120,8 +120,8 @@ void GenHists::fill(const GenEvent & event){
 
   size_t nlq, nchi, npsi, nbhard, ntauhard;
   nlq = nchi = npsi = nbhard = ntauhard = 0;
-  for(size_t i=0; i<event.genparticles_all->size(); i++){
-    GenParticle gp = event.genparticles_all->at(i);
+  for(size_t i=0; i<event.genparticles_pruned->size(); i++){
+    GenParticle gp = event.genparticles_pruned->at(i);
     int id = abs(gp.pdgid());
 
     // hard LQs

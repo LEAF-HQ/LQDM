@@ -190,7 +190,7 @@ bool LQDMTChannelTauNuPreselectionTool::Process(){
 
   // order all objecs in pT
   sort_by_pt<GenParticle>(*event->genparticles_visibletaus);
-  sort_by_pt<GenParticle>(*event->genparticles_all);
+  sort_by_pt<GenParticle>(*event->genparticles_pruned);
   sort_by_pt<GenJet>(*event->genjets);
   sort_by_pt<Jet>(*event->jets_ak4chs);
   sort_by_pt<Muon>(*event->muons);

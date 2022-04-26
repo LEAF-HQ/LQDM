@@ -5,14 +5,14 @@ from utils import *
 from collections import OrderedDict
 from ROOT import TFile, TH1D
 
-def ProduceCombineHistograms(self, signal_scaled_by=1., blind=True):
+def ProduceCombineHistograms(self, selectiontag=None, signal_scaled_by=1., blind=True, use_fake_data=True):
     print green('  --> Producing histograms for combine.')
 
     samples = self.signals + self.backgrounds + ['DATA']
     syst_shifts = [('up', 'Up'), ('down', 'Down')]
 
     ensureDirectory(self.combineinput_path)
-    outfilename = os.path.join(self.combineinput_path, 'combine_histograms.root')
+    outfilename = os.path.join(self.combineinput_path, 'combine_histograms%s.root' % ('' if selectiontag is None else selectiontag))
     outfile = TFile(outfilename, 'RECREATE')
 
     # loop
@@ -45,9 +45,21 @@ def ProduceCombineHistograms(self, signal_scaled_by=1., blind=True):
                         # if not sample == 'WJets' and syst == 'scale_WJets':    force_nominal = True
 
                         if sample == 'DATA': # choose correct PD
-                            if channel == 'much' or channel == 'elmuch': sample += '_SingleMuon'
-                            elif channel == 'elch': sample += '_SingleElectron'
-                            else: sample += '_Tau'
+                            if blind and use_fake_data:
+                                sample = samples[0] if not (samples[0] == 'DATA') else samples[1]
+                                type = 'MC__'
+                                print '!!! Using fake data for Combine, since we are running blind. Can override this by setting \'use_fake_data\' to \'False\''
+                            else:
+                                if channel == 'much' or channel == 'elmuch':
+                                    sample += '_SingleMuon'
+                                elif channel == 'elch':
+                                    sample += '_SingleElectron'
+                                elif channel == 'tach':
+                                    sample += '_Tau'
+                                elif channel == None:
+                                    raise ValueError('Using unspecific channel \'None\', please use different channel name or hard-code a PD name (dangerous)')
+                                else:
+                                    raise ValueError('Which data to use for channel \'%s\'?' % (channel))
 
                         infilename = os.path.join(dir_nom, type+sample+'.root')
                         if not force_nominal:
@@ -55,14 +67,14 @@ def ProduceCombineHistograms(self, signal_scaled_by=1., blind=True):
                             if syst == 'pdf':    infilename = os.path.join(dir_pdf, sample_in+'.root')
                         infile = TFile(infilename, 'READ')
 
-                        histname_in = '_'.join([channel, category, syst, self.limithisttag])
-                        if force_nominal: histname_in = '_'.join([channel, category, 'nominal', self.limithisttag])
+                        histname_in = '_'.join([x for x in [channel, category, syst, self.limithisttag] if x is not None])
+                        if force_nominal: histname_in = '_'.join([x for x in [channel, category, 'nominal', self.limithisttag] if x is not None])
                         if not syst == 'nominal' and not force_nominal: histname_in = '_'.join([histname_in, syst_shift[0]])
                         histname_in += '/' + self.histnames_in_out_per_category[category][0]
                         # think this is not needed, but not 100% sure
                         # if(syst.Contains("scale") && !force_nominal) histname_in = self.channels[channel] + "_" + histfolder_base + "_" + category_tags[category] + "_scale_" + syst_shift[m] +  "/" + histinname_base[category];
 
-                        histname_out = '_'.join([self.histnames_in_out_per_category[category][1], channel, category]) + '__' + sample_out
+                        histname_out = '_'.join([x for x in [self.histnames_in_out_per_category[category][1], channel, category] if x is not None]) + '__' + sample_out
                         if not syst == 'nominal': histname_out += '__' + syst + syst_shift[1]
                         h_in = infile.Get(histname_in)
                         h_in.SetName(histname_out)

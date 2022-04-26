@@ -3,14 +3,14 @@ import sys
 import subprocess
 from utils import *
 
-def CreateDatacards(self):
+def CreateDatacards(self, selectiontag=None):
 
     for signal in self.signals:
         for cat in self.histnames_in_out_per_category:
             for chan in self.channels:
-                create_datacard(self.year, signal=signal, variable=self.histnames_in_out_per_category[cat][1], category=cat, channel=chan, backgrounds=self.backgrounds, systematics=self.systematics, procs_per_syst=self.processes_per_systematic, pdf_per_syst=self.pdf_per_systematic, value_per_syst=self.value_per_systematic, combineinput_path=self.combineinput_path, rootfilename='combine_histograms.root')
+                create_datacard(self.year, signal=signal, variable=self.histnames_in_out_per_category[cat][1], category=cat, channel=chan, backgrounds=self.backgrounds, systematics=self.systematics, procs_per_syst=self.processes_per_systematic, pdf_per_syst=self.pdf_per_systematic, value_per_syst=self.value_per_systematic, combineinput_path=self.combineinput_path, rootfilename='combine_histograms%s.root'%('' if selectiontag is None else selectiontag), selectiontag=selectiontag)
 
-def CombineChannels(self):
+def CombineChannels(self, selectiontag=None):
     combine_dir = os.getenv('COMBINEPATH')
     if not os.path.exists(combine_dir):
         raise RuntimeError('Combine not set-up where expected: %s.' % (combine_dir))
@@ -20,27 +20,27 @@ def CombineChannels(self):
         finalname_base = os.path.join(self.combineinput_path, 'COMB')
         finalname = finalname_base
         for chan in self.channels:
-            finalname = '_'.join([finalname, chan])
+            finalname = '_'.join([x for x in [finalname, chan] if x is not None])
             for cat in self.histnames_in_out_per_category.keys():
-                indatacardname = '_'.join([self.histnames_in_out_per_category[cat][1], chan, cat, signal]) + '.txt'
+                indatacardname = '_'.join([x for x in [self.histnames_in_out_per_category[cat][1], chan, cat, signal] if x is not None]) + '%s.txt' % ('' if selectiontag is None else selectiontag)
                 datacards.append(os.path.join(self.combineinput_path, indatacardname))
                 # print finalname, cat
-                finalname = '_'.join([finalname, cat])
-        finalname = '_'.join([finalname, signal]) + '.txt'
+                finalname = '_'.join([x for x in [finalname, cat] if x is not None])
+        finalname = '_'.join([finalname, signal]) + '%s.txt' % ('' if selectiontag is None else selectiontag)
         command = [combine_dir + '/scripts/combineCards.py']
         command += datacards
+        print command
         f = open(finalname, 'w')
         processes.append(subprocess.Popen(command, stdout=f))
 
     for p in processes:
         p.wait()
 
-def ExecuteCombineCombination(self):
+def ExecuteCombineCombination(self, selectiontag=None):
     cwd = os.getcwd()
     if not os.path.exists(self.combineoutput_path):
         raise RuntimeError('Combine output directory not where expected: %s.' % (self.combineoutput_path + '/output'))
     os.chdir(self.combineoutput_path)
-    print self.combineoutput_path
     combine_dir = os.getenv('COMBINEPATH')
     processes = []
     signalmasses = []
@@ -49,38 +49,28 @@ def ExecuteCombineCombination(self):
         combcard_base = os.path.join(self.combineinput_path, 'COMB')
         combcard = combcard_base
         for chan in self.channels:
-            combcard = '_'.join([combcard, chan])
+            combcard = '_'.join([x for x in [combcard, chan] if x is not None])
             for cat in self.histnames_in_out_per_category.keys():
-                combcard = '_'.join([combcard, cat])
-        combcard = '_'.join([combcard, signal]) + '.txt'
+                combcard = '_'.join([x for x in [combcard, cat] if x is not None])
+        combcard = '_'.join([combcard, signal]) + '%s.txt' % ('' if selectiontag is None else selectiontag)
 
         parts = signal.split('_')
         signaltag = ''
         signalmass = -1
         for part in parts:
-            if not 'MLQ' in part:
+            if not self.signalmass_identifier in part:
                 if signaltag == '': signaltag = part
                 else: signaltag = '_'.join([signaltag, part])
             else:
-                signalmass = part[3:]
+                signalmass = part[len(self.signalmass_identifier):]
                 break
 
-        # signaltag = signal.split('_')[0]
-        # signalmass = signal.split('_')[1][3:]
         signalmasses.append(signalmass)
         sourceprecommands = '. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gcc/7.0.0-omkpbe2/etc/profile.d/init.sh; . /cvmfs/cms.cern.ch/${SCRAM_ARCH}/lcg/root/6.12.07-gnimlf5/bin/thisroot.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gsl/2.2.1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/tbb/2018_U1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/cms/vdt/0.4.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/boost/1.63.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/pcre/8.37-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/eigen/64060da8461a627eb25b5a7bc0616776068db58b/etc/profile.d/init.sh; cd $CMSSW_COMBINE_BASE/src; eval `scramv1 runtime -sh`; cd -;'
-        command = '%s combine -M AsymptoticLimits --run blind -n %s -m %s %s' % (sourceprecommands, signaltag, signalmass, combcard)
+        command = '%s combine -M AsymptoticLimits --run blind -n %s -m %s %s' % (sourceprecommands, '%s' % (signaltag if selectiontag is None else signaltag+selectiontag), signalmass, combcard)
         print command
         commands.append(command)
     execute_commands_parallel(commands=commands)
-
-    # f = open('masspoints_%s.txt' % (signaltag), 'w')
-    # line = ''
-    # for m in signalmasses:
-    #     line += str(m) + ' '
-    # line = line[:-1]
-    # f.write('%i\n%s' % (len(signalmasses), line))
-    # f.close()
 
     for p in processes:
         p.wait()
@@ -186,16 +176,16 @@ def get_lines_datacard_statistics():
 
 
 
-def create_datacard(year, signal, variable, category, channel, backgrounds, systematics, procs_per_syst, pdf_per_syst, value_per_syst, combineinput_path, rootfilename):
+def create_datacard(year, signal, variable, category, channel, backgrounds, systematics, procs_per_syst, pdf_per_syst, value_per_syst, combineinput_path, rootfilename, selectiontag):
 
     if not os.path.exists(combineinput_path):
         raise RuntimeError('Path %s does not exist.' % (combineinput_path))
     if not os.path.exists(os.path.join(combineinput_path, rootfilename)):
         raise RuntimeError('Rootfile %s does not exist.' % (os.path.join(combineinput_path, rootfilename)))
 
-    filename_datacard = '_'.join([variable, channel, category, signal]) + '.txt'
+    filename_datacard = '_'.join([x for x in [variable, channel, category, signal] if x is not None]) + '%s.txt' % ('' if selectiontag is None else selectiontag)
     # print filename_datacard
-    varcat = '_'.join([variable, channel, category])
+    varcat = '_'.join([x for x in [variable, channel, category] if x is not None])
     separator = ['-----------------------------\n']
 
     lines_header = get_lines_datacard_header(variable, category, channel, signal, backgrounds) + separator

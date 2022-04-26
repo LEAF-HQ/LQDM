@@ -4,6 +4,7 @@ from utils import *
 from collections import OrderedDict
 import functions.ProduceCombineHistograms
 import functions.PlotLimits
+import functions.CompareLimits
 import functions.Combine
 # import ROOT
 
@@ -45,6 +46,7 @@ class PostAnalyzer:
         PostAnalyzer.CombineChannels           = functions.Combine.CombineChannels
         PostAnalyzer.ExecuteCombineCombination = functions.Combine.ExecuteCombineCombination
         PostAnalyzer.PlotLimits                = functions.PlotLimits.PlotLimits
+        PostAnalyzer.CompareLimits             = functions.CompareLimits.CompareLimits
 
         # print settings
         print green('--> Set up PostAnalyzer for year %s:' % (str(year)))

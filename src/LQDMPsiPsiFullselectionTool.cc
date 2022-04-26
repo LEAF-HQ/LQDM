@@ -126,7 +126,7 @@ LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : B
   njet2_selection.reset(new NJetSelection(cfg, 2, -1));
 
   // histfolders
-  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjetloose1_nominal", "bjetloose2_nominal", "bjetmedium1_nominal", "bjetmedium2_nominal", "bjettight1_nominal", "bjettight2_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
+  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjetloose1_nominal", "bjetloose2_nominal", "bjetloose2medium1_nominal", "bjetmedium1_nominal", "bjetmedium2_nominal", "bjetmedium2tight1_nominal", "bjettight1_nominal", "bjettight2_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
   book_histograms(histtags);
 }
 
@@ -177,12 +177,20 @@ bool LQDMPsiPsiFullselectionTool::Process(){
 
   if(nbjetloose2_selection->passes(*event)){
     fill_histograms("bjetloose2_nominal");
+
+    if(nbjetmedium1_selection->passes(*event)){
+      fill_histograms("bjetloose2medium1_nominal");
+    }
   }
   if(nbjetmedium1_selection->passes(*event)){
     fill_histograms("bjetmedium1_nominal");
   }
   if(nbjetmedium2_selection->passes(*event)){
     fill_histograms("bjetmedium2_nominal");
+
+    if(nbjettight1_selection->passes(*event)){
+      fill_histograms("bjetmedium2tight1_nominal");
+    }
   }
   if(nbjettight1_selection->passes(*event)){
     fill_histograms("bjettight1_nominal");

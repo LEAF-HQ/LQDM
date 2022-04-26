@@ -108,13 +108,13 @@ CrossBRRunner = CrossSectionRunner(processnames=processes_xsec, tag=tag, individ
 # CrossBRRunner.RunMG(only_resubmit=True, ncores=1, runtime=(01,00,00), maxjobs_per_proc=50)
 
 # CrossBRRunner.ReadoutCrossBR(ignore_br=True)
-# CrossBRRunner.RootifyCrosssections(variables=['MLQ'], graphs_per=['L', 'MCH'], forcepoints2d=None)
+CrossBRRunner.RootifyCrosssections(variables=['MLQ'], graphs_per=['L', 'MCH'], forcepoints2d=None)
 # CrossBRRunner.RootifyCrosssections(variables=['MLQ', 'MCH'], graphs_per=['L'], forcepoints2d=get_all_combinations(preferred_configurations=preferred_configurations))
-CrossBRRunner.RootifyCrosssections(variables=['MLQ', 'MPS'], graphs_per=['L'], forcepoints2d=get_all_combinations(preferred_configurations=preferred_configurations))
+# CrossBRRunner.RootifyCrosssections(variables=['MLQ', 'MPS'], graphs_per=['L'], forcepoints2d=get_all_combinations(preferred_configurations=preferred_configurations))
 
-CrossBRRunner.PlotCrosssections(variables=['MLQ'], overlay=None, overlay_values=None)
-CrossBRRunner.PlotCrosssections(variables=['MLQ', 'MCH'], overlay=None, overlay_values=None)
-CrossBRRunner.PlotCrosssections(variables=['MLQ', 'MPS'], overlay=None, overlay_values=None)
+# CrossBRRunner.PlotCrosssections(variables=['MLQ'], overlay=None, overlay_values=None)
+# CrossBRRunner.PlotCrosssections(variables=['MLQ', 'MCH'], overlay=None, overlay_values=None)
+# CrossBRRunner.PlotCrosssections(variables=['MLQ', 'MPS'], overlay=None, overlay_values=None)
 
 
 #

@@ -63,6 +63,12 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
   hptratio_mu1_met = book<TH1D>("ptratio_mu1_met", ";p_{T}^{#mu 1} / p_{T}^{miss}; Events / bin", 60, 0, 6);
   hdphi_e1_met = book<TH1D>("dphi_e1_met", ";|#Delta#Phi(e 1, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
   hptratio_e1_met = book<TH1D>("ptratio_e1_met", ";p_{T}^{e 1} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+  hdphi_j1_met = book<TH1D>("dphi_j1_met", ";|#Delta#Phi(jet 1, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_j1_met = book<TH1D>("ptratio_j1_met", ";p_{T}^{jet 1} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+  hdphi_j2_met = book<TH1D>("dphi_j2_met", ";|#Delta#Phi(jet 2, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_j2_met = book<TH1D>("ptratio_j2_met", ";p_{T}^{jet 2} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+  hdphi_j3_met = book<TH1D>("dphi_j3_met", ";|#Delta#Phi(jet 3, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_j3_met = book<TH1D>("ptratio_j3_met", ";p_{T}^{jet 3} / p_{T}^{miss}; Events / bin", 60, 0, 6);
 
   hreco_wmass = book<TH1D>("hreco_wmass", ";reco. W mass [GeV]; Events / bin", 100, 0, 1000);
   hreco_wpt = book<TH1D>("hreco_wpt", ";reco. W p_{T} [GeV]; Events / bin", 40, 0, 400);
@@ -165,6 +171,23 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
 
     hdphi_e1_met->Fill(deltaPhi(e, *event.met), weight);
     hptratio_e1_met->Fill(e.pt() / event.met->pt(), weight);
+  }
+  if(event.jets_ak4chs->size() > 0){
+    Jet j = event.jets_ak4chs->at(0);
+    hdphi_j1_met->Fill(deltaPhi(j, *event.met), weight);
+    hptratio_j1_met->Fill(j.pt() / event.met->pt(), weight);
+  }
+
+  if(event.jets_ak4chs->size() > 1){
+    Jet j = event.jets_ak4chs->at(1);
+    hdphi_j2_met->Fill(deltaPhi(j, *event.met), weight);
+    hptratio_j2_met->Fill(j.pt() / event.met->pt(), weight);
+  }
+
+  if(event.jets_ak4chs->size() > 2){
+    Jet j = event.jets_ak4chs->at(2);
+    hdphi_j3_met->Fill(deltaPhi(j, *event.met), weight);
+    hptratio_j3_met->Fill(j.pt() / event.met->pt(), weight);
   }
 
   for (Electron & e : *event.electrons){

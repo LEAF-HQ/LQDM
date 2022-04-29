@@ -4,7 +4,7 @@
 
 <!ENTITY TargetLumi  "41480" >
 <!ENTITY PreselPath  "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/PsiPsi">
-<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_03Jets2BTagLoose1LeptonCategories" >
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met" >
 
 
 <!ENTITY LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0 "&PreselPath;/MC__LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0.root" >

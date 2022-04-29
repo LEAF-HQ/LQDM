@@ -72,6 +72,7 @@ private:
   unique_ptr<NElectronSelection> electronveto_selection;
   unique_ptr<NMuonSelection>     nmuon_selection;
   unique_ptr<NMuonSelection>     muonveto_selection;
+  unique_ptr<NTauSelection>      ntau_selection;
   unique_ptr<NJetSelection>      njet1_selection, njet2_selection;
   unique_ptr<NJetSelection>      nbjetloose1_selection, nbjetloose2_selection, nbjetmedium1_selection, nbjetmedium2_selection, nbjettight1_selection, nbjettight2_selection;
 
@@ -114,7 +115,7 @@ LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : B
   cleaner_electron_id.reset(new    ElectronCleaner(electron_id_mvanoniso90));
 
   MultiID<Tau> tau_id_pteta = {PtEtaId(20, 2.3)};
-  MultiID<Tau> tau_id_loosest = {TauID(Tau::DeepTauVsJetVVVLoose), TauID(Tau::DeepTauVsEleVVVLoose), TauID(Tau::DeepTauVsMuVLoose)};
+  MultiID<Tau> tau_id_loosest = {TauID(Tau::DeepTauVsJetVVVLoose), TauID(Tau::DeepTauVsEleMedium), TauID(Tau::DeepTauVsMuTight)};
   cleaner_tau_pteta.reset(new TauCleaner(tau_id_pteta));
   cleaner_tau_id.reset(new    TauCleaner(tau_id_loosest));
 
@@ -122,11 +123,13 @@ LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : B
   muonveto_selection.reset(new NMuonSelection(cfg, 0, 0));
   nelectron_selection.reset(new NElectronSelection(cfg, 1, -1));
   electronveto_selection.reset(new NElectronSelection(cfg, 0, 0));
+  ntau_selection.reset(new NTauSelection(cfg, 1, -1));
   njet1_selection.reset(new NJetSelection(cfg, 1, -1));
   njet2_selection.reset(new NJetSelection(cfg, 2, -1));
 
   // histfolders
-  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjetloose1_nominal", "bjetloose2_nominal", "bjetloose2medium1_nominal", "bjetmedium1_nominal", "bjetmedium2_nominal", "bjetmedium2tight1_nominal", "bjettight1_nominal", "bjettight2_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
+  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjettight1_nominal", "dphi_j1_met_nominal", "ptratio_j2_met_nominal", "tach_nominal", "tach_addmu_nominal",
+  "tach_addel_nominal", "tach_nolep_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
   book_histograms(histtags);
 }
 
@@ -159,50 +162,38 @@ bool LQDMPsiPsiFullselectionTool::Process(){
   cleaner_jettauoverlap->process(*event);
   fill_histograms("jettaucleaner");
 
-
-  double stmet = event->met->pt();
-  for (Jet & jet : *event->jets_ak4chs) stmet += jet.pt();
-  for (Electron & e : *event->electrons) stmet += e.pt();
-  for (Muon & mu : *event->muons) stmet += mu.pt();
-  for (Tau & tau : *event->taus) stmet += tau.pt();
-
   if(!njet1_selection->passes(*event)) return false;
   fill_histograms("jets1_nominal");
 
   if(!njet2_selection->passes(*event)) return false;
   fill_histograms("jets2_nominal");
 
-  if(!nbjetloose1_selection->passes(*event)) return false;
-  fill_histograms("bjetloose1_nominal");
+  if(!nbjettight1_selection->passes(*event)) return false;
+  fill_histograms("bjettight1_nominal");
 
-  if(nbjetloose2_selection->passes(*event)){
-    fill_histograms("bjetloose2_nominal");
+  if(deltaPhi(event->jets_ak4chs->at(0), *event->met) < M_PI/2.) return false;
+  fill_histograms("dphi_j1_met_nominal");
 
-    if(nbjetmedium1_selection->passes(*event)){
-      fill_histograms("bjetloose2medium1_nominal");
+  if((event->jets_ak4chs->at(1).pt() / event->met->pt()) > 1.) return false;
+  fill_histograms("ptratio_j2_met_nominal");
+
+  if(ntau_selection->passes(*event)){
+    fill_histograms("tach_nominal");
+
+    if(nmuon_selection->passes(*event)){
+      fill_histograms("tach_addmu_nominal");
+    }
+    else if(nelectron_selection->passes(*event)){
+      fill_histograms("tach_addel_nominal");
+    }
+    else{
+      fill_histograms("tach_nolep_nominal");
     }
   }
-  if(nbjetmedium1_selection->passes(*event)){
-    fill_histograms("bjetmedium1_nominal");
-  }
-  if(nbjetmedium2_selection->passes(*event)){
-    fill_histograms("bjetmedium2_nominal");
-
-    if(nbjettight1_selection->passes(*event)){
-      fill_histograms("bjetmedium2tight1_nominal");
-    }
-  }
-  if(nbjettight1_selection->passes(*event)){
-    fill_histograms("bjettight1_nominal");
-  }
-  if(nbjettight2_selection->passes(*event)){
-    fill_histograms("bjettight2_nominal");
-  }
-
-  if(nmuon_selection->passes(*event) && !nelectron_selection->passes(*event)){
+  else if(nmuon_selection->passes(*event)){
     fill_histograms("much_nominal");
   }
-  else if(nelectron_selection->passes(*event) && !nmuon_selection->passes(*event)){
+  else if(nelectron_selection->passes(*event)){
     fill_histograms("elch_nominal");
   }
   else{

@@ -5,8 +5,8 @@
 <PlotterConfiguration>
 
   <FileConfiguration
-    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_03Jets2BTagLoose1LeptonCategories/"
-    OutputDirectory = "/work/areimers/LQDM/UL17/Fullselection/PsiPsi_03Jets2BTagLoose1LeptonCategories/plots/distributions"
+    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met/"
+    OutputDirectory = "/work/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met/plots/distributions"
     PreFix          = "PsiPsiToLQChi_"
     SEDirector      = "root://t3dcachedb03.psi.ch/"
   />

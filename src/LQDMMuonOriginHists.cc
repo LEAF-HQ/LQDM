@@ -48,7 +48,7 @@ LQDMMuonOriginHists::LQDMMuonOriginHists(TString dir_) : BaseHists(dir_){
   hmuonfromhadphi = book<TH1D>("muonfromhadphi", ";#phi^{#mu from had.};Events / bin", 70, -3.5, 3.5);
   hmuonfromhadmass = book<TH1D>("muonfromhadmass", ";m^{#mu from had.} [GeV];Events / bin", 50, 0, 1500);
   hmuonfromhadenergy = book<TH1D>("muonfromhadenergy", ";E^{#mu from had.} [GeV];Events / bin", 50, 0, 1500);
-  hmuonfromhadpfiso = book<TH1D>("muonfromhadpfiso", ";Iso_{PF}^{#mu not from #tau};Events / bin", 100, 0, 1);
+  hmuonfromhadpfiso = book<TH1D>("muonfromhadpfiso", ";Iso_{PF}^{#mu from had.};Events / bin", 100, 0, 1);
   hmuonfromhaddxy = book<TH1D>("muonfromhaddxy", ";#mu from had. d_{xy} wrt. PV [cm];Events / bin", 250, 0, 0.5);
   hmuonfromhaddz = book<TH1D>("muonfromhaddz", ";#mu from had. d_{z} wrt. PV [cm];Events / bin", 250, 0, 0.5);
   hmuonfromhadd = book<TH1D>("muonfromhadd", ";#mu from had. d wrt. PV [cm];Events / bin", 250, 0, 0.5);

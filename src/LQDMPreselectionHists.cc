@@ -22,16 +22,41 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
 
   hmetpt = book<TH1D>("metpt", ";p_{T}^{miss} [GeV]; Events / bin", 60, 0, 2000);
   hmetphi = book<TH1D>("metphi", ";#phi(p_{T}^{miss}); Events / bin", 70, -3.5, 3.5);
+
   hht  = book<TH1D>("ht", ";H_{T} [GeV]; Events / bin", 90, 0, 3000);
   hht_rebin  = book<TH1D>("ht_rebin", ";H_{T} [GeV]; Events / bin", 50, 0, 1000);
+  hhtvecpt  = book<TH1D>("htvecpt", ";vectorial H_{T} [GeV]; Events / bin", 90, 0, 3000);
+  hhtvecpt_rebin  = book<TH1D>("htvecpt_rebin", ";vectorial H_{T} [GeV]; Events / bin", 50, 0, 1000);
+  hhtvecphi = book<TH1D>("htvecphi", ";vectorial #phi(H); Events / bin", 70, -3.5, 3.5);
+  hhtveceta = book<TH1D>("htveceta", ";vectorial #eta(H); Events / bin", 100, -5., 5.);
+  hdphi_htvec_met = book<TH1D>("dphi_htvec_met", ";|#Delta#Phi(vectorial H, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_htvec_met = book<TH1D>("ptratio_htvec_met", ";vectorial H_{T} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+
   hlt  = book<TH1D>("lt", ";L_{T} [GeV]; Events / bin", 90, 0, 3000);
   hlt_rebin  = book<TH1D>("lt_rebin", ";L_{T} [GeV]; Events / bin", 50, 0, 1000);
+  hltvecpt  = book<TH1D>("ltvecpt", ";vectorial L_{T} [GeV]; Events / bin", 90, 0, 3000);
+  hltvecpt_rebin  = book<TH1D>("ltvecpt_rebin", ";vectorial L_{T} [GeV]; Events / bin", 50, 0, 1000);
+  hltvecphi = book<TH1D>("ltvecphi", ";vectorial #phi(L); Events / bin", 70, -3.5, 3.5);
+  hltveceta = book<TH1D>("ltveceta", ";vectorial #eta(L); Events / bin", 100, -5., 5.);
+  hdphi_ltvec_met = book<TH1D>("dphi_ltvec_met", ";|#Delta#Phi(vectorial L, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_ltvec_met = book<TH1D>("ptratio_ltvec_met", ";vectorial L_{T} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+
   hstmet  = book<TH1D>("stmet", ";S_{T}^{MET} [GeV]; Events / bin", 90, 0, 3000);
   hstmet_rebin  = book<TH1D>("stmet_rebin", ";S_{T}^{MET} [GeV]; Events / bin", 50, 0, 1500);
+  hstvecpt  = book<TH1D>("stvecpt", ";vectorial S_{T} [GeV]; Events / bin", 90, 0, 3000);
+  hstvecpt_rebin  = book<TH1D>("stvecpt_rebin", ";vectorial S_{T} [GeV]; Events / bin", 50, 0, 1000);
+  hstvecphi = book<TH1D>("stvecphi", ";vectorial #phi(S); Events / bin", 70, -3.5, 3.5);
+  hstveceta = book<TH1D>("stveceta", ";vectorial #eta(S); Events / bin", 100, -5., 5.);
+  hdphi_stvec_met = book<TH1D>("dphi_stvec_met", ";|#Delta#Phi(vectorial S, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
+  hptratio_stvec_met = book<TH1D>("ptratio_stvec_met", ";vectorial S_{T} / p_{T}^{miss}; Events / bin", 60, 0, 6);
+
   hrt = book<TH1D>("rt", ";R_{T}; Events / bin", 24, 0, 1.2);
   hrt_rebin = book<TH1D>("rt_rebin", ";R_{T}; Events / bin", 12, 0, 1.2);
   hrt_rebin2 = book<TH1D>("rt_rebin2", ";R_{T}; Events / bin", 48, 0, 1.2);
   hrt_rebin3 = book<TH1D>("rt_rebin3", ";R_{T}; Events / bin", 96, 0, 1.2);
+
+
+
   hmt_taumet  = book<TH1D>("mt_taumet", ";M_{T}(#tau, MET) [GeV]; Events / bin", 90, 0, 3000);
   hmt_taumet_rebin  = book<TH1D>("mt_taumet_rebin", ";M_{T}(#tau, MET) [GeV]; Events / bin", 50, 0, 1500);
 
@@ -70,6 +95,10 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
   hdphi_j3_met = book<TH1D>("dphi_j3_met", ";|#Delta#Phi(jet 3, p_{T}^{miss})|; Events / bin", 35, 0, 3.5);
   hptratio_j3_met = book<TH1D>("ptratio_j3_met", ";p_{T}^{jet 3} / p_{T}^{miss}; Events / bin", 60, 0, 6);
 
+  hptratio_j2_j1 = book<TH1D>("ptratio_j2_j1", ";p_{T}^{jet 2} / p_{T}^{jet 1}; Events / bin", 100, 0, 1);
+  hptratio_j3_j1 = book<TH1D>("ptratio_j3_j1", ";p_{T}^{jet 3} / p_{T}^{jet 1}; Events / bin", 100, 0, 1);
+  hptratio_j3_j2 = book<TH1D>("ptratio_j3_j2", ";p_{T}^{jet 3} / p_{T}^{jet 2}; Events / bin", 100, 0, 1);
+
   hreco_wmass = book<TH1D>("hreco_wmass", ";reco. W mass [GeV]; Events / bin", 100, 0, 1000);
   hreco_wpt = book<TH1D>("hreco_wpt", ";reco. W p_{T} [GeV]; Events / bin", 40, 0, 400);
 
@@ -88,11 +117,26 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
   double weight = event.weight;
 
   double ht = 0;
+  TLorentzVector htvec(0.,0.,0.,0.);
   double lt = 0;
-  for (Jet & jet : *event.jets_ak4chs) ht += jet.pt();
-  for (Electron & e : *event.electrons) lt += e.pt();
-  for (Muon & mu : *event.muons) lt += mu.pt();
-  for (Tau & tau : *event.taus) lt += tau.pt();
+  TLorentzVector ltvec(0.,0.,0.,0.);
+  for (Jet & jet : *event.jets_ak4chs){
+    ht += jet.pt();
+    htvec += jet.p4();
+  }
+  for (Electron & e : *event.electrons){
+    lt += e.pt();
+    ltvec += e.p4();
+  }
+  for (Muon & mu : *event.muons){
+    lt += mu.pt();
+    ltvec += mu.p4();
+  }
+  for (Tau & tau : *event.taus){
+    lt += tau.pt();
+    ltvec += tau.p4();
+  }
+  TLorentzVector stvec = htvec + ltvec;
   double stmet = event.met->pt() + ht + lt;
 
   hmetpt->Fill(event.met->pt(), weight);
@@ -100,12 +144,36 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
 
   hht->Fill(ht, weight);
   hht_rebin->Fill(ht, weight);
+  hhtvecpt->Fill(htvec.Pt(), weight);
+  hhtvecpt_rebin->Fill(htvec.Pt(), weight);
+  hhtvecphi->Fill(htvec.Phi(), weight);
+  hhtveceta->Fill(htvec.Eta(), weight);
+  Particle dummyparticle;
+  dummyparticle.set_p4(htvec.Pt(), htvec.Eta(), htvec.Phi(), htvec.M());
+  hdphi_htvec_met->Fill(deltaPhi(dummyparticle, *event.met), weight);
+  hptratio_htvec_met->Fill(htvec.Pt() / event.met->pt(), weight);
 
   hlt->Fill(lt, weight);
   hlt_rebin->Fill(lt, weight);
+  hltvecpt->Fill(ltvec.Pt(), weight);
+  hltvecpt_rebin->Fill(ltvec.Pt(), weight);
+  hltvecphi->Fill(ltvec.Phi(), weight);
+  hltveceta->Fill(ltvec.Eta(), weight);
+  dummyparticle.set_p4(ltvec.Pt(), ltvec.Eta(), ltvec.Phi(), ltvec.M());
+  hdphi_ltvec_met->Fill(deltaPhi(dummyparticle, *event.met), weight);
+  hptratio_ltvec_met->Fill(ltvec.Pt() / event.met->pt(), weight);
 
   hstmet->Fill(stmet, weight);
   hstmet_rebin->Fill(stmet, weight);
+  hstvecpt->Fill(stvec.Pt(), weight);
+  hstvecpt_rebin->Fill(stvec.Pt(), weight);
+  hstvecphi->Fill(stvec.Phi(), weight);
+  hstveceta->Fill(stvec.Eta(), weight);
+  dummyparticle.set_p4(stvec.Pt(), stvec.Eta(), stvec.Phi(), stvec.M());
+  hdphi_stvec_met->Fill(deltaPhi(dummyparticle, *event.met), weight);
+  hptratio_stvec_met->Fill(stvec.Pt() / event.met->pt(), weight);
+
+
 
   double rt = event.met->pt() / stmet;
   hrt->Fill(rt, weight);
@@ -182,12 +250,15 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
     Jet j = event.jets_ak4chs->at(1);
     hdphi_j2_met->Fill(deltaPhi(j, *event.met), weight);
     hptratio_j2_met->Fill(j.pt() / event.met->pt(), weight);
+    hptratio_j2_j1->Fill(event.jets_ak4chs->at(1).pt() / event.jets_ak4chs->at(0).pt(), weight);
   }
 
   if(event.jets_ak4chs->size() > 2){
     Jet j = event.jets_ak4chs->at(2);
     hdphi_j3_met->Fill(deltaPhi(j, *event.met), weight);
     hptratio_j3_met->Fill(j.pt() / event.met->pt(), weight);
+    hptratio_j3_j1->Fill(event.jets_ak4chs->at(2).pt() / event.jets_ak4chs->at(0).pt(), weight);
+    hptratio_j3_j2->Fill(event.jets_ak4chs->at(2).pt() / event.jets_ak4chs->at(1).pt(), weight);
   }
 
   for (Electron & e : *event.electrons){

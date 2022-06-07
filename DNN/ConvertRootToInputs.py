@@ -1,11 +1,11 @@
 from DNNTools.ConvertRootToInputsBase import *
 
 class ConvertRootToInputs(ConvertRootToInputsBase):
-    def __init__(self, inputdir, outdir, samples):
+    def __init__(self, inputdir, outdir, samples, run_on='1'):
         chunksize = 200000
         treename = 'AnalysisTree'
         namebranch_weight = ('Events.GenEvent.Event.weight','event_weight')
-        ConvertRootToInputsBase.__init__(self, inputdir, outdir, chunksize, treename, namebranch_weight)
+        ConvertRootToInputsBase.__init__(self, inputdir, outdir, chunksize, treename, namebranch_weight, run_on=run_on)
         self.LoadDependancies('libLEAFLQDM.so')
         self.samples = samples
 

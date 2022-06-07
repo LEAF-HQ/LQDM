@@ -4,7 +4,7 @@ from utils import ensureDirectory
 from DNNTools.DNNRunnerBase import *
 from ConvertRootToInputs import ConvertRootToInputs
 from PreprocessInputs import PreprocessInputs
-from Plotter import Plotter
+from Plotter import Plotter, PlotterPredictions
 from Training import Training
 from DNNTools.functions_dnn import parameters_to_tag
 # import PlotInputs
@@ -26,6 +26,7 @@ class DNNRunner(DNNRunnerBase):
         self.CreateInputProcessor()
         self.CreatePlotter()
         self.CreateTraining()
+        self.CreatePlotterPredictions()
         # self.LoadInputs()
         # self.PreprocessInputs  = PreprocessInputs
         # PreprocessInputsOld(self, None)
@@ -43,7 +44,7 @@ class DNNRunner(DNNRunnerBase):
         self.DefinePathsBase(filepath_root=filepath_root, filepath_raw=filepath_raw, filepath_preproc=filepath_preproc, filepath_result=filepath_result, filepath_plots=filepath_plots, filepath_predictions=filepath_predictions)
 
     def CreateConverter(self):
-        self.ConvertRootToInputs = ConvertRootToInputs(self.filepath['filepath_root'], self.filepath['filepath_raw'], samples=self.samples)
+        self.ConvertRootToInputs = ConvertRootToInputs(self.filepath['filepath_root'], self.filepath['filepath_raw'], samples=self.samples, run_on='8')
 
     def CreateInputProcessor(self):
         self.PreprocessInputs = PreprocessInputs(self.filepath['filepath_raw'], self.filepath['filepath_preproc'], samples=self.samples, classes=self.dnnparameters['classes'], runonfraction=self.dnnparameters['runonfraction'])
@@ -51,7 +52,10 @@ class DNNRunner(DNNRunnerBase):
     def CreatePlotter(self):
         self.Plotter = Plotter(self.filepath['filepath_preproc'], os.path.join(self.filepath['filepath_plots'], 'DNNInputDistributions'), classes=self.dnnparameters['classes'])
 
+    def CreatePlotterPredictions(self):
+        classtag = parameters_to_tag(self.dnnparameters)
+        self.PlotterPredictions = PlotterPredictions(labeldir=self.filepath['filepath_preproc'], predictiondir=os.path.join(self.filepath['filepath_predictions'], classtag), outdir=os.path.join(self.filepath['filepath_plots'], 'DNNPerformancePlots', classtag), classes=self.dnnparameters['classes'])
+
     def CreateTraining(self):
         classtag = parameters_to_tag(self.dnnparameters)
-        print classtag
         self.Training = Training(DNNparams=self.dnnparameters, inputdir=self.filepath['filepath_preproc'], outputdir=os.path.join(self.filepath['filepath_result'], 'DNNModels', classtag), plotdir=os.path.join(self.filepath['filepath_plots'], 'DNNPerformancePlots', classtag), predictiondir=os.path.join(self.filepath['filepath_predictions'], classtag))

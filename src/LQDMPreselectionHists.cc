@@ -13,6 +13,11 @@
 #include <TLatex.h>
 #include <TTreeReader.h>
 #include <TTreeReaderValue.h>
+#include <TMatrixDSym.h>
+#include <TMatrixDSymEigen.h>
+#include <TVectorD.h>
+#include <Math/Vector2D.h>
+#include <Math/Vector3D.h>
 #include <iostream>
 #include <sys/stat.h>
 
@@ -99,6 +104,59 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
   hptratio_j3_j1 = book<TH1D>("ptratio_j3_j1", ";p_{T}^{jet 3} / p_{T}^{jet 1}; Events / bin", 100, 0, 1);
   hptratio_j3_j2 = book<TH1D>("ptratio_j3_j2", ";p_{T}^{jet 3} / p_{T}^{jet 2}; Events / bin", 100, 0, 1);
 
+  // Sphericity tensor
+  hs11 = book<TH1D>("s11", ";S_{11};Events / bin", 50, 0, 1);
+  hs12 = book<TH1D>("s12", ";S_{12};Events / bin", 50, 0, 1);
+  hs13 = book<TH1D>("s13", ";S_{13};Events / bin", 50, 0, 1);
+  hs22 = book<TH1D>("s22", ";S_{22};Events / bin", 50, 0, 1);
+  hs23 = book<TH1D>("s23", ";S_{23};Events / bin", 50, 0, 1);
+  hs33 = book<TH1D>("s33", ";S_{33};Events / bin", 50, 0, 1);
+  hsphericityeigenvalue1 = book<TH1D>("sphericityeigenvalue1", ";Sphericity, eigenvalue 1;Events / bin", 55, 0, 1.1);
+  hsphericityeigenvalue2 = book<TH1D>("sphericityeigenvalue2", ";Sphericity, eigenvalue 2;Events / bin", 55, 0, 1.1);
+  hsphericityeigenvalue3 = book<TH1D>("sphericityeigenvalue3", ";Sphericity, eigenvalue 3;Events / bin", 55, 0, 1.1);
+  hsphericity = book<TH1D>("sphericity", ";Sphericity;Events / bin", 55, 0, 1.1);
+  haplanarity = book<TH1D>("aplanarity", ";Aplanarity;Events / bin", 80, 0, 1.6);
+
+  hproj2d_tau1_met = book<TH1D>("proj2d_tau1_met", ";<p_{T}^{#tau 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_mu1_met  = book<TH1D>("proj2d_mu1_met", ";<p_{T}^{#mu 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_e1_met   = book<TH1D>("proj2d_e1_met", ";<p_{T}^{e 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_j1_met   = book<TH1D>("proj2d_j1_met", ";<p_{T}^{jet 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -500, 500);
+  hproj2d_j2_met   = book<TH1D>("proj2d_j2_met", ";<p_{T}^{jet 2}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -500, 500);
+  hproj2d_j3_met   = book<TH1D>("proj2d_j3_met", ";<p_{T}^{jet 3}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -500, 500);
+
+  hproj2d_tau1_j1 = book<TH1D>("proj2d_tau1_j1", ";<p_{T}^{#tau 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_mu1_j1  = book<TH1D>("proj2d_mu1_j1", ";<p_{T}^{#mu 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_e1_j1   = book<TH1D>("proj2d_e1_j1", ";<p_{T}^{e 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj2d_met_j1  = book<TH1D>("proj2d_met_j1", ";<p_{T}^{miss}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -500, 500);
+  hproj2d_j2_j1   = book<TH1D>("proj2d_jet2_j1", ";<p_{T}^{jet 2}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -500, 500);
+  hproj2d_j3_j1   = book<TH1D>("proj2d_jet3_j1", ";<p_{T}^{jet 3}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -500, 500);
+
+  hproj3d_tau1_j1  = book<TH1D>("proj3d_tau1_j1", ";<p^{#tau 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj3d_mu1_j1   = book<TH1D>("proj3d_mu1_j1", ";<p^{#mu 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj3d_e1_j1    = book<TH1D>("proj3d_e1_j1", ";<p^{e 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -250, 250);
+  hproj3d_j2_j1    = book<TH1D>("proj3d_jet2_j1", ";<p^{jet 2}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -500, 500);
+  hproj3d_j3_j1    = book<TH1D>("proj3d_jet3_j1", ";<p^{jet 3}, p_{jet 1}> [GeV^{2}];Events / bin", 100, -500, 500);
+
+  hproj2dnorm_tau1_met = book<TH1D>("proj2dnorm_tau1_met", ";norm. <p_{T}^{#tau 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_mu1_met  = book<TH1D>("proj2dnorm_mu1_met", ";norm. <p_{T}^{#mu 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_e1_met   = book<TH1D>("proj2dnorm_e1_met", ";norm. <p_{T}^{e 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_j1_met   = book<TH1D>("proj2dnorm_j1_met", ";norm. <p_{T}^{jet 1}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_j2_met   = book<TH1D>("proj2dnorm_j2_met", ";norm. <p_{T}^{jet 2}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_j3_met   = book<TH1D>("proj2dnorm_j3_met", ";norm. <p_{T}^{jet 3}, p_{T}^{miss}> [GeV^{2}];Events / bin", 100, -1, 1);
+
+  hproj2dnorm_tau1_j1 = book<TH1D>("proj2dnorm_tau1_j1", ";norm. <p_{T}^{#tau 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_mu1_j1  = book<TH1D>("proj2dnorm_mu1_j1", ";norm. <p_{T}^{#mu 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_e1_j1   = book<TH1D>("proj2dnorm_e1_j1", ";norm. <p_{T}^{e 1}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_met_j1  = book<TH1D>("proj2dnorm_met_j1", ";norm. <p_{T}^{miss}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_j2_j1   = book<TH1D>("proj2dnorm_jet2_j1", ";norm. <p_{T}^{jet 2}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj2dnorm_j3_j1   = book<TH1D>("proj2dnorm_jet3_j1", ";norm. <p_{T}^{jet 3}, p_{T}^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+
+  hproj3dnorm_tau1_j1  = book<TH1D>("proj3dnorm_tau1_j1", ";norm. <p^{#tau 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj3dnorm_mu1_j1   = book<TH1D>("proj3dnorm_mu1_j1", ";norm. <p^{#mu 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj3dnorm_e1_j1    = book<TH1D>("proj3dnorm_e1_j1", ";norm. <p^{e 1}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj3dnorm_j2_j1    = book<TH1D>("proj3dnorm_jet2_j1", ";norm. <p^{jet 2}, p^{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+  hproj3dnorm_j3_j1    = book<TH1D>("proj3dnorm_jet3_j1", ";norm. <p^{jet 3}, p_{jet 1}> [GeV^{2}];Events / bin", 100, -1, 1);
+
   hreco_wmass = book<TH1D>("hreco_wmass", ";reco. W mass [GeV]; Events / bin", 100, 0, 1000);
   hreco_wpt = book<TH1D>("hreco_wpt", ";reco. W p_{T} [GeV]; Events / bin", 40, 0, 400);
 
@@ -108,7 +166,6 @@ LQDMPreselectionHists::LQDMPreselectionHists(TString dir_) : BaseHists(dir_){
   hsumweights = book<TH1D>("sumweights", ";;Sum of event weights", 1, 0.5, 1.5);
 
 
-  //    //
 
 
 }
@@ -292,7 +349,174 @@ void LQDMPreselectionHists::fill(const LQDMEvent & event){
     }
   }
 
+  // Sphericity
+  double s11 = -1., s12 = -1., s13 = -1., s22 = -1., s23 = -1., s33 = -1., mag = -1.;
+  for(const Jet jet : *event.jets_ak4chs){
+    mag += (jet.p4().Px()*jet.p4().Px()+jet.p4().Py()*jet.p4().Py()+jet.p4().Pz()*jet.p4().Pz());
+    s11 += jet.p4().Px()*jet.p4().Px();
+    s12 += jet.p4().Px()*jet.p4().Py();
+    s13 += jet.p4().Px()*jet.p4().Pz();
+    s22 += jet.p4().Py()*jet.p4().Py();
+    s23 += jet.p4().Py()*jet.p4().Pz();
+    s33 += jet.p4().Pz()*jet.p4().Pz();
+  }
+  for(const Muon mu : *event.muons){
+    mag += (mu.p4().Px()*mu.p4().Px()+mu.p4().Py()*mu.p4().Py()+mu.p4().Pz()*mu.p4().Pz());
+    s11 += mu.p4().Px()*mu.p4().Px();
+    s12 += mu.p4().Px()*mu.p4().Py();
+    s13 += mu.p4().Px()*mu.p4().Pz();
+    s22 += mu.p4().Py()*mu.p4().Py();
+    s23 += mu.p4().Py()*mu.p4().Pz();
+    s33 += mu.p4().Pz()*mu.p4().Pz();
+  }
+  for(const Electron ele : *event.electrons){
+    mag += (ele.p4().Px()*ele.p4().Px()+ele.p4().Py()*ele.p4().Py()+ele.p4().Pz()*ele.p4().Pz());
+    s11 += ele.p4().Px()*ele.p4().Px();
+    s12 += ele.p4().Px()*ele.p4().Py();
+    s13 += ele.p4().Px()*ele.p4().Pz();
+    s22 += ele.p4().Py()*ele.p4().Py();
+    s23 += ele.p4().Py()*ele.p4().Pz();
+    s33 += ele.p4().Pz()*ele.p4().Pz();
+  }
+  for(const Tau tau : *event.taus){
+    mag += (tau.p4().Px()*tau.p4().Px()+tau.p4().Py()*tau.p4().Py()+tau.p4().Pz()*tau.p4().Pz());
+    s11 += tau.p4().Px()*tau.p4().Px();
+    s12 += tau.p4().Px()*tau.p4().Py();
+    s13 += tau.p4().Px()*tau.p4().Pz();
+    s22 += tau.p4().Py()*tau.p4().Py();
+    s23 += tau.p4().Py()*tau.p4().Pz();
+    s33 += tau.p4().Pz()*tau.p4().Pz();
+  }
 
+  s11 = s11 / mag;
+  s12 = s12 / mag;
+  s13 = s13 / mag;
+  s22 = s22 / mag;
+  s23 = s23 / mag;
+  s33 = s33 / mag;
+
+  vector<double> S_elements = {s11, s12, s13, s12, s22, s23, s13, s23, s33};
+  TMatrixDSymEigen S = TMatrixDSymEigen(TMatrixDSym(3, &S_elements[0]));
+  TVectorD S_eigenvalues = S.GetEigenValues();
+  if(S_eigenvalues[0] >= S_eigenvalues[1] && S_eigenvalues[0] >= S_eigenvalues[2]){
+    hsphericity->Fill(1.5*(S_eigenvalues[1] + S_eigenvalues[2]), weight);
+    haplanarity->Fill(1.5*S_eigenvalues[0], weight);
+    hsphericityeigenvalue1->Fill(S_eigenvalues[0], weight);
+    if(S_eigenvalues[1] >= S_eigenvalues[2]){
+      hsphericityeigenvalue2->Fill(S_eigenvalues[1], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[2], weight);
+    }
+    else{
+      hsphericityeigenvalue2->Fill(S_eigenvalues[2], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[1], weight);
+    }
+  }
+  else if(S_eigenvalues[1] >= S_eigenvalues[0] && S_eigenvalues[1] >= S_eigenvalues[2]){
+    hsphericity->Fill(1.5*(S_eigenvalues[0] + S_eigenvalues[2]), weight);
+    haplanarity->Fill(1.5*S_eigenvalues[1], weight);
+    hsphericityeigenvalue1->Fill(S_eigenvalues[1], weight);
+    if(S_eigenvalues[0] >= S_eigenvalues[2]){
+      hsphericityeigenvalue2->Fill(S_eigenvalues[0], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[2], weight);
+    }
+    else{
+      hsphericityeigenvalue2->Fill(S_eigenvalues[2], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[0], weight);
+    }
+  }
+  else if(S_eigenvalues[2] >= S_eigenvalues[0] && S_eigenvalues[2] >= S_eigenvalues[1]){
+    hsphericity->Fill(1.5*(S_eigenvalues[0] + S_eigenvalues[1]), weight);
+    haplanarity->Fill(1.5*S_eigenvalues[2], weight);
+    hsphericityeigenvalue1->Fill(S_eigenvalues[2], weight);
+    if(S_eigenvalues[1] >= S_eigenvalues[2]){
+      hsphericityeigenvalue2->Fill(S_eigenvalues[1], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[2], weight);
+    }
+    else{
+      hsphericityeigenvalue2->Fill(S_eigenvalues[2], weight);
+      hsphericityeigenvalue3->Fill(S_eigenvalues[1], weight);
+    }
+  }
+
+  hs11->Fill(s11, weight);
+  hs12->Fill(s12, weight);
+  hs13->Fill(s13, weight);
+  hs22->Fill(s22, weight);
+  hs23->Fill(s23, weight);
+  hs33->Fill(s33, weight);
+
+  ROOT::Math::XYVector met_p2(0,0), tau1_p2(0,0), mu1_p2(0,0), e1_p2(0,0), j1_p2(0,0), j2_p2(0,0), j3_p2(0,0);
+  ROOT::Math::XYZVector tau1_p3(0,0,0), mu1_p3(0,0,0), e1_p3(0,0,0), j1_p3(0,0,0), j2_p3(0,0,0), j3_p3(0,0,0);
+  met_p2 = ROOT::Math::XYVector(event.met->p4().Px(), event.met->p4().Py());
+  if(event.taus->size() > 0){
+    tau1_p2 = ROOT::Math::XYVector(event.taus->at(0).p4().Px(), event.taus->at(0).p4().Py());
+    tau1_p3 = ROOT::Math::XYZVector(event.taus->at(0).p4().Px(), event.taus->at(0).p4().Py(), event.taus->at(0).p4().Pz());
+  }
+  if(event.muons->size() > 0){
+    mu1_p2 = ROOT::Math::XYVector(event.muons->at(0).p4().Px(), event.muons->at(0).p4().Py());
+    mu1_p3 = ROOT::Math::XYZVector(event.muons->at(0).p4().Px(), event.muons->at(0).p4().Py(), event.muons->at(0).p4().Pz());
+  }
+  if(event.electrons->size() > 0){
+    e1_p2 = ROOT::Math::XYVector(event.electrons->at(0).p4().Px(), event.electrons->at(0).p4().Py());
+    e1_p3 = ROOT::Math::XYZVector(event.electrons->at(0).p4().Px(), event.electrons->at(0).p4().Py(), event.electrons->at(0).p4().Pz());
+  }
+  if(event.jets_ak4chs->size() > 0){
+    j1_p2 = ROOT::Math::XYVector(event.jets_ak4chs->at(0).p4().Px(), event.jets_ak4chs->at(0).p4().Py());
+    j1_p3 = ROOT::Math::XYZVector(event.jets_ak4chs->at(0).p4().Px(), event.jets_ak4chs->at(0).p4().Py(), event.jets_ak4chs->at(0).p4().Pz());
+
+    if(event.jets_ak4chs->size() > 1){
+      j2_p2 = ROOT::Math::XYVector(event.jets_ak4chs->at(1).p4().Px(), event.jets_ak4chs->at(1).p4().Py());
+      j2_p3 = ROOT::Math::XYZVector(event.jets_ak4chs->at(1).p4().Px(), event.jets_ak4chs->at(1).p4().Py(), event.jets_ak4chs->at(1).p4().Pz());
+
+      if(event.jets_ak4chs->size() > 2){
+        j3_p2 = ROOT::Math::XYVector(event.jets_ak4chs->at(2).p4().Px(), event.jets_ak4chs->at(2).p4().Py());
+        j3_p3 = ROOT::Math::XYZVector(event.jets_ak4chs->at(2).p4().Px(), event.jets_ak4chs->at(2).p4().Py(), event.jets_ak4chs->at(2).p4().Pz());
+      }
+    }
+  }
+
+  if(event.taus->size() > 0)        hproj2d_tau1_met->Fill( tau1_p2.Dot(met_p2.Unit()), weight);
+  if(event.muons->size() > 0)       hproj2d_mu1_met->Fill(   mu1_p2.Dot(met_p2.Unit()), weight);
+  if(event.electrons->size() > 0)   hproj2d_e1_met->Fill(     e1_p2.Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 0) hproj2d_j1_met->Fill(     j1_p2.Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 1) hproj2d_j2_met->Fill(     j2_p2.Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 2) hproj2d_j3_met->Fill(     j3_p2.Dot(met_p2.Unit()), weight);
+
+  if(event.taus->size() > 0)        hproj2dnorm_tau1_met->Fill( tau1_p2.Unit().Dot(met_p2.Unit()), weight);
+  if(event.muons->size() > 0)       hproj2dnorm_mu1_met->Fill(   mu1_p2.Unit().Dot(met_p2.Unit()), weight);
+  if(event.electrons->size() > 0)   hproj2dnorm_e1_met->Fill(     e1_p2.Unit().Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 0) hproj2dnorm_j1_met->Fill(     j1_p2.Unit().Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 1) hproj2dnorm_j2_met->Fill(     j2_p2.Unit().Dot(met_p2.Unit()), weight);
+  if(event.jets_ak4chs->size() > 2) hproj2dnorm_j3_met->Fill(     j3_p2.Unit().Dot(met_p2.Unit()), weight);
+
+
+  if(event.jets_ak4chs->size() > 0){
+    hproj2dnorm_met_j1->Fill(   met_p2.Unit().Dot(j1_p2.Unit()), weight);
+    if(event.taus->size() > 0)        hproj2dnorm_tau1_j1->Fill( tau1_p2.Unit().Dot(j1_p2.Unit()), weight);
+    if(event.muons->size() > 0)       hproj2dnorm_mu1_j1->Fill(   mu1_p2.Unit().Dot(j1_p2.Unit()), weight);
+    if(event.electrons->size() > 0)   hproj2dnorm_e1_j1->Fill(     e1_p2.Unit().Dot(j1_p2.Unit()), weight);
+    if(event.jets_ak4chs->size() > 1) hproj2dnorm_j2_j1->Fill(     j2_p2.Unit().Dot(j1_p2.Unit()), weight);
+    if(event.jets_ak4chs->size() > 2) hproj2dnorm_j3_j1->Fill(     j3_p2.Unit().Dot(j1_p2.Unit()), weight);
+
+    if(event.taus->size() > 0)        hproj3dnorm_tau1_j1->Fill( tau1_p3.Unit().Dot(j1_p3.Unit()), weight);
+    if(event.muons->size() > 0)       hproj3dnorm_mu1_j1->Fill(   mu1_p3.Unit().Dot(j1_p3.Unit()), weight);
+    if(event.electrons->size() > 0)   hproj3dnorm_e1_j1->Fill(     e1_p3.Unit().Dot(j1_p3.Unit()), weight);
+    if(event.jets_ak4chs->size() > 1) hproj3dnorm_j2_j1->Fill(     j2_p3.Unit().Dot(j1_p3.Unit()), weight);
+    if(event.jets_ak4chs->size() > 2) hproj3dnorm_j3_j1->Fill(     j3_p3.Unit().Dot(j1_p3.Unit()), weight);
+
+    hproj2d_met_j1->Fill(   met_p2.Dot(j1_p2.Unit()), weight);
+    if(event.taus->size() > 0)        hproj2d_tau1_j1->Fill( tau1_p2.Dot(j1_p2.Unit()), weight);
+    if(event.muons->size() > 0)       hproj2d_mu1_j1->Fill(   mu1_p2.Dot(j1_p2.Unit()), weight);
+    if(event.electrons->size() > 0)   hproj2d_e1_j1->Fill(     e1_p2.Dot(j1_p2.Unit()), weight);
+    if(event.jets_ak4chs->size() > 1) hproj2d_j2_j1->Fill(     j2_p2.Dot(j1_p2.Unit()), weight);
+    if(event.jets_ak4chs->size() > 2) hproj2d_j3_j1->Fill(     j3_p2.Dot(j1_p2.Unit()), weight);
+
+    if(event.taus->size() > 0)        hproj3d_tau1_j1->Fill( tau1_p3.Dot(j1_p3.Unit()), weight);
+    if(event.muons->size() > 0)       hproj3d_mu1_j1->Fill(   mu1_p3.Dot(j1_p3.Unit()), weight);
+    if(event.electrons->size() > 0)   hproj3d_e1_j1->Fill(     e1_p3.Dot(j1_p3.Unit()), weight);
+    if(event.jets_ak4chs->size() > 1) hproj3d_j2_j1->Fill(     j2_p3.Dot(j1_p3.Unit()), weight);
+    if(event.jets_ak4chs->size() > 2) hproj3d_j3_j1->Fill(     j3_p3.Dot(j1_p3.Unit()), weight);
+  }
 
   hnpv->Fill(event.npv, weight);
   hnpvgood->Fill(event.npv_good, weight);

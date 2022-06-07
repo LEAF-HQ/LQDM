@@ -43,6 +43,7 @@
 #include "LEAF/LQDM/include/LQDMGenParticleOriginHists.h"
 #include "LEAF/LQDM/include/LQDMElectronOriginHists.h"
 #include "LEAF/LQDM/include/LQDMMuonOriginHists.h"
+#include "LEAF/LQDM/include/LQDMEventShapeSelections.h"
 
 using namespace std;
 
@@ -75,6 +76,8 @@ private:
   unique_ptr<NTauSelection>      ntau_selection;
   unique_ptr<NJetSelection>      njet1_selection, njet2_selection;
   unique_ptr<NJetSelection>      nbjetloose1_selection, nbjetloose2_selection, nbjetmedium1_selection, nbjetmedium2_selection, nbjettight1_selection, nbjettight2_selection;
+  // unique_ptr<SphericitySelection>  sphericity_selection;
+  // unique_ptr<AplanaritySelection>  aplanarity_selection;
 
   // constants
   TString year;
@@ -106,8 +109,9 @@ LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : B
 
   MultiID<Muon> muon_id_pteta = {PtEtaId(3, 2.4)};
   MultiID<Muon> muon_id_cutsoft = {MuonID(Muon::IDCutBasedSoft)};
+  MultiID<Muon> muon_id_cutsoft_iso = {MuonID(Muon::IDCutBasedSoft), MuonID(Muon::IsoPFTight)};
   cleaner_muon_pteta.reset(new MuonCleaner(muon_id_pteta));
-  cleaner_muon_id.reset(new    MuonCleaner(muon_id_cutsoft));
+  cleaner_muon_id.reset(new    MuonCleaner(muon_id_cutsoft_iso));
 
   MultiID<Electron> electron_id_pteta = {PtEtaId(5, 2.4)};
   MultiID<Electron> electron_id_mvanoniso90 = {ElectronID(Electron::IDMVANonIsoEff90)};
@@ -127,9 +131,12 @@ LQDMPsiPsiFullselectionTool::LQDMPsiPsiFullselectionTool(const Config & cfg) : B
   njet1_selection.reset(new NJetSelection(cfg, 1, -1));
   njet2_selection.reset(new NJetSelection(cfg, 2, -1));
 
+
+  // sphericity_selection.reset(new SphericitySelection(cfg, 0.0, 0.1));
+  // aplanarity_selection.reset(new AplanaritySelection(cfg, 1.4, -1.));
+
   // histfolders
-  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjettight1_nominal", "dphi_j1_met_nominal", "ptratio_j2_met_nominal", "tach_nominal", "tach_addmu_nominal",
-  "tach_addel_nominal", "tach_nolep_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
+  vector<TString> histtags = {"input", "cleanerpteta", "cleanerid", "jettaucleaner", "jets1_nominal", "jets2_nominal", "bjettight1_nominal", "dphi_j1_met_nominal", "dphi_j2_met_nominal", "ptratio_j2_met_nominal", "tach_nominal", "tach_addmu_nominal",  "tach_addel_nominal", "tach_nolep_nominal", "much_nominal", "elch_nominal", "noch_nominal", "nominal"};
   book_histograms(histtags);
 }
 
@@ -174,8 +181,17 @@ bool LQDMPsiPsiFullselectionTool::Process(){
   if(deltaPhi(event->jets_ak4chs->at(0), *event->met) < M_PI/2.) return false;
   fill_histograms("dphi_j1_met_nominal");
 
+  if(deltaPhi(event->jets_ak4chs->at(1), *event->met) < M_PI/4.) return false;
+  fill_histograms("dphi_j2_met_nominal");
+
   if((event->jets_ak4chs->at(1).pt() / event->met->pt()) > 1.) return false;
   fill_histograms("ptratio_j2_met_nominal");
+
+  // if(!sphericity_selection->passes(*event)) return false;
+  // fill_histograms("sphericity_nominal");
+  //
+  // if(!aplanarity_selection->passes(*event)) return false;
+  // fill_histograms("aplanarity_nominal");
 
   if(ntau_selection->passes(*event)){
     fill_histograms("tach_nominal");
@@ -202,7 +218,7 @@ bool LQDMPsiPsiFullselectionTool::Process(){
 
   fill_histograms("nominal");
 
-  return false;
+  return true;
 }
 
 

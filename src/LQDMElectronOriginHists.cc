@@ -83,6 +83,7 @@ LQDMElectronOriginHists::LQDMElectronOriginHists(TString dir_) : BaseHists(dir_)
 }
 
 void LQDMElectronOriginHists::fill(const LQDMEvent & event){
+  if(event.is_data) return;
   double weight = event.weight;
 
 

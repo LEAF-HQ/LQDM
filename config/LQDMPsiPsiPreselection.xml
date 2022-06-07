@@ -5,6 +5,12 @@
 <!ENTITY TargetLumi  "41480" >
 <!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/PsiPsi" >
 
+<!ENTITY DATA_MET_RunB SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/DATA_MET_RunB.xml" >
+<!ENTITY DATA_MET_RunC SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/DATA_MET_RunC.xml" >
+<!ENTITY DATA_MET_RunD SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/DATA_MET_RunD.xml" >
+<!ENTITY DATA_MET_RunE SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/DATA_MET_RunE.xml" >
+<!ENTITY DATA_MET_RunF SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/DATA_MET_RunF.xml" >
+
 <!ENTITY LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0 SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0.xml" >
 <!ENTITY LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest.xml" >
 <!ENTITY LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0 SYSTEM "/work/areimers/CMSSW_10_6_28/src/LEAF/Analyzer/datasets/UL17/Summer20/MINIAODv2/NTuples_v01/standard/LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0.xml" >
@@ -139,7 +145,13 @@
 
 
     <InputDatasets>
-        <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >        &LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0;        </Dataset>
+        <Dataset Name="DATA_MET_RunB"  Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >      &DATA_MET_RunB;      </Dataset>
+        <Dataset Name="DATA_MET_RunC"  Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >      &DATA_MET_RunC;      </Dataset>
+        <Dataset Name="DATA_MET_RunD"  Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >      &DATA_MET_RunD;      </Dataset>
+        <Dataset Name="DATA_MET_RunE"  Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >      &DATA_MET_RunE;      </Dataset>
+        <Dataset Name="DATA_MET_RunF"  Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >      &DATA_MET_RunF;      </Dataset>
+
+        <!-- <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >        &LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0;        </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest"        Lumi="100000"  Year="UL17" Type="MC" Group="None" >       &LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest;       </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >        &LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0;        </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1360_MCH100_MPS117_Lbest"        Lumi="100000"  Year="UL17" Type="MC" Group="None" >       &LQLQToBTau_MLQ1360_MCH100_MPS117_Lbest;       </Dataset>
@@ -207,13 +219,13 @@
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0"    Lumi="100000"  Year="UL17" Type="MC" Group="None" >   &PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0;   </Dataset>
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH214_MPS244_L1p0"      Lumi="100000"  Year="UL17" Type="MC" Group="None" >     &PsiPsiToLQChi_MLQ7030_MCH214_MPS244_L1p0;     </Dataset>
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0"      Lumi="100000"  Year="UL17" Type="MC" Group="None" >     &PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0;     </Dataset>
-        <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0"     Lumi="100000"  Year="UL17" Type="MC" Group="None" >    &PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0;    </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0"     Lumi="100000"  Year="UL17" Type="MC" Group="None" >    &PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0;    </Dataset> -->
 
-        <Dataset Name="TTToSemiLeptonic"          Lumi="293492792.2"  Year="UL17" Type="MC" Group="TT" >      &TTToSemiLeptonic;         </Dataset>
+        <!-- <Dataset Name="TTToSemiLeptonic"          Lumi="293492792.2"  Year="UL17" Type="MC" Group="TT" >      &TTToSemiLeptonic;         </Dataset>
         <Dataset Name="TTTo2L2Nu"                 Lumi="88123683.86"  Year="UL17" Type="MC" Group="TT" >      &TTTo2L2Nu;                </Dataset>
-        <Dataset Name="TTToHadronic"              Lumi="194666359.1"  Year="UL17" Type="MC" Group="TT" >      &TTToHadronic;             </Dataset>
+        <Dataset Name="TTToHadronic"              Lumi="194666359.1"  Year="UL17" Type="MC" Group="TT" >      &TTToHadronic;             </Dataset> -->
 
-        <Dataset Name="WJetsToLNu_Inclusive"      Lumi="19327.01353"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_Inclusive;     </Dataset>
+        <!-- <Dataset Name="WJetsToLNu_Inclusive"      Lumi="19327.01353"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_Inclusive;     </Dataset> -->
         <!-- <Dataset Name="WJetsToLNu_HT70To100"      Lumi="29043.27514"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_HT70To100;     </Dataset>
         <Dataset Name="WJetsToLNu_HT100To200"     Lumi="31230.09977"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_HT100To200;    </Dataset>
         <Dataset Name="WJetsToLNu_HT200To400"     Lumi="104662.9038"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_HT200To400;    </Dataset>
@@ -223,8 +235,8 @@
         <Dataset Name="WJetsToLNu_HT1200To2500"   Lumi="3539815.853"  Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_HT1200To2500;  </Dataset>
         <Dataset Name="WJetsToLNu_HT2500ToInf"    Lumi="1185699"      Year="UL17" Type="MC" Group="WJets" >   &WJetsToLNu_HT2500ToInf;   </Dataset> -->
 
-        <Dataset Name="DYJetsToLL_M10To50_Inclusive"  Lumi="4306.929497"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M10To50_Inclusive;  </Dataset>
-        <Dataset Name="DYJetsToLL_M50_Inclusive"      Lumi="19309.59903"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_Inclusive;      </Dataset>
+        <!-- <Dataset Name="DYJetsToLL_M10To50_Inclusive"  Lumi="4306.929497"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M10To50_Inclusive;  </Dataset>
+        <Dataset Name="DYJetsToLL_M50_Inclusive"      Lumi="19309.59903"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_Inclusive;      </Dataset> -->
         <!-- <Dataset Name="DYJetsToLL_M50_HT70To100"      Lumi="71136.5096"   Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_HT70To100;      </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT100To200"     Lumi="109763.3533"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_HT100To200;     </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT200To400"     Lumi="265203.7819"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_HT200To400;     </Dataset>
@@ -234,7 +246,7 @@
         <Dataset Name="DYJetsToLL_M50_HT1200To2500"   Lumi="29070646.13"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_HT1200To2500;   </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT2500ToInf"    Lumi="403653218.4"  Year="UL17" Type="MC" Group="DYJets" >   &DYJetsToLL_M50_HT2500ToInf;    </Dataset> -->
 
-        <Dataset Name="ST_tch_ele"     Lumi="47527.23971"  Year="UL17" Type="MC" Group="ST" >  &ST_tch_ele;      </Dataset>
+        <!-- <Dataset Name="ST_tch_ele"     Lumi="47527.23971"  Year="UL17" Type="MC" Group="ST" >  &ST_tch_ele;      </Dataset>
         <Dataset Name="ST_tch_mu"      Lumi="45121.19499"  Year="UL17" Type="MC" Group="ST" >  &ST_tch_mu;       </Dataset>
         <Dataset Name="ST_tch_tau"     Lumi="46440.83199"  Year="UL17" Type="MC" Group="ST" >  &ST_tch_tau;      </Dataset>
         <Dataset Name="ST_sch"         Lumi="14670407.07"  Year="UL17" Type="MC" Group="ST" >  &ST_sch;          </Dataset>
@@ -262,7 +274,7 @@
         <Dataset Name="QCD_Pt_1400to1800"    Lumi="17116612.17"    Year="UL17" Type="MC" Group="QCDHad" >   &QCD_Pt_1400to1800;  </Dataset>
         <Dataset Name="QCD_Pt_1800to2400"    Lumi="63291431.21"    Year="UL17" Type="MC" Group="QCDHad" >   &QCD_Pt_1800to2400;  </Dataset>
         <Dataset Name="QCD_Pt_2400to3200"    Lumi="544771808.2"    Year="UL17" Type="MC" Group="QCDHad" >   &QCD_Pt_2400to3200;  </Dataset>
-        <Dataset Name="QCD_Pt_3200toInf"     Lumi="7462686567"     Year="UL17" Type="MC" Group="QCDHad" >   &QCD_Pt_3200toInf;   </Dataset>
+        <Dataset Name="QCD_Pt_3200toInf"     Lumi="7462686567"     Year="UL17" Type="MC" Group="QCDHad" >   &QCD_Pt_3200toInf;   </Dataset> -->
 
     </InputDatasets>
 

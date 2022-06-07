@@ -6,6 +6,7 @@ from DNNTools.functions_dnn import classes_to_str
 from Callbacks import PlotOnTraining
 from utils import ensureDirectory
 from keras.callbacks import History, ModelCheckpoint, ReduceLROnPlateau, Callback
+from DNNTools.DNNutils import SavePandas
 
 class Training(TrainingBase):
     def __init__(self, DNNparams={}, inputdir='', outputdir='', plotdir='', predictiondir=''):
@@ -21,16 +22,13 @@ class Training(TrainingBase):
         self.inputs = {}
         self.labels = {}
         self.weights = {}
+        self.index = {}
         for mode in ['train','val','test']:
-            print self.inputdir
-            print self.classes
-            print classes_to_str(self.classes)
-            print 'input_%s_%s.pkl' %(mode,self.frac)
-            print os.path.join(self.inputdir, 'input_%s_%s.pkl' %(mode,self.frac) )
             self.inputs[mode]  = pd.read_pickle(os.path.join(self.inputdir, 'input_%s_%s.pkl' %(mode, self.frac) )).to_numpy()
             self.labels[mode]  = np.load(os.path.join(self.inputdir, 'label_%s_%s.npy' %(mode, self.frac) ))
-            self.weights[mode] = pd.read_pickle(os.path.join(self.inputdir, 'weights_%s_%s.pkl' %(mode, self.frac) )).to_numpy()
-
+            self.weights[mode] = pd.read_pickle(os.path.join(self.inputdir, 'weights_%s_%s.pkl' %(mode, self.frac) ))
+            self.index[mode] = self.weights[mode].index
+            self.weights[mode] = self.weights[mode].to_numpy()
 
 
 
@@ -69,7 +67,3 @@ class Training(TrainingBase):
         defaultparams['metrics'] = ['categorical_accuracy']
         params.update(defaultparams)
         self.model = SequentialModel(input_shape = (self.inputs['train'].shape[1],), output_shape=self.labels['train'].shape[1], params=params)
-
-    # def Train(self):
-        # TrainingBase.Train(self)
-        # self.SavePredictions()

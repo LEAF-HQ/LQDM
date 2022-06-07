@@ -5,8 +5,8 @@
 <PlotterConfiguration>
 
   <FileConfiguration
-    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met/"
-    OutputDirectory = "/work/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met/plots/distributions"
+    InputDirectory  = "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_05_Jets2_BTagTight1_DPhiJet1Met_DPhiJet2Met_PtratioJet2Met_LeptonCategories/"
+    OutputDirectory = "/work/areimers/LQDM/UL17/Fullselection/PsiPsi_05_Jets2_BTagTight1_DPhiJet1Met_DPhiJet2Met_PtratioJet2Met_LeptonCategories/plots/distributions"
     PreFix          = "PsiPsiToLQChi_"
     SEDirector      = "root://t3dcachedb03.psi.ch/"
   />
@@ -28,12 +28,20 @@
     <Dataset Name="WJets"    Stack="true"   Color="814"  Linestyle="0"   Legend="W+jets #rightarrow l#nu" Type="MC" />
     <Dataset Name="QCDHad"   Stack="true"   Color="429"  Linestyle="0"   Legend="QCD"                     Type="MC" />
 
-    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.12 TeV, light LQ)" ScaleFactor="3331.0"  Type="MC" />
-    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.12 TeV, heavy LQ)" ScaleFactor="3331.0"  Type="MC" />
-    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH457_MPS567_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.57 TeV, light LQ)" ScaleFactor="1.168"   Type="MC" />
-    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0"   Stack="false"  Color="633"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.50 TeV, heavy LQ)" ScaleFactor="2.276"  Type="MC" />
-    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH2089_MPS2221_L1p0" Stack="false"  Color="800"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=2.22 TeV, light LQ)" ScaleFactor="0.00007024"  Type="MC" />
-    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0" Stack="false"  Color="800"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=2.45 TeV, heavy LQ)" ScaleFactor="0.00002878"  Type="MC" />
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.12 TeV, light LQ)" ScaleFactor="3331.0"  Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.12 TeV, heavy LQ)" ScaleFactor="3331.0"  Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH457_MPS567_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.57 TeV, light LQ)" ScaleFactor="1.168"   Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0"   Stack="false"  Color="633"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=0.50 TeV, heavy LQ)" ScaleFactor="2.276"  Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH2089_MPS2221_L1p0" Stack="false"  Color="800"    Linestyle="1"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=2.22 TeV, light LQ)" ScaleFactor="0.00007024"  Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0" Stack="false"  Color="800"    Linestyle="2"   Legend="#psi #psi #rightarrow LQ#chi LQ#chi (M_{#psi}=2.45 TeV, heavy LQ)" ScaleFactor="0.00002878"  Type="MC" /> -->
+    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="1"   Legend="#psi #psi (M_{#psi}=0.12 TeV, M_{#chi_{1}}=0.10 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH100_MPS117_L1p0"   Stack="false"  Color="636"    Linestyle="2"   Legend="#psi #psi (M_{#psi}=0.12 TeV, M_{#chi_{1}}=0.10 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH457_MPS567_L1p0"   Stack="false"  Color="633"    Linestyle="1"   Legend="#psi #psi (M_{#psi}=0.57 TeV, M_{#chi_{1}}=0.46 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0"   Stack="false"  Color="633"    Linestyle="2"   Legend="#psi #psi (M_{#psi}=0.50 TeV, M_{#chi_{1}}=0.46 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH977_MPS1051_L1p0"  Stack="false"  Color="800"    Linestyle="1"   Legend="#psi #psi (M_{#psi}=1.05 TeV, M_{#chi_{1}}=0.98 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0"  Stack="false"  Color="800"    Linestyle="2"   Legend="#psi #psi (M_{#psi}=1.07 TeV, M_{#chi_{1}}=0.98 TeV)" ScaleFactor="1.0"  Type="MC" />
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ1000_MCH2089_MPS2221_L1p0" Stack="false"  Color="800"    Linestyle="1"   Legend="#psi #psi (M_{#psi}=2.22 TeV, M_{#chi_{1}}=2.09 TeV)" ScaleFactor="1.0"  Type="MC" /> -->
+    <!-- <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0" Stack="false"  Color="800"    Linestyle="2"   Legend="#psi #psi (M_{#psi}=2.45 TeV, M_{#chi_{1}}=2.09 TeV)" ScaleFactor="1.0"  Type="MC" /> -->
 
     <!-- <Dataset Name="VV"        Stack="true"   Color="880"  Linestyle="0"   Legend="VV"              Type="MC" />
     <Dataset Name="ST"        Stack="true"   Color="858"  Linestyle="0"   Legend="Single t"              Type="MC" />

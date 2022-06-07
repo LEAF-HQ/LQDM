@@ -53,17 +53,20 @@ def ExecuteCombineCombination(self, selectiontag=None):
             for cat in self.histnames_in_out_per_category.keys():
                 combcard = '_'.join([x for x in [combcard, cat] if x is not None])
         combcard = '_'.join([combcard, signal]) + '%s.txt' % ('' if selectiontag is None else selectiontag)
-
+        
         parts = signal.split('_')
-        signaltag = ''
+        signaltag = signal
         signalmass = -1
         for part in parts:
-            if not self.signalmass_identifier in part:
-                if signaltag == '': signaltag = part
-                else: signaltag = '_'.join([signaltag, part])
-            else:
+            if self.signalmass_identifier in part:
                 signalmass = part[len(self.signalmass_identifier):]
                 break
+            # if not self.signalmass_identifier in part:
+            #     if signaltag == '': signaltag = part
+            #     else: signaltag = '_'.join([signaltag, part])
+            # else:
+            #     signalmass = part[len(self.signalmass_identifier):]
+            #     break
 
         signalmasses.append(signalmass)
         sourceprecommands = '. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gcc/7.0.0-omkpbe2/etc/profile.d/init.sh; . /cvmfs/cms.cern.ch/${SCRAM_ARCH}/lcg/root/6.12.07-gnimlf5/bin/thisroot.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/gsl/2.2.1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/tbb/2018_U1-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/cms/vdt/0.4.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/boost/1.63.0-gnimlf/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/pcre/8.37-omkpbe2/etc/profile.d/init.sh;. /cvmfs/cms.cern.ch/${SCRAM_ARCH}/external/eigen/64060da8461a627eb25b5a7bc0616776068db58b/etc/profile.d/init.sh; cd $CMSSW_COMBINE_BASE/src; eval `scramv1 runtime -sh`; cd -;'
@@ -114,7 +117,7 @@ def get_lines_datacard_input(rootfilename, year):
     lines.append('shapes * * %s $CHANNEL__$PROCESS_%s $CHANNEL__$PROCESS_%s__$SYSTEMATIC' % (rootfilename, year, year))
     return lines
 
-def get_lines_datacard_processes(category, varcat, signal, backgrounds):
+def get_lines_datacard_processes(category, varcat, signal, backgrounds, hists_empty):
     lines = []
     lines.append('# PROCESSES')
 
@@ -123,7 +126,7 @@ def get_lines_datacard_processes(category, varcat, signal, backgrounds):
         line += varcat + '  '
     lines.append(line)
 
-    line = 'process    ' + signal + '  '
+    line = 'process    ' + '%s' % (signal) + '  '
     for bkg in backgrounds:
         line += bkg + '  '
     lines.append(line)
@@ -135,9 +138,9 @@ def get_lines_datacard_processes(category, varcat, signal, backgrounds):
         idx += 1
     lines.append(line)
 
-    line = 'rate       -1  '
+    line = 'rate       ' + '%s' % ('-1' if not hists_empty[signal] else '0') + '  '
     for bkg in backgrounds:
-        line += '-1  '
+        line += '%s  ' % ('-1' if not hists_empty[bkg] else '0')
     lines.append(line)
 
     return lines
@@ -145,7 +148,7 @@ def get_lines_datacard_processes(category, varcat, signal, backgrounds):
 
 
 
-def get_lines_datacard_systematics(category, systematics, procs_per_syst, pdf_per_syst, value_per_syst, backgrounds):
+def get_lines_datacard_systematics(category, systematics, procs_per_syst, pdf_per_syst, value_per_syst, backgrounds, signal):
     lines = []
     lines.append('# SYSTEMATICS')
     for syst in systematics:
@@ -155,10 +158,11 @@ def get_lines_datacard_systematics(category, systematics, procs_per_syst, pdf_pe
         print 'syst: %s' % (syst)
         line = syst + '  ' + pdf_per_syst[syst] + '  '
         # first for signal:
-        if procs_per_syst[syst] == 'all':
+        if procs_per_syst[syst] == 'all' or procs_per_syst[syst] == signal:
             line += str(value_per_syst[syst]) + '  '
         else:
             line += '-  '
+
         for bkg in backgrounds:
             if procs_per_syst[syst] == 'all' or procs_per_syst[syst] == bkg:
                 line += str(value_per_syst[syst]) + '  '
@@ -175,6 +179,18 @@ def get_lines_datacard_statistics():
     return lines
 
 
+def is_hist_empty(process, rootfilename, histname):
+
+    histogramfile = ROOT.TFile(rootfilename, 'READ')
+    h = histogramfile.Get(histname)
+    is_empty = False
+    if int(h.GetEntries()) == 0:
+        # print histname, h.GetEntries()
+        is_empty = True
+    histogramfile.Close()
+    return is_empty
+
+
 
 def create_datacard(year, signal, variable, category, channel, backgrounds, systematics, procs_per_syst, pdf_per_syst, value_per_syst, combineinput_path, rootfilename, selectiontag):
 
@@ -188,11 +204,21 @@ def create_datacard(year, signal, variable, category, channel, backgrounds, syst
     varcat = '_'.join([x for x in [variable, channel, category] if x is not None])
     separator = ['-----------------------------\n']
 
+    ### Check for empty histograms in signal and backgrounds.
+    # signal_hist_empty = is_hist_empty(process=signal, rootfilename=os.path.join(combineinput_path, rootfilename), histname='_'.join([x for x in [variable, channel, category] if x is not None]) + '__' + signal + '_%s' % (year))
+    hists_empty = {bkg: is_hist_empty(process=signal, rootfilename=os.path.join(combineinput_path, rootfilename), histname='_'.join([x for x in [variable, channel, category] if x is not None]) + '__' + bkg + '_%s' % (year)) for bkg in backgrounds}
+    hists_empty[signal] = is_hist_empty(process=signal, rootfilename=os.path.join(combineinput_path, rootfilename), histname='_'.join([x for x in [variable, channel, category] if x is not None]) + '__' + signal + '_%s' % (year))
+    # print signal_hist_empty
+    # print background_hists_empty
+    # if signal_hist_empty:
+        # signal = None
+    # backgrounds = [b for b in backgrounds if not hists_empty[b]]
+
     lines_header = get_lines_datacard_header(variable, category, channel, signal, backgrounds) + separator
     lines_channels = get_lines_datacard_channels(varcat) + separator
     lines_input = get_lines_datacard_input(rootfilename, year)
-    lines_processes = get_lines_datacard_processes(category, varcat, signal, backgrounds)
-    lines_systematics = get_lines_datacard_systematics(category, systematics, procs_per_syst, pdf_per_syst, value_per_syst, backgrounds)
+    lines_processes = get_lines_datacard_processes(category, varcat, signal, backgrounds, hists_empty)
+    lines_systematics = get_lines_datacard_systematics(category, systematics, procs_per_syst, pdf_per_syst, value_per_syst, backgrounds, signal)
     lines_statistics = get_lines_datacard_statistics()
 
     lines = lines_header + lines_channels + lines_input + lines_processes + lines_systematics + lines_statistics

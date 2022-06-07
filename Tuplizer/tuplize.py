@@ -13,9 +13,9 @@ workarea = os.path.join(os.environ['PWD'], 'Workarea_v01')
 username = os.environ['USER']
 
 AllSamples = SampleContainer()
-Add_Signals_ChiPsi(AllSamples)
+# Add_Signals_ChiPsi(AllSamples)
 # Add_Signals_ChiPsi_PsiPsiToLQChi(AllSamples)
-Add_Backgrounds(AllSamples)
+# Add_Backgrounds(AllSamples)
 # Add_Backgrounds_TT(AllSamples)
 # Add_Backgrounds_WJets(AllSamples)
 # Add_Backgrounds_DYJets(AllSamples)
@@ -23,6 +23,10 @@ Add_Backgrounds(AllSamples)
 # Add_Backgrounds_Diboson(AllSamples)
 # Add_Backgrounds_QCDHad(AllSamples)
 # Add_Data(AllSamples)
+Add_Data_MET(AllSamples)
+# Add_Data_Tau(AllSamples)
+# Add_Data_SingleMuon(AllSamples)
+# Add_Data_SingleElectron(AllSamples)
 
 
 
@@ -49,9 +53,9 @@ nevt_per_job = 100000
 
 
 def main():
+    print green('--> Tuplizing %i samples' % (len(AllSamples.items())))
     for samplename, sample in AllSamples.items():
-        # if not samplename == 'LQLQToPsiChi_MLQ1360_MCH100_MPS117_Lbest_standard': continue
-        # if not samplename in ['DYJetsToLL_M50_HT1200To2500_standard', 'QCD_Pt_15to30_standard', 'QCD_Pt_600to800_standard', 'QCD_Pt_15to30_standard']: continue
+        if not 'RunB' in samplename: continue
         print green('--> Working on sample: \'%s\'' % (samplename))
         Tuplizer = TuplizeRunner(sample=sample, stage=stage, year=year, config=config_per_year[year], workarea=workarea, submit=submit)
         # Tuplizer.CountEvents(check_missing=True)
@@ -59,14 +63,12 @@ def main():
         # # Tuplizer.CleanBrokenFiles(nevt_per_job=nevt_per_job)
         # Tuplizer.SubmitTuplize(ncores=1, runtime=(01,00,00), nevt_per_job=nevt_per_job, mode='resubmit', clean_broken=True)
         # Tuplizer.SubmitTuplize(ncores=1, runtime=(02,00,00), nevt_per_job=nevt_per_job, mode='resubmit', clean_broken=True)
+        # Tuplizer.SubmitTuplize(ncores=1, runtime=(05,00,00), nevt_per_job=nevt_per_job, mode='new')
         # Tuplizer.SubmitTuplize(ncores=1, runtime=(05,00,00), nevt_per_job=nevt_per_job, mode='resubmit', clean_broken=True)
         # Tuplizer.SubmitTuplize(ncores=1, runtime=(23,00,00), nevt_per_job=nevt_per_job, mode='resubmit', clean_broken=True)
-        # Tuplizer.CreateDatasetXMLFile(force_counting=True, count_weights=True)
+        # Tuplizer.CreateDatasetXMLFile(force_counting=True, count_weights=False)
         # Tuplizer.PrintDASCrossSection(sample=sample, year=year, recalculate=True)
-    # create_default_config(allsamples=AllSamples, year='UL17', configoutname= os.path.join(os.environ['LEAFPATH'], 'LQDM', 'config', 'Default.xml'))
-
-
-
+    create_default_config(allsamples=AllSamples, year='UL17', configoutname= os.path.join(os.environ['LEAFPATH'], 'LQDM', 'config', 'Default.xml'))
 
 
 

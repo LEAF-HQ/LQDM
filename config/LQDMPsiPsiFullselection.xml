@@ -4,8 +4,15 @@
 
 <!ENTITY TargetLumi  "41480" >
 <!ENTITY PreselPath  "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Preselection/PsiPsi">
-<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_04_Jets2_BTagTight1_DPhiJet1Met_PtratioJet2Met" >
+<!ENTITY outfilepath "/pnfs/psi.ch/cms/trivcat/store/user/areimers/LQDM/UL17/Fullselection/PsiPsi_05_Jets2_BTagTight1_DPhiJet1Met_DPhiJet2Met_PtratioJet2Met_LeptonCategories" >
 
+
+
+<!ENTITY DATA_MET_RunB "&PreselPath;/DATA__DATA_MET_RunB.root" >
+<!ENTITY DATA_MET_RunC "&PreselPath;/DATA__DATA_MET_RunC.root" >
+<!ENTITY DATA_MET_RunD "&PreselPath;/DATA__DATA_MET_RunD.root" >
+<!ENTITY DATA_MET_RunE "&PreselPath;/DATA__DATA_MET_RunE.root" >
+<!ENTITY DATA_MET_RunF "&PreselPath;/DATA__DATA_MET_RunF.root" >
 
 <!ENTITY LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0 "&PreselPath;/MC__LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0.root" >
 <!ENTITY LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest "&PreselPath;/MC__LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest.root" >
@@ -142,7 +149,13 @@
 
     <InputDatasets>
 
-        <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0;"/>        </Dataset>
+        <Dataset Name="DATA_MET_RunB"         Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >    <InputFile FileName="&DATA_MET_RunB;"/>        </Dataset>
+        <Dataset Name="DATA_MET_RunC"         Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >    <InputFile FileName="&DATA_MET_RunC;"/>        </Dataset>
+        <Dataset Name="DATA_MET_RunD"         Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >    <InputFile FileName="&DATA_MET_RunD;"/>        </Dataset>
+        <Dataset Name="DATA_MET_RunE"         Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >    <InputFile FileName="&DATA_MET_RunE;"/>        </Dataset>
+        <Dataset Name="DATA_MET_RunF"         Lumi="1"  Year="UL17" Type="DATA" Group="DATA_MET" >    <InputFile FileName="&DATA_MET_RunF;"/>        </Dataset>
+
+        <!-- <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&LQLQToBTau_MLQ1000_MCH100_MPS117_L1p0;"/>        </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest"        Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&LQLQToBTau_MLQ1000_MCH100_MPS117_Lbest;"/>       </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0"         Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&LQLQToBTau_MLQ1360_MCH100_MPS117_L1p0;"/>        </Dataset>
         <Dataset Name="LQLQToBTau_MLQ1360_MCH100_MPS117_Lbest"        Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&LQLQToBTau_MLQ1360_MCH100_MPS117_Lbest;"/>       </Dataset>
@@ -210,13 +223,13 @@
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0"    Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&PsiPsiToLQChi_MLQ7030_MCH2089_MPS2445_L1p0;"/>   </Dataset>
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH214_MPS244_L1p0"      Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&PsiPsiToLQChi_MLQ7030_MCH214_MPS244_L1p0;"/>     </Dataset>
         <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0"      Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&PsiPsiToLQChi_MLQ7030_MCH457_MPS504_L1p0;"/>     </Dataset>
-        <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0"     Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0;"/>    </Dataset>
+        <Dataset Name="PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0"     Lumi="100000"  Year="UL17" Type="MC" Group="None" >    <InputFile FileName="&PsiPsiToLQChi_MLQ7030_MCH977_MPS1071_L1p0;"/>    </Dataset> -->
 
-        <Dataset Name="TTToSemiLeptonic"          Lumi="293492792.2"  Year="UL17" Type="MC" Group="TT" >    <InputFile FileName="&TTToSemiLeptonic;"/>         </Dataset>
+        <!-- <Dataset Name="TTToSemiLeptonic"          Lumi="293492792.2"  Year="UL17" Type="MC" Group="TT" >    <InputFile FileName="&TTToSemiLeptonic;"/>         </Dataset>
         <Dataset Name="TTTo2L2Nu"                 Lumi="88123683.86"  Year="UL17" Type="MC" Group="TT" >    <InputFile FileName="&TTTo2L2Nu;"/>                </Dataset>
-        <Dataset Name="TTToHadronic"              Lumi="194666359.1"  Year="UL17" Type="MC" Group="TT" >    <InputFile FileName="&TTToHadronic;"/>             </Dataset>
+        <Dataset Name="TTToHadronic"              Lumi="194666359.1"  Year="UL17" Type="MC" Group="TT" >    <InputFile FileName="&TTToHadronic;"/>             </Dataset> -->
 
-        <Dataset Name="WJetsToLNu_Inclusive"      Lumi="19327.01353"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_Inclusive;"/>     </Dataset>
+        <!-- <Dataset Name="WJetsToLNu_Inclusive"      Lumi="19327.01353"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_Inclusive;"/>     </Dataset> -->
         <!-- <Dataset Name="WJetsToLNu_HT70To100"      Lumi="29043.27514"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_HT70To100;"/>     </Dataset>
         <Dataset Name="WJetsToLNu_HT100To200"     Lumi="31230.09977"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_HT100To200;"/>    </Dataset>
         <Dataset Name="WJetsToLNu_HT200To400"     Lumi="104662.9038"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_HT200To400;"/>    </Dataset>
@@ -226,8 +239,8 @@
         <Dataset Name="WJetsToLNu_HT1200To2500"   Lumi="3539815.853"  Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_HT1200To2500;"/>  </Dataset>
         <Dataset Name="WJetsToLNu_HT2500ToInf"    Lumi="1185699"      Year="UL17" Type="MC" Group="WJets" >    <InputFile FileName="&WJetsToLNu_HT2500ToInf;"/>   </Dataset> -->
 
-        <Dataset Name="DYJetsToLL_M10To50_Inclusive"  Lumi="4306.929497"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M10To50_Inclusive;"/>  </Dataset>
-        <Dataset Name="DYJetsToLL_M50_Inclusive"      Lumi="19309.59903"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_Inclusive;"/>      </Dataset>
+        <!-- <Dataset Name="DYJetsToLL_M10To50_Inclusive"  Lumi="4306.929497"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M10To50_Inclusive;"/>  </Dataset>
+        <Dataset Name="DYJetsToLL_M50_Inclusive"      Lumi="19309.59903"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_Inclusive;"/>      </Dataset> -->
         <!-- <Dataset Name="DYJetsToLL_M50_HT70To100"      Lumi="71136.5096"   Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_HT70To100;"/>      </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT100To200"     Lumi="109763.3533"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_HT100To200;"/>     </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT200To400"     Lumi="265203.7819"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_HT200To400;"/>     </Dataset>
@@ -237,21 +250,21 @@
         <Dataset Name="DYJetsToLL_M50_HT1200To2500"   Lumi="29070646.13"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_HT1200To2500;"/>   </Dataset>
         <Dataset Name="DYJetsToLL_M50_HT2500ToInf"    Lumi="403653218.4"  Year="UL17" Type="MC" Group="DYJets" >    <InputFile FileName="&DYJetsToLL_M50_HT2500ToInf;"/>    </Dataset> -->
 
-        <Dataset Name="ST_tch_ele"     Lumi="47527.23971"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tch_ele;"/>      </Dataset>
+        <!-- <Dataset Name="ST_tch_ele"     Lumi="47527.23971"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tch_ele;"/>      </Dataset>
         <Dataset Name="ST_tch_mu"      Lumi="45121.19499"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tch_mu;"/>       </Dataset>
         <Dataset Name="ST_tch_tau"     Lumi="46440.83199"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tch_tau;"/>      </Dataset>
         <Dataset Name="ST_sch"         Lumi="14670407.07"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_sch;"/>          </Dataset>
         <Dataset Name="ST_tW_top"      Lumi="14101366.4"   Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tW_top;"/>       </Dataset>
-        <Dataset Name="ST_tW_antitop"  Lumi="14006690.16"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tW_antitop;"/>   </Dataset>
+        <Dataset Name="ST_tW_antitop"  Lumi="14006690.16"  Year="UL17" Type="MC" Group="ST" >    <InputFile FileName="&ST_tW_antitop;"/>   </Dataset> -->
 
-        <Dataset Name="WW_2L2Nu"       Lumi="6461483.858"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&WW_2L2Nu;"/>        </Dataset>
+        <!-- <Dataset Name="WW_2L2Nu"       Lumi="6461483.858"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&WW_2L2Nu;"/>        </Dataset>
         <Dataset Name="WZ_2Q2L"        Lumi="49868088.97"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&WZ_2Q2L;"/>         </Dataset>
         <Dataset Name="WZ_3LNu"        Lumi="2099229.512"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&WZ_3LNu;"/>         </Dataset>
         <Dataset Name="ZZ_2L2Nu"       Lumi="70509715.24"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&ZZ_2L2Nu;"/>        </Dataset>
         <Dataset Name="ZZ_2Q2L"        Lumi="50588671.57"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&ZZ_2Q2L;"/>         </Dataset>
-        <Dataset Name="ZZ_4L"          Lumi="459638056.3"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&ZZ_4L;"/>           </Dataset>
+        <Dataset Name="ZZ_4L"          Lumi="459638056.3"  Year="UL17" Type="MC" Group="VV" >    <InputFile FileName="&ZZ_4L;"/>           </Dataset> -->
 
-        <Dataset Name="QCD_Pt_15to30"        Lumi="0.01578955823"  Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_15to30;"/>      </Dataset>
+        <!-- <Dataset Name="QCD_Pt_15to30"        Lumi="0.01578955823"  Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_15to30;"/>      </Dataset>
         <Dataset Name="QCD_Pt_30to50"        Lumi="0.1874196597"   Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_30to50;"/>      </Dataset>
         <Dataset Name="QCD_Pt_50to80"        Lumi="1.285154242"    Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_50to80;"/>      </Dataset>
         <Dataset Name="QCD_Pt_80to120"       Lumi="12.68060568"    Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_80to120;"/>     </Dataset>
@@ -265,7 +278,7 @@
         <Dataset Name="QCD_Pt_1400to1800"    Lumi="17116612.17"    Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_1400to1800;"/>  </Dataset>
         <Dataset Name="QCD_Pt_1800to2400"    Lumi="63291431.21"    Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_1800to2400;"/>  </Dataset>
         <Dataset Name="QCD_Pt_2400to3200"    Lumi="544771808.2"    Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_2400to3200;"/>  </Dataset>
-        <Dataset Name="QCD_Pt_3200toInf"     Lumi="7462686567"     Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_3200toInf;"/>   </Dataset>
+        <Dataset Name="QCD_Pt_3200toInf"     Lumi="7462686567"     Year="UL17" Type="MC" Group="QCDHad" >    <InputFile FileName="&QCD_Pt_3200toInf;"/>   </Dataset> -->
     </InputDatasets>
 
     <AdditionalVariables>

@@ -78,6 +78,7 @@ LQDMMuonOriginHists::LQDMMuonOriginHists(TString dir_) : BaseHists(dir_){
 }
 
 void LQDMMuonOriginHists::fill(const LQDMEvent & event){
+  if(event.is_data) return;
   double weight = event.weight;
 
 

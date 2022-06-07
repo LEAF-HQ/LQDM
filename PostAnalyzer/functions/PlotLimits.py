@@ -18,13 +18,19 @@ def PlotLimits(self, xaxistitle, yaxistitle, selectiontag=None, signal_scaled_by
     limits_and_quantiles_per_mass = {}
     for signal in self.signals:
         parts = signal.split('_')
-        signaltag = ''
+        # signaltag = ''
+        # signalmass = -1
+        # for part in parts:
+        #     if not self.signalmass_identifier in part:
+        #         if signaltag == '': signaltag = part
+        #         else: signaltag = '_'.join([signaltag, part])
+        #     else:
+        #         signalmass = part[len(self.signalmass_identifier):]
+        #         break
+        signaltag = signal
         signalmass = -1
         for part in parts:
-            if not self.signalmass_identifier in part:
-                if signaltag == '': signaltag = part
-                else: signaltag = '_'.join([signaltag, part])
-            else:
+            if self.signalmass_identifier in part:
                 signalmass = part[len(self.signalmass_identifier):]
                 break
 
@@ -71,12 +77,18 @@ def PlotLimits(self, xaxistitle, yaxistitle, selectiontag=None, signal_scaled_by
         elif signaltag.startswith('LQTChannel'):
             xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_%s.root' % (signaltag))
             crosssectiongraphname = '_'.join([signaltag, 'MC1107', 'L1p0'])
-        elif signaltag.startswith('PsiPsiToLQChi_MLQ1000'):
-            print self.crosssection_path
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ1000_'):
             xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_PsiPsi_vs_MPS.root')
-            print xsecinfilename
             crosssectiongraphname = '_'.join(['PsiPsi', 'L1', 'MLQ1000'])
-            print crosssectiongraphname
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ3970_'):
+            xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_PsiPsi_vs_MPS.root')
+            crosssectiongraphname = '_'.join(['PsiPsi', 'L1', 'MLQ3970'])
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ7030_'):
+            xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_PsiPsi_vs_MPS.root')
+            crosssectiongraphname = '_'.join(['PsiPsi', 'L1', 'MLQ7030'])
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ10000_'):
+            xsecinfilename = os.path.join(self.crosssection_path, 'Crosssections_PsiPsi_vs_MPS.root')
+            crosssectiongraphname = '_'.join(['PsiPsi', 'L1', 'MLQ10000'])
 
         else:
             raise ValueError('PlotLimits() can only plot LQLQ and t-channel cross section. This seems to be a different process (maybe PsiPsi?) and needs implementation.')
@@ -120,9 +132,18 @@ def PlotLimits(self, xaxistitle, yaxistitle, selectiontag=None, signal_scaled_by
             leg_theory.AddEntry(g_theory_equal, 'Equal cpl., #lambda = 1.0', 'LF')
             tdrDraw(g_theory_realistic_L2p5, "3L SAME", mcolor=kGreen-2, lcolor=kGreen-2, fcolor=kGreen-2, lstyle=1, alpha=0.4)
             leg_theory.AddEntry(g_theory_realistic_L2p5, 'Realistic cpl., #lambda = 2.5', 'LF')
-        if signaltag.startswith('PsiPsiToLQChi_MLQ1000'):
+        if signaltag.startswith('PsiPsiToLQChi_MLQ1000_'):
             tdrDraw(g_theory, "3L SAME", mcolor=kRed+2, lcolor=kRed+2, fcolor=kRed+2, lstyle=1, alpha=0.4)
-            leg_theory.AddEntry(g_theory, '#psi pair production', 'LF')
+            leg_theory.AddEntry(g_theory, '#psi pair production (M_{LQ} = 1.00 TeV)', 'LF')
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ3970_'):
+            tdrDraw(g_theory, "3L SAME", mcolor=kRed+2, lcolor=kRed+2, fcolor=kRed+2, lstyle=1, alpha=0.4)
+            leg_theory.AddEntry(g_theory, '#psi pair production (M_{LQ} = 3.97 TeV)', 'LF')
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ7030_'):
+            tdrDraw(g_theory, "3L SAME", mcolor=kRed+2, lcolor=kRed+2, fcolor=kRed+2, lstyle=1, alpha=0.4)
+            leg_theory.AddEntry(g_theory, '#psi pair production (M_{LQ} = 7.03 TeV)', 'LF')
+        elif signaltag.startswith('PsiPsiToLQChi_MLQ10000_'):
+            tdrDraw(g_theory, "3L SAME", mcolor=kRed+2, lcolor=kRed+2, fcolor=kRed+2, lstyle=1, alpha=0.4)
+            leg_theory.AddEntry(g_theory, '#psi pair production (M_{LQ} = 10.0 TeV)', 'LF')
     leg.AddEntry(g_expected, 'Median expected', 'L')
     leg.AddEntry(g_68, '68% expected', 'F')
     leg.AddEntry(g_95, '95% expected', 'F')

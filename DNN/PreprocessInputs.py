@@ -14,10 +14,6 @@ class PreprocessInputs(PreprocessInputsBase):
     def DefineClasses(self):
         return self.classes
 
-    def RemoveNanInf(self):
-        self.df.replace([np.inf, -np.inf], np.nan, inplace=True)
-        self.df.dropna()
-
     def FitScalers(self):
         self.scalers = {}
         self.scalers['standard'] = ColumnTransformer(list((col+'st',preprocessing.StandardScaler(), [col]) for col in  self.inputs['train'].columns.tolist()))

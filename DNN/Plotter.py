@@ -1,63 +1,94 @@
 from DNNTools.PlotterBase import *
 from DNNTools.functions_dnn import list_to_str, classstring_from_label
+from DNNTools.DNNutils import LoadPandas
+from DNNTools.PlottingFunctions import plot_losses, plot_rocs
+import pickle
+from utils import ensureDirectory
+import ROOT as rt
+
+def DefineUniformStyle(classes):
+    style = {
+        0: {
+            'color': 'C0',
+            'rootcolor': rt.TColor.GetColor('#95BBD9'),
+            'label': classstring_from_label(classes, 0)
+        },
+        1: {
+            'color': 'C1',
+            'rootcolor': rt.TColor.GetColor('#FFC08C'),
+            'label': classstring_from_label(classes, 1)
+        },
+        2: {
+            'color': 'C2',
+            'rootcolor': rt.TColor.GetColor('#9CCF94'),
+            'label': classstring_from_label(classes, 2)
+        },
+        3: {
+            'color': 'C3',
+            'rootcolor': rt.TColor.GetColor('#ED9895'),
+            'label': classstring_from_label(classes, 3)
+        },
+        4: {
+            'color': 'C4',
+            'rootcolor': rt.TColor.GetColor('#CAB2DE'),
+            'label': classstring_from_label(classes, 4)
+        },
+        5: {
+            'color': 'C5',
+            'rootcolor': rt.TColor.GetColor('#C6ABA5'),
+            'label': classstring_from_label(classes, 5)
+        },
+        6: {
+            'color': 'C6',
+            'rootcolor': rt.TColor.GetColor('#F2BCDF'),
+            'label': classstring_from_label(classes, 6)
+        },
+        7: {
+            'color': 'C7',
+            'rootcolor': rt.TColor.GetColor('#000000'),
+            'label': classstring_from_label(classes, 7)
+        },
+        8: {
+            'color': 'C8',
+            'rootcolor': rt.TColor.GetColor('#000000'),
+            'label': classstring_from_label(classes, 8)
+        },
+        9: {
+            'color': 'C9',
+            'rootcolor': rt.TColor.GetColor('#000000'),
+            'label': classstring_from_label(classes, 9)
+        }
+    }
+    return style
 
 class Plotter(PlotterBase):
-    def __init__(self, inputdir, outdir, classes):
-        PlotterBase.__init__(self, inputdir=inputdir, outdir=outdir)
+    def __init__(self, modelpath, classes):
+        PlotterBase.__init__(self)
         self.classes = classes
+        self.modelpath = modelpath
 
     def DefineStyle(self):
-        style = {
-            0: {
-                'color': 'C0',
-                'label': classstring_from_label(self.classes, 0)
-            },
-            1: {
-                'color': 'C1',
-                'label': classstring_from_label(self.classes, 1)
-            }
-        }
-        return style
+        result = DefineUniformStyle(self.classes)
+        return result
 
-    def PlotInputVariables(self):
-        self.DefineCommonStyle()
-        self.DefineStylePerVariable()
-        self.LoadInputs()
-        self.PlotBase(self.DefineStyle())
+    def PlotPerformance(self, inputs, predictions, outdir, modelname='finalmodel'):
+        print(blue('--> Plotting performance'))
+        # load history
+        with open(os.path.join(self.modelpath, '%s_history.pkl' % (modelname)), 'r') as f:
+            history = pickle.load(f)
 
-class PlotterPredictions(PlotterBase):
-    def __init__(self, labeldir, predictiondir, outdir, classes):
-        PlotterBase.__init__(self, inputdir=labeldir, outdir=outdir)
-        self.classes = classes
-        self.predictiondir = predictiondir
+        # loss
+        plot_losses(history, mode='loss', name=os.path.join(outdir, 'training_loss'))
+        plot_losses(history, mode='categorical_accuracy',  name=os.path.join(outdir, 'training_acc'))
 
-    def DefineStyle(self):
-        style = {
-            0: {
-                'color': 'C0',
-                'label': classstring_from_label(self.classes, 0)
-            },
-            1: {
-                'color': 'C1',
-                'label': classstring_from_label(self.classes, 1)
-            }
-        }
-        return style
+        # for class i, the score of the i'th node should be used: 'score_%i' % (i) for the "summary ROC curve".
+        self.PlotROCSummary(df=predictions, outdir=outdir)
 
-    def LoadInputs(self):
-        print(blue('--> Loading'))
-        inputdir = os.path.join(self.inputdir, classes_to_str(self.classes))
-        preds = []
-        for label in ['train', 'val', 'test']:
-            pred   = pd.read_pickle(os.path.join(os.path.join(self.predictiondir), 'prediction_%s_%s.pkl' %(label,self.frac) ))
-            pred['label'] = np.load(os.path.join(inputdir, 'label_%s_%s.npy' %(label,self.frac) )).tolist()
-            pred['label'] = np.argmax(np.array(pred['label'].to_list()), axis = 1)
-            pred['weights'] = pd.read_pickle(os.path.join(inputdir, 'weights_%s_%s.pkl' %(label,self.frac) ))
-            preds.append(pred)
-        self.df = pd.concat(preds)
+        for colname in predictions.columns:
+            if not 'score' in colname: continue
+            self.PlotROCSingleVariable(df=predictions, variable_name=colname, outdir=outdir)
 
-    def PlotPredictions(self):
-        self.DefineCommonStyle()
-        self.DefineStylePerVariable()
-        self.LoadInputs()
-        self.PlotBase(self.DefineStyle())
+        self.PlotROCSingleVariable(df=inputs, variable_name='met_pt_1', outdir=outdir)
+
+
+        print(green('--> Plotted performance'))
